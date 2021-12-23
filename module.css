@@ -1,0 +1,210 @@
+:root {
+    --gray: #767676;
+
+}
+
+.typography--h3 {
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: black;
+}
+
+.typography--a {
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--gray);
+}
+
+.typography--a1 {
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--gray);
+}
+
+.typography--p {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;
+
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sr-only {
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    z-index: -1000;
+    white-space: nowrap;
+}
+
+#icons {
+    margin: 10px;
+}
+
+.basic-profile-img {
+
+}
+
+.basic-profile {
+
+}
+
+.img-button {
+
+}
+
+.upload-file {
+
+}
+
+.icon-search {
+
+}
+.icon-more-vertical {
+
+} 
+.icon-arrow-left {
+
+} 
+.s-icon-more-vertical {
+
+} 
+.icon-image {
+
+} 
+
+.icon-home {
+
+}
+.icon-message-circle {}
+.icon-edit {}
+.icon-user {}
+
+.icon-home-fill {}
+.icon-message-circle-fill {}
+.icon-user-fill {}
+
+.icon-heart {}
+.icon-message-circle-small {}
+.icon-share {}
+
+.message-circle {
+    padding: 3px;
+}
+.Google__G__Logo {
+    padding: 2.8px 3px;
+}
+.facebook {
+    padding: 2px 7px 2px 6px
+}
+
+.icon-post-list-on {}
+.icon-post-list-off {}
+
+.icon-post-album-on {}
+.icon-post-album-off {}
+
+
+.home-post {
+    position: relative;
+    display: flex;
+    max-width: 358px;
+    width: 100%;
+}
+
+
+
+.user-profile {
+
+}
+
+.user-profile img {
+    width: 42px;
+}
+
+.post-section {
+    margin-left: 12px;
+}
+
+.post-section h3 {
+    display: inline-block;
+}
+
+.post-author {
+    color: var(--gray);
+    margin-top: 2px;
+    display: block;
+}
+
+.post-text {
+    margin-top: 16px
+}
+
+.post-img {
+    margin-top: 16px;
+    width: 100%;
+    border: 0.5px solid #DBDBDB;
+    border-radius: 10px;
+}
+
+.post-more-vertical {
+    float: right;
+}
+
+.like {
+    margin-top: 16px;
+    border: none;
+    background: none;
+}
+
+.like img {
+    vertical-align: -6px;
+}
+
+.comment {
+    border: none;
+    background: none;
+}
+
+.comment img {
+    vertical-align: -6px;
+}
+
+.post-date {
+    display: block;
+    margin-top: 20px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--gray);
+}
