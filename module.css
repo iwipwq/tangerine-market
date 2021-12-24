@@ -1,6 +1,6 @@
 :root {
     --gray: #767676;
-
+    --orange: #F26E22;
 }
 
 .typography--h3 {
@@ -53,6 +53,11 @@
     padding: 0;
 }
 
+ul,li{
+    text-decoration: none;
+    list-style-type: none;
+}
+
 .sr-only {
     clip: rect(1px,1px,1px,1px);
     height: 1px;
@@ -64,7 +69,11 @@
 }
 
 #icons {
-    margin: 10px;
+    margin: 20px;
+}
+
+#wrapper {
+    margin: 20px;
 }
 
 .basic-profile-img {
@@ -207,4 +216,43 @@
     letter-spacing: 0em;
     text-align: left;
     color: var(--gray);
+}
+
+.product {
+    max-width: 140px;
+}
+    
+
+.product img {
+    object-fit: cover;
+    width: 140px;
+    height: 90px;
+    left: 0px;
+    top: 0px;
+    border: 0.5px solid #DBDBDB;
+    border-radius: 8px;
+}
+
+.product-desc {
+    margin-top: 6px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: black;    
+}
+
+.product-price {
+    margin-top: 4px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color:var(--orange);
 }
