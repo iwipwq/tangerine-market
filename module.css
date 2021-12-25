@@ -351,6 +351,7 @@ li {
   width: 270px;
   padding: 4px;
   border: none;
+  font-family: inherit;
 }
 .comment form button {
   font-size: 14px;
@@ -359,6 +360,7 @@ li {
   border: none;
   cursor: pointer;
   margin-left: 8px;
+  font-family: inherit;
 }
 
 .user-search,
