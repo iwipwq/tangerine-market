@@ -448,3 +448,107 @@ li {
 .delete-alert .btn-alert .btn-delete {
   color: var(--orange);
 }
+
+/* button */
+/* ryu는 구분을 위한 공간 */
+.ryu{
+  margin-top: 50px;
+}
+.L-button {
+  width: 322px;
+  height: 44px;
+  background: #f26e22;
+  border: none;
+  border-radius: 44px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.L-Disabled-button {
+  width: 322px;
+  height: 44px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 44px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-button {
+  width: 120px;
+  height: 34px;
+  background: #f26e22;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-Disabled-button {
+  width: 120px;
+  height: 34px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-Activ-button {
+  width: 120px;
+  height: 34px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #767676;
+}
+
+.Ms-button {
+  width: 90px;
+  height: 32px;
+  background: #f26e22;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.Ms-Disabled-button {
+  width: 90px;
+  height: 32px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.S-button {
+  width: 56px;
+  height: 28px;
+  background: #f26e22;
+  border: none;
+  border-radius: 26px;
+  font-size: 12px;
+  line-height: 15.02px;
+  color: #ffffff;
+}
+
+.S-Activ-button {
+  width: 56px;
+  height: 28px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 26px;
+  font-size: 12px;
+  line-height: 15.02px;
+  color: #767676;
+}
