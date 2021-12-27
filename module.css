@@ -370,6 +370,7 @@ li {
   background-color: #fff;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .user-search-img {
   width: 50px;
@@ -389,6 +390,11 @@ li {
   line-height: 15px;
   color: #767676;
   margin-top: 6px;
+}
+
+.user-follow button {
+  position: absolute;
+  right: 0;
 }
 
 .text-active-input {
@@ -451,7 +457,7 @@ li {
 
 /* button */
 /* ryu는 구분을 위한 공간 */
-.ryu{
+.ryu {
   margin-top: 50px;
 }
 .L-button {
