@@ -3,6 +3,17 @@
   --orange: #f26e22;
 }
 
+.screen-reader-focusable:active,
+.screen-reader-focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	white-space: normal;
+	width: auto;
+}
+
 .typography--h3 {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
@@ -12,16 +23,17 @@
   color: black;
 }
 
-.typography--a {
+.typography--12p14h {
   font-family: Spoqa Han Sans Neo;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
   line-height: 14px;
+  letter-spacing: 0em;
   color: var(--gray);
 }
 
-.typography--a1 {
+.typography--12p12h {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 400;
@@ -53,7 +65,8 @@
 }
 
 ul,
-li {
+li,
+a {
   text-decoration: none;
   list-style-type: none;
 }
@@ -147,7 +160,6 @@ li {
 .home-post {
   position: relative;
   display: flex;
-  max-width: 358px;
   width: 100%;
 }
 
@@ -220,10 +232,20 @@ li {
 }
 
 .product {
-  max-width: 140px;
+
+}
+
+.product-ul{
+  display: flex;
+  gap: 10px;
+}
+
+.product-ul li{
+  
 }
 
 .product img {
+  max-width: 140px;
   object-fit: cover;
   width: 140px;
   height: 90px;
@@ -370,6 +392,7 @@ li {
   background-color: #fff;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .user-search-img {
   width: 50px;
@@ -389,6 +412,11 @@ li {
   line-height: 15px;
   color: #767676;
   margin-top: 6px;
+}
+
+.user-follow button {
+  position: absolute;
+  right: 0;
 }
 
 .text-active-input {
@@ -451,7 +479,7 @@ li {
 
 /* button */
 /* ryu는 구분을 위한 공간 */
-.ryu{
+.ryu {
   margin-top: 50px;
 }
 .L-button {
