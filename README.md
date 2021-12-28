@@ -12,3 +12,6 @@ making modules before team project
 
 ### 2021 12 26
 버튼 모듈 추가
+
+### 2021 12 28
+프로필 페이지 추가
