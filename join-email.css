@@ -22,33 +22,28 @@ body {
   line-height: 30px;
 }
 
-.email-login {
+.email-id {
   margin-bottom: 16px;
 }
 
 .email-pw {
   margin-bottom: 30px;
 }
-
+.text-active-input.email-id .error-txt,
 .text-active-input.email-pw .error-txt {
   display: none;
   color: #eb5757;
   font-size: 12px;
   line-height: 14px;
 }
-
+.text-active-input.email-id.error .error-txt,
 .text-active-input.email-pw.error .error-txt {
   display: block;
+  margin-top: 6px;
 }
-.login-btn {
+.next-btn {
   margin-bottom: 20px;
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
-}
-
-.email-join__link {
-  font-size: 12px;
-  line-height: 15px;
-  color: var(--gray);
 }
