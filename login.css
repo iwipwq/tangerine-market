@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Spoqa Han Sans Neo;
+  background-color: gainsboro;
+}
+
+#container {
+  width: 390px;
+  height: 100vh;
+  padding-top: 180px;
+  display: flex;
+  justify-content: center;
+  background-color: #ea7f42;
+  position: relative;
+}
+
+.sns-login {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  width: 390px;
+  height: 320px;
+  padding: 50px 34px 0 34px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.sns-login .login__kakao,
+.sns-login .login__google,
+.sns-login .login__facebook {
+  border: 1px solid #f2c94c;
+  text-align: center;
+  padding: 13px 0;
+  color: #767676;
+  font-size: 14px;
+  line-height: 18px;
+  width: 100%;
+  border-radius: 44px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.sns-login .login__kakao::before,
+.sns-login .login__google::before,
+.sns-login .login__facebook::before {
+  content: "";
+  background: url(img/message-circle.svg) no-repeat center;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 17px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sns-login .login__google {
+  border: 1px solid #767676;
+}
+.sns-login .login__google::before {
+  background: url(img/Google__G__Logo.svg) no-repeat center;
+}
+.sns-login .login__facebook {
+  border: 1px solid #2d9cdb;
+  margin-bottom: 10px;
+}
+.sns-login .login__facebook::before {
+  background: url(img/facebook.svg) no-repeat center;
+}
+
+.sns-login .util {
+  display: flex;
+  align-items: center;
+}
+.sns-login .util a {
+  font-size: 12px;
+  line-height: 15px;
+  color: #767676;
+  padding: 10px 14px;
+}
+.util .email__login {
+  position: relative;
+}
+.util .email__login::after {
+  content: "";
+  width: 1px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  background-color: gray;
+  opacity: 0.4;
+}
