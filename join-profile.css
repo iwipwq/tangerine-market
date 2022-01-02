@@ -26,6 +26,7 @@ body {
   line-height: 14px;
   color: var(--gray);
   margin-bottom: 30px;
+  font-weight: normal;
 }
 
 .profile-img {
@@ -58,11 +59,12 @@ body {
   color: #eb5757;
   font-size: 12px;
   line-height: 14px;
+  font-weight: normal;
+  margin-top: 6px;
 }
 .text-active-input.user-id.error--syntax .error-txt--syntax,
 .text-active-input.user-id.error--used-id .error-txt--used-id {
   display: block;
-  margin-top: 6px;
 }
 .start-btn {
   font-family: inherit;
