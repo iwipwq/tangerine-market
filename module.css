@@ -3,6 +3,17 @@
   --orange: #f26e22;
 }
 
+.screen-reader-focusable:active,
+.screen-reader-focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	white-space: normal;
+	width: auto;
+}
+
 .typography--h3 {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
@@ -12,16 +23,17 @@
   color: black;
 }
 
-.typography--a {
+.typography--12p14h {
   font-family: Spoqa Han Sans Neo;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
   line-height: 14px;
+  letter-spacing: 0em;
   color: var(--gray);
 }
 
-.typography--a1 {
+.typography--12p12h {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 400;
@@ -53,7 +65,8 @@
 }
 
 ul,
-li {
+li,
+a {
   text-decoration: none;
   list-style-type: none;
 }
@@ -147,7 +160,6 @@ li {
 .home-post {
   position: relative;
   display: flex;
-  max-width: 358px;
   width: 100%;
 }
 
@@ -179,12 +191,15 @@ li {
 .post-img {
   margin-top: 16px;
   width: 100%;
+  height: 228px;
   border: 0.5px solid #dbdbdb;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .post-more-vertical {
   float: right;
+  margin-top: 6px;
 }
 
 .like {
@@ -192,12 +207,12 @@ li {
   border: none;
   background: none;
 }
-
 .like img {
   vertical-align: -6px;
 }
 
 .post-comment {
+  margin-left: 12px;
   border: none;
   background: none;
 }
@@ -220,10 +235,20 @@ li {
 }
 
 .product {
-  max-width: 140px;
+
+}
+
+.product-ul{
+  display: flex;
+  gap: 10px;
+}
+
+.product-ul li{
+  
 }
 
 .product img {
+  max-width: 140px;
   object-fit: cover;
   width: 140px;
   height: 90px;
@@ -234,7 +259,7 @@ li {
 }
 
 .product-desc {
-  margin-top: 6px;
+  margin-top: 4px;
   font-family: Spoqa Han Sans Neo;
   font-size: 14px;
   font-style: normal;
@@ -370,6 +395,7 @@ li {
   background-color: #fff;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .user-search-img {
   width: 50px;
@@ -391,17 +417,21 @@ li {
   margin-top: 6px;
 }
 
+.user-follow button {
+  position: absolute;
+  right: 0;
+}
+
 .text-active-input {
   max-width: 322px;
   width: 100%;
   background-color: #fff;
-  padding-bottom: 10px;
 }
-.text-active-input p {
+.text-active-input label {
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
-  color: #767676;
+  color: var(--gray);
 }
 .text-active-input input {
   width: 100%;
@@ -447,4 +477,108 @@ li {
 }
 .delete-alert .btn-alert .btn-delete {
   color: var(--orange);
+}
+
+/* button */
+/* ryu는 구분을 위한 공간 */
+.ryu {
+  margin-top: 50px;
+}
+.L-button {
+  width: 322px;
+  height: 44px;
+  background: #f26e22;
+  border: none;
+  border-radius: 44px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.L-Disabled-button {
+  width: 322px;
+  height: 44px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 44px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-button {
+  width: 120px;
+  height: 34px;
+  background: #f26e22;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-Disabled-button {
+  width: 120px;
+  height: 34px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.M-Activ-button {
+  width: 120px;
+  height: 34px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #767676;
+}
+
+.Ms-button {
+  width: 90px;
+  height: 32px;
+  background: #f26e22;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.Ms-Disabled-button {
+  width: 90px;
+  height: 32px;
+  background: #ffc7a7;
+  border: none;
+  border-radius: 32px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.S-button {
+  width: 56px;
+  height: 28px;
+  background: #f26e22;
+  border: none;
+  border-radius: 26px;
+  font-size: 12px;
+  line-height: 15.02px;
+  color: #ffffff;
+}
+
+.S-Activ-button {
+  width: 56px;
+  height: 28px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 26px;
+  font-size: 12px;
+  line-height: 15.02px;
+  color: #767676;
 }

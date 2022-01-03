@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Spoqa Han Sans Neo;
+  background-color: gainsboro;
+}
+/* 스크롤 바 없애기 */
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#container {
+  position: relative;
+  width: 390px;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+#main .post {
+  padding: 70px 0;
+  height: 100%;
+  overflow: scroll;
+}
+
+#main .home-post {
+  margin-bottom: 20px;
+}
+
+#footer .tab-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
