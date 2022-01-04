@@ -47,8 +47,13 @@ body {
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
+  background-color: #ffc7a7;
+  transition: all 1s;
 }
-
+.login-btn:disabled {
+  background-color: #ffc7a7;
+  cursor: auto;
+}
 .email-join__link {
   font-size: 12px;
   line-height: 15px;

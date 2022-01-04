@@ -16,13 +16,13 @@
   <body>
     <div id="container">
       <h1>로그인</h1>
-      <form action="home.html">
+      <form>
         <div class="text-active-input email-id">
           <label for="login-input">이메일</label>
           <input
-            type="text"
+            type="email"
             id="login-input"
-            class="input-email"
+            class="input-email input"
             required="required"
           />
         </div>
@@ -31,18 +31,17 @@
           <input
             type="password"
             id="login-pw"
-            class="input-pw"
+            class="input-pw input"
             required="required"
           />
-          <strong class="error-txt"
-            >*이메일 또는 비밀번호가 일치하지 않습니다.</strong
-          >
+          <strong class="error-txt"></strong>
         </div>
-        <button href="javascript:void(0)" class="L-button login-btn">
+        <button type="button" disabled href="#none" class="L-button login-btn">
           로그인
         </button>
       </form>
       <a href="join-email.html" class="email-join__link">이메일로 회원가입</a>
     </div>
+    <script src="login-email.js"></script>
   </body>
 </html>
