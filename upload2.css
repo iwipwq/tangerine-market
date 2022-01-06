@@ -1,0 +1,87 @@
+/* reset */
+textarea {
+    border: none;
+    resize: none;
+  }
+  textarea:focus {
+    outline: none;
+  }
+  #image {
+    display: none;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    font-family: Spoqa Han Sans Neo;
+    background-color: gainsboro;
+  }
+  /* 스크롤 바 없애기 */
+  body {
+    -ms-overflow-style: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  #header {
+    border-bottom: 1px solid #dbdbdb;
+  }
+  #container {
+    width: 390px;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* main */
+  form {
+    position: relative;
+  }
+  .upload-box {
+    margin-top: 20px;
+  }
+  .basic-profile-img {
+    position: absolute;
+    width: 42px;
+    margin-left: 16px;
+  }
+  .upload-txt {
+    margin-top: 12px;
+    margin-left: 70px;
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .upload-txt::placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    color: #c4c4c4;
+  }
+  .upload-photo {
+    position: fixed;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: url(/img/upload-file.svg);
+    top: 50%;
+    left: 50%;
+    transform: translate(257%, 630%);
+  }
+  .photo-box {
+      width: 100%;
+      display: flex;
+      margin-left: 70px;
+  }
+  .upload-img {
+    width: 168px;
+    height: 126px;
+    border-radius: 10px;
+    margin-left: 8px;
+  }
+  

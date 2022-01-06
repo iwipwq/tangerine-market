@@ -71,7 +71,7 @@ form {
   background: url(/img/upload-file.svg);
   top: 50%;
   left: 50%;
-  transform: translate(129px, 245px);
+  transform: translate(257%, 630%);
 }
 .upload-img {
   width: 304px;
