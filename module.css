@@ -386,6 +386,7 @@ a {
   cursor: pointer;
   margin-left: 8px;
   font-family: inherit;
+  background: none;
 }
 
 .user-search,

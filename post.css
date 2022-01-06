@@ -1,0 +1,81 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Spoqa Han Sans Neo;
+  background-color: gainsboro;
+}
+/* 스크롤 바 없애기 */
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+#header {
+  border-bottom: 1px solid #dbdbdb;
+}
+#container {
+  width: 390px;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  width: 358px;
+  height: 434px;
+  margin: 20px auto 24px;
+}
+
+.comment-box {
+  background-color: #fff;
+  border-top: 1px solid #dbdbdb;
+  margin-bottom: 4px;
+}
+.comment-list {
+  margin-top: 22px;
+}
+.user-comment {
+  display: flex;
+  width: 358px;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.user-comment .tit-comment {
+  display: flex;
+  align-items: center;
+}
+.tit-comment .txt-username {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 6px 0 12px;
+}
+.tit-comment .txt-time {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 13px;
+}
+.btn-more {
+  padding: 0;
+  border: none;
+  background: none;
+}
+.txt-comment {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 16px 16px 22px 64px;
+}
+/* 댓글 아래 빈 공간 */
+.white-box {
+  height: 40px;
+  border-bottom: 1px solid #dbdbdb;
+}
