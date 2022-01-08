@@ -9,10 +9,12 @@ router.get("/upload", (req, res) => {
 
 router.get("/:id", postCtr.detail);
 
-router.get("/update/:id", (req, res) => {
-  res.send("update");
-});
+router.get("/update/:id", postCtr.updateLayout);
 
 router.post("/", upload.single("image"), postCtr.upload);
+
+router.post("/update/:id", postCtr.update);
+
+router.post("/delete/:id", postCtr.delete);
 
 module.exports = router;
