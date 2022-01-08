@@ -38,6 +38,9 @@ const postCtr = {
   //게시물 전체를 보여주는 코드
   list: async (req, res) => {
     const posts = await Post.find({});
+    res.status(200).json({
+      postList: posts,
+    });
     // {postList: posts}
   },
 
@@ -45,7 +48,42 @@ const postCtr = {
   detail: async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
-    // {post: post}
+    res.status(200).json({
+      post: post,
+    });
+  },
+
+  //기존에 데이터 전송
+  updateLayout: async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    res.status(200).json({ post: post });
+  },
+
+  //게시물 업데이트
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    try {
+      await Post.findByIdAndUpdate(
+        id,
+        { title: title, content: content },
+        { new: true }
+      );
+      res.status(200).send("update 완료");
+    } catch (error) {
+      res.status(500).send("update 실패");
+    }
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await Post.findByIdAndDelete(id);
+      res.status(200).send("삭제완료");
+    } catch (error) {
+      res.status(500).send("삭제 실패");
+    }
   },
 };
 
