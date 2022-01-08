@@ -7,21 +7,26 @@
 var app = require("../app");
 var debug = require("debug")("server:server");
 var http = require("http");
+const dbConfig = require("../config/dbConfig.json");
 
 /**
  * Get port from environment and store in Express.
  */
 
-// const mongoose = require("mongoose");
-// const db = mongoose.connection;
-// db.on("error", console.log("몽고디비 연결 실패"));
-// db.once("open", () => {
-//   console.log("몽고디비 연결 성공");
-// });
+const mongoose = require("mongoose");
+const db = mongoose.connection;
+db.on("error", console.error);
+db.once("open", () => {
+  console.log("몽고디비 연결 성공");
+});
 
-// mongoose.connect(
-
-// )
+mongoose.connect(
+  `mongodb+srv://per1215:${dbConfig.pw}@first-project.oxmyz.mongodb.net/${dbConfig.name}?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
