@@ -21,25 +21,12 @@
   border-radius: 20px;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Spoqa Han Sans Neo;
-  background-color: gainsboro;
-}
-
-#container {
-  width: 390px;
-  height: 820px;
-  background-color: #fff;
+#home-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  border-radius: 20px;
 }
 
 #header .top-main-nav {
@@ -70,7 +57,7 @@ body {
   align-items: center;
 }
 .home-search .search-logo-img {
-  background-image: url(../../img/symbol-logo-gray.png);
+  background-image: url(../../../img/symbol-logo-gray.png);
   width: 100px;
   height: 100px;
   margin: 0 auto;

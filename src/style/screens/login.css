@@ -21,24 +21,12 @@
   border-radius: 20px;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Spoqa Han Sans Neo;
-  background-color: gainsboro;
-}
-
-#container {
-  width: 390px;
-  height: 820px;
-  padding-top: 180px;
-  display: flex;
-  justify-content: center;
-  background-color: #ea7f42;
+#login-wrap {
   position: relative;
-  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 180px;
+  background-color: #EA7F42;
 }
 
 .sns-login {
@@ -75,7 +63,7 @@ body {
 .sns-login .login-google::before,
 .sns-login .login-facebook::before {
   content: "";
-  background: url(../../img/message-circle.svg) no-repeat center;
+  background: url(../../../img/message-circle.svg) no-repeat center;
   position: absolute;
   width: 24px;
   height: 24px;
@@ -87,14 +75,14 @@ body {
   border: 1px solid #767676;
 }
 .sns-login .login-google::before {
-  background: url(../../img/Google__G__Logo.svg) no-repeat center;
+  background: url(../../../img/Google__G__Logo.svg) no-repeat center;
 }
 .sns-login .login-facebook {
   border: 1px solid #2d9cdb;
   margin-bottom: 10px;
 }
 .sns-login .login-facebook::before {
-  background: url(../../img/facebook.svg) no-repeat center;
+  background: url(../../../img/facebook.svg) no-repeat center;
 }
 
 .sns-login .login-util {

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+:root {
+    --gray: #767676;
+    --orange: #f26e22;
+}
+  
+
+.screen-reader-focusable:active,
+.screen-reader-focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    white-space: normal;
+    width: auto;
+}
+
+.typography--h3 {
+font-family: Spoqa Han Sans Neo;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+color: black;
+}
+
+.typography--12p14h {
+font-family: Spoqa Han Sans Neo;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 14px;
+letter-spacing: 0em;
+color: var(--gray);
+}
+
+.typography--12p12h {
+font-family: Spoqa Han Sans Neo;
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 12px;
+color: var(--gray);
+}
+
+.typography--p {
+font-family: Spoqa Han Sans Neo;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 18px;
+letter-spacing: 0em;
+text-align: left;
+color: black;
+}

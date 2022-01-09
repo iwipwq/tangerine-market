@@ -1,0 +1,14 @@
+#splash-wrap {
+  align-items: center;
+}
+
+.splash {
+  /* position: absolute; */
+  width: 390px;
+  height: 820px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}

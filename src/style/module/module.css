@@ -1,86 +1,5 @@
-:root {
-  --gray: #767676;
-  --orange: #f26e22;
-}
-
-.screen-reader-focusable:active,
-.screen-reader-focusable:focus {
-	clip: auto;
-	height: auto;
-	margin: 0;
-	overflow: visible;
-	position: static;
-	white-space: normal;
-	width: auto;
-}
-
-.typography--h3 {
-  font-family: Spoqa Han Sans Neo;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  color: black;
-}
-
-.typography--12p14h {
-  font-family: Spoqa Han Sans Neo;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 14px;
-  letter-spacing: 0em;
-  color: var(--gray);
-}
-
-.typography--12p12h {
-  font-family: Spoqa Han Sans Neo;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 12px;
-  color: var(--gray);
-}
-
-.typography--p {
-  font-family: Spoqa Han Sans Neo;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: black;
-}
-
-.mt-16 {
-  margin-top: 16px;
-}
-
-* {
-  box-sizing: border-box;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul,
-li,
-a {
-  text-decoration: none;
-  list-style-type: none;
-}
-
-.sr-only {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-  z-index: -1000;
-  white-space: nowrap;
-}
-
+@charset "UTF-8";
+/* 간격조절용 */
 #icons {
   margin: 20px;
 }
@@ -88,53 +7,11 @@ a {
 #wrapper {
   margin: 20px;
 }
+/* 간격조절용 */
 
-.basic-profile-img {
-}
-
-.basic-profile {
-}
-
-.img-button {
-}
-
-.upload-file {
-}
-
-.icon-search {
-}
-.icon-more-vertical {
-}
 .icon-arrow-left {
   width: 22px;
   height: 22px;
-}
-.s-icon-more-vertical {
-}
-.icon-image {
-}
-
-.icon-home {
-}
-.icon-message-circle {
-}
-.icon-edit {
-}
-.icon-user {
-}
-
-.icon-home-fill {
-}
-.icon-message-circle-fill {
-}
-.icon-user-fill {
-}
-
-.icon-heart {
-}
-.icon-message-circle-small {
-}
-.icon-share {
 }
 
 .message-circle {
@@ -147,23 +24,10 @@ a {
   padding: 2px 7px 2px 6px;
 }
 
-.icon-post-list-on {
-}
-.icon-post-list-off {
-}
-
-.icon-post-album-on {
-}
-.icon-post-album-off {
-}
-
 .home-post {
   position: relative;
   display: flex;
   width: 100%;
-}
-
-.user-profile {
 }
 
 .user-profile img {
@@ -202,6 +66,7 @@ a {
   margin-top: 6px;
 }
 
+/**/
 .like {
   margin-top: 16px;
   border: none;
@@ -210,7 +75,7 @@ a {
 .like img {
   vertical-align: -6px;
 }
-
+/**/
 .post-comment {
   margin-left: 12px;
   border: none;
@@ -234,20 +99,12 @@ a {
   color: var(--gray);
 }
 
-.product {
-
-}
-
-.product-ul{
+.product-ul {
   display: flex;
   gap: 10px;
 }
 
-.product-ul li{
-  
-}
-
-.product img {
+.product-ul img {
   max-width: 140px;
   object-fit: cover;
   width: 140px;
