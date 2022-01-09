@@ -42,11 +42,8 @@ async function login() {
       pwInput.classList.add("error");
     } else {
       pwInput.classList.remove("error");
-      window.location.href = "/home.html";
+      window.location.href = "/src/pages/home.html";
     }
-    console.log(pwInput);
-    console.log(resJson);
-    console.log(resJson.user.token);
 
     // 토큰을 로컬스토리지에 저장
     if (resJson.user.token) {
