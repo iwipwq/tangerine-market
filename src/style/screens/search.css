@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  justify-content: center;
+  font-family: Spoqa Han Sans Neo;
+  background-color: gainsboro;
+}
 /* 스크롤 바 없애기 */
 body {
   -ms-overflow-style: none;
@@ -14,7 +20,8 @@ body {
   position: relative;
 }
 
-#header {
+.search-header {
+  position: fixed;
   width: 100%;
   position: absolute;
   top: 0;
@@ -24,12 +31,12 @@ body {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-
-#header .top-search-nav {
-  border-radius: 20px;
+.search-header .top-search-nav {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-#main {
+.search-main {
   width: 100%;
   height: 100%;
   display: flex;
@@ -37,16 +44,16 @@ body {
   overflow: hidden;
   padding: 0 16px 0;
 }
-#main .user-list {
+.search-main .user-list {
   padding: 70px 0;
   height: 100%;
   overflow: scroll;
 }
-#main .user-list .user-search {
+.search-main .user-list .user-search {
   margin-bottom: 16px;
 }
 
-#footer .tab-menu {
+.search-footer .tab-menu {
   position: fixed;
   bottom: 0;
   left: 0;
