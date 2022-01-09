@@ -1,0 +1,57 @@
+/* 스크롤 바 없애기 */
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#search-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#header .top-search-nav {
+  border-radius: 20px;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 16px 0;
+}
+#main .user-list {
+  padding: 70px 0;
+  height: 100%;
+  overflow: scroll;
+}
+#main .user-list .user-search {
+  margin-bottom: 16px;
+}
+
+#footer .tab-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}

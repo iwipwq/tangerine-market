@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>감귤마켓 : 프로필 설정</title>
+    <link rel="stylesheet" href="../style/style.css">
+  </head>
+  <body>
+    <div class="container" id="join-profile-wrap">
+      <h1>프로필 설정</h1>
+      <strong class="notice-txt">나중에 언제든지 변경할 수 있습니다.</strong>
+      <div class="profile-img">
+        <img
+          src="../../img/basic-profile-img-.png"
+          alt="현재 프로필 사진"
+          class="basic-profile-img"
+        />
+        <button class="profile-upload-btn">
+          <img
+            src="../../img/upload-file.svg"
+            alt="프로필 사진 업로드 버튼"
+            class="upload-file"
+          />
+        </button>
+      </div>
+      <form>
+        <div class="text-active-input user-name">
+          <label for="user-name">사용자 이름</label>
+          <input type="text" id="user-name" class="input-user-name" />
+        </div>
+        <div class="text-active-input user-id">
+          <label for="user-id">계정 ID</label>
+          <input type="password" id="user-id" class="input-user-id" />
+          <strong class="error-txt-syntax">
+            *영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.
+          </strong>
+          <strong class="error-txt-used-id">*이미 사용 중인 ID입니다.</strong>
+        </div>
+        <div class="text-active-input user-desc">
+          <label for="user-desc">소개</label>
+          <input type="password" id="user-desc" class="input-user-desc" />
+        </div>
+        <button href="javascript:void(0)" class="L-button start-btn">
+          감귤마켓 시작하기
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
