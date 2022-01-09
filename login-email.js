@@ -44,9 +44,6 @@ async function login() {
       pwInput.classList.remove("error");
       window.location.href = "/home.html";
     }
-    console.log(pwInput);
-    console.log(resJson);
-    console.log(resJson.user.token);
 
     // 토큰을 로컬스토리지에 저장
     if (resJson.user.token) {
