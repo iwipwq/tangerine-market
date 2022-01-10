@@ -37,6 +37,7 @@ body {
 }
 .home-post {
   padding: 16px 16px 20px;
+  margin-bottom: 0;
 }
 .comment-box {
   background-color: #fff;
