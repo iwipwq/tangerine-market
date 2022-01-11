@@ -1,10 +1,17 @@
 #your-profile-wrap {
+  position: relative;
   overflow-y: hidden;
+}
+
+#your-profile-wrap header {
+  position: relative;
+  z-index: 20;
 }
 
 #your-profile-main {
   width: 100%;
   height: 100%;
+  background-color: #F2F2F2;
   overflow-y: scroll;
 }
 
@@ -15,6 +22,16 @@
 
 .color--black {
   color: #000000;
+}
+
+/* 상단 네비게이션 */
+#profile-nav {
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.call-bottom-modal {
+    background-color: transparent;
+    border: none;
 }
 
 /* 프로필 */
@@ -30,7 +47,6 @@
   max-width: 390px;
   position: relative;
   background-color: #ffffff;
-  border-top: 0.5px solid #dbdbdb;
   border-bottom: 0.5px solid #dbdbdb;
 }
 
@@ -44,6 +60,7 @@
 }
 
 .profile .profile-title {
+  display: block;
   margin-top: 16px;
   font-family: Spoqa Han Sans Neo;
   font-size: 16px;
@@ -173,14 +190,25 @@
 
 .post-area-top img {
   margin-right: 16px;
+  vertical-align: bottom;
+}
+
+.post-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 .home-post {
-  padding: 16px 16px 30px;
+  padding: 16px 16px;
+  margin-bottom: 144px;
+  min-width: fit-content;
+  right: 0%;
+  transition: right ease-in-out .3s;
 }
 
 /* 바텀 네비게이션 */
-#footer .tab-menu {
+.tab-menu {
   bottom: 0;
   left: 0;
   position: absolute;
@@ -190,13 +218,38 @@
 }
 
 /* 설정 모달 창 */
+.screen-overlay {
+    /* display:none; */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(122, 56, 18, 0.0);
+    z-index: -1;
+    transition: all ease-in-out .2s;
+}
+
+.overlay-on {
+    /* display: block; */
+    z-index: 10;
+    background-color: rgba(122, 56, 18, 0.5);
+}
+
 .icon-product-modal,
 .icon-post-modal {
+  position: absolute;
+  bottom: -20%;
   max-width: 390px;
   padding-bottom: 10px;
   background-color: #ffffff;
   width: 100%;
   border-radius: 10px 10px 0 0;
+  transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) .5s;
+  z-index: 20;
+}
+
+.modal-popup {
+    bottom: 0;
 }
 
 .home-wrapper {
@@ -231,7 +284,47 @@
   color: #000000;
 }
 
+/* 로그아웃 모달 */
+.delete-alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-70%);
+    z-index: -1;
+    opacity: 0;
+    transition: all ease-in-out .3s;
+}
+
+.delete-alert.on {
+    transform: translate(-50% ,-50%);
+    z-index: 20;
+    opacity: 1;
+  /* max-width: 252px;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px; */
+}
+
+.btn-alert button:first-child {
+    border-bottom-left-radius: 10px;
+}
+.btn-alert .btn-delete {
+    border-bottom-right-radius: 10px;
+}
+
+
 /* 포스트 앨범 뷰 */
+.home-post-album {
+  position: relative;
+  width: 100%;
+  padding: 16px 16px;
+  margin-bottom: 30px;
+  min-width: fit-content;
+  right: 100%;
+  transition: right ease-in-out .3s;
+}
+
 .post-album-view {
   display: flex;
   flex-wrap: wrap;

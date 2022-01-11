@@ -11,27 +11,41 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-#header {
-  border-bottom: 1px solid #dbdbdb;
-}
-#container {
-  width: 390px;
-  height: 100vh;
-  background-color: #fff;
+
+#post-wrap {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.post-header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid #dbdbdb;
+}
+.post-header .top-basic-nav {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .home {
-  width: 358px;
-  height: 434px;
-  margin: 20px auto 24px;
+  margin: 70px auto 0;
 }
-
+.home-post {
+  padding: 16px 16px 20px;
+  margin-bottom: 0;
+}
 .comment-box {
   background-color: #fff;
   border-top: 1px solid #dbdbdb;
   margin-bottom: 4px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
 }
 .comment-list {
   margin-top: 22px;

@@ -11,13 +11,13 @@
     <div class="container" id="your-profile-wrap">
         <header>
             <h1 class="sr-only">감귤마켓 유저 프로필 정보</h1>
-            <div class="top-basic-nav">
+            <div class="top-basic-nav" id="profile-nav">
                 <a href="#none">
                     <img src="../../img/icon-arrow-left.svg" alt="뒤로가기" class="icon-arrow-left" />
                 </a>
-                <a href="#none">
-                    <img src="../../img/icon-more-vertical.svg" alt="설정 더보기" class="icon-more-vertical" />
-                </a>
+                <button type=button class="call-bottom-modal">
+                <img src="../../img/icon-more-vertical.svg" alt="설정 더보기" class="icon-more-vertical" />
+                </button>
             </div>
         </header>
         <main id="your-profile-main">
@@ -73,38 +73,56 @@
             <section class="post-area">
                 <h2 class="sr-only">게시물구획, 리스트보기,앨범형보기</h2>
                 <div class="post-area-top">
-                    <img src="../../img/icon-post-list-on.svg" alt="" class="icon-post-list-on" />
-                    <img src="../../img/icon-post-album-off.svg" alt="" class="icon-post-album-off" />
+                   <a href=javascript:void(0) class="btn-list-on"><img src="../../img/icon-post-list-on.svg" alt="" class="icon-post-list-on" /></a>
+                   <a href=javascript:void(0) class="btn-album-on"><img src="../../img/icon-post-album-off.svg" alt="" class="icon-post-album-off" /></a>
                 </div>
-                <article class="home-post">
-                    <h2 class="sr-only">포스트 내용</h2>
-                    <a class="user-profile"><img src="../../img/basic-profile-img-.png" alt=""
-                            class="basic-profile-img" /></a>
-                    <section class="post-section">
-                        <h3>
-                            <a href="javascript:void(0)" class="typography--h3">애월읍 위니브 감귤농장</a>
-                        </h3>
-                        <a href="javascript:vold(0)" class="post-more-vertical">
-                            <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
-                        </a>
-                        <a class="post-author typography--12p14h">@ weniv_Mandarin</a>
-                        <p class="post-text typography--p">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와
-                            약동하다. 대고, 못할 넣는풍부하게 뛰노는 인생의 힘있다.</p>
-                        <img src="../../img/jay-lee-FWtiv70Z_ZY-unsplash.jpg" alt="" class="post-img" />
-                        <button class="like" type="button">
-                            <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
-                            <span class="like-counter typography--12p12h">58</span>
-                        </button>
 
-                        <button class="post-comment" type="button">
-                            <img src="../../img/icon-message-circle-small.svg" alt="댓글"
-                                class="icon-message-circle-small" />
-                            <span class="comment-counter typography--12p12h">12</span>
-                        </button>
-
-                        <small class="post-date">2020년 10월 21일</small>
-                    </section>
-                </article>
+                <div class="post-container">
+                    <article class="home-post">
+                        <h2 class="sr-only">포스트 내용</h2>
+                        <a class="user-profile"><img src="../../img/basic-profile-img-.png" alt=""
+                                class="basic-profile-img" /></a>
+                        <section class="post-section">
+                            <h3>
+                                <a href="javascript:void(0)" class="typography--h3">애월읍 위니브 감귤농장</a>
+                            </h3>
+                            <a href="javascript:vold(0)" class="post-more-vertical">
+                                <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
+                            </a>
+                            <a class="post-author typography--12p14h">@ weniv_Mandarin</a>
+                            <p class="post-text typography--p">옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와
+                                약동하다. 대고, 못할 넣는풍부하게 뛰노는 인생의 힘있다.</p>
+                            <img src="../../img/jay-lee-FWtiv70Z_ZY-unsplash.jpg" alt="" class="post-img" />
+                            <button class="like" type="button">
+                                <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                                <span class="like-counter typography--12p12h">58</span>
+                            </button>
+    
+                            <button class="post-comment" type="button">
+                                <img src="../../img/icon-message-circle-small.svg" alt="댓글"
+                                    class="icon-message-circle-small" />
+                                <span class="comment-counter typography--12p12h">12</span>
+                            </button>
+    
+                            <small class="post-date">2020년 10월 21일</small>
+                        </section>
+                    </article>
+                    <!-- 앨범형보기 -->
+                    <article class="home-post">
+                        <h2 class="sr-only">포스트 내용</h2>
+                        <ul class="post-album-view">
+                            <li class="post-album-item"><img src="../../img/carl-kho-oFKirhbdEj8-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/yujin-seo-eULPThl7N7A-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/carl-kho-5MF7EFgy02U-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/sheellae-sheellae-XYO1WPFOLtk-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/minha-choi-HFL_jREc9I8-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/minha-choi-zZaufn3_Lsk-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/giovanny-marquez-PPvf99R-cZ4-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/daniel-bernard-12Nlhrojixk-unsplash.jpg" alt=""></li>
+                            <li class="post-album-item"><img src="../../img/insung-yoon-GGISrxsywZY-unsplash.jpg" alt=""></li>
+                        </ul>
+                    </article>
+                </div>
             </section>
         </main>
         <footer class="tab-menu">
@@ -125,7 +143,7 @@
                 프로필
             </a>
         </footer>
-        <!-- <div class="gap-wrapper">
+        
             <section class="icon-post-modal">
                 <h2 class="sr-only">포스트 설정 모달 창</h2>
                 <div class="home-wrapper">
@@ -136,8 +154,9 @@
                     <li><a href="javascript:void(0)">로그아웃</a></li>
                 </ul>
             </section>
-        </div>
-        <div class="gap-wrapper">
+            <div class="screen-overlay"></div>
+        
+            
             <div class="delete-alert">
                 <p>로그아웃 하시겠어요?</p>
                 <div class="btn-alert">
@@ -145,8 +164,8 @@
                     <button type="button" class="btn-delete">로그아웃</button>
                 </div>
             </div>
-        </div> -->
+        
     </div>
-    <script src=""></script>
+    <script src="../scripts/your-profile.js"></script>
 </body>
 </html>
