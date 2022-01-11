@@ -248,7 +248,7 @@
   z-index: 20;
 }
 
-.modal-popup {
+#your-profile-wrap .modal-popup {
     bottom: 0;
 }
 
