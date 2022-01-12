@@ -41,7 +41,14 @@ body {
   height: 100%;
   overflow: scroll;
 }
-
+.home-main .post-section {
+  width: 100%;
+}
+.home-main .basic-profile-img {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+}
 .home-main .home-post {
   margin-bottom: 20px;
 }
