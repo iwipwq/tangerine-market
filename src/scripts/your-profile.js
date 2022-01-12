@@ -1,4 +1,22 @@
+const currentPath = window.location.pathname
+const userName = localStorage.getItme('accountname');
 
+async function getProfile(){
+    const email = document.querySelector("#email");
+    const pw = document.querySelector("#pw");
+    // fetch(주소, 파라미터)
+    const res = await fetch(`http://146.56.183.55:5050/profile/${localStorage.getItme('accountname')}`, {
+        method: "GET", 
+        headers:{
+                "Authorization" : `Bearer ${localStorage.getItem('access-token')}`,
+                "Content-type" : "application/json"
+        }
+    });
+    const json = await res.json();
+    const myProfile = json.profile
+    console.log(myProfile);
+}
+getProfile()
 
 // 하단 모달창 토글
 let iconMoreVertical = document.querySelector(".call-bottom-modal");
