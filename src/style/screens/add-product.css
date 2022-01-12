@@ -1,0 +1,94 @@
+/*상품 등록 페이지 */
+#add-product-wrap {
+
+}
+
+#add-product-wrap .product-write {
+    border-top: 0.5px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#add-product-wrap .L-upload-img {
+    margin: 30px 0;
+}
+
+#add-product-wrap .prodcut-write p {}
+
+#add-product-wrap .user-product-preview {
+    margin-top: 18px;
+    display: block;
+    height: 204px;
+    width: 322px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#add-product-wrap .user-product-preview>.user-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#add-product-wrap .user-product-upload {
+    display: block;
+    position: relative;
+}
+
+#add-product-wrap .user-product-upload>.img-button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
+#add-product-wrap .product-write>.text-active-input {
+    margin-top: 8px;
+}
+
+#add-product-wrap .product-write>.text-active-input input {
+    padding-top: 10px;
+}
+
+/*플레이스홀더 브라우저별 호환*/
+/* Chrome/Opera/Safari */
+#add-product-wrap .input-email::-webkit-input-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* Firefox 19+ */
+#add-product-wrap .input-email::-moz-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* IE 10+ */
+#add-product-wrap .input-email:-ms-input-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* Firefox 18- */
+#add-product-wrap .input-email:-moz-placeholder {  
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
