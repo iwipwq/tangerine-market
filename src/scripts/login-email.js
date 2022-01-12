@@ -35,7 +35,6 @@ async function login() {
       }),
     });
     const resJson = await res.json();
-
     const pwInput = document.querySelector(".email-pw");
     if (resJson.message) {
       errorTxt.innerText = `*${resJson.message}`;
@@ -45,8 +44,9 @@ async function login() {
       window.location.href = "/src/pages/home.html";
     }
 
-    // 토큰을 로컬스토리지에 저장
+    // 토큰과 accountname을 로컬스토리지에 저장
     if (resJson.user.token) {
+      localStorage.setItem("accountname", resJson.user.accountname);
       localStorage.setItem("accessToken", resJson.user.token);
       localStorage.setItem("refreshToken", resJson.user.refreshToken);
     }

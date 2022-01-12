@@ -32,14 +32,14 @@ body {
   border-top-right-radius: 20px;
 }
 
-.home {
+.post-main .home {
   margin: 70px auto 0;
 }
-.home-post {
+.post-main .home-post {
   padding: 16px 16px 20px;
   margin-bottom: 0;
 }
-.comment-box {
+.post-main .comment-box {
   background-color: #fff;
   border-top: 1px solid #dbdbdb;
   margin-bottom: 4px;
@@ -47,20 +47,20 @@ body {
   border-bottom-right-radius: 20px;
   overflow: hidden;
 }
-.comment-list {
+.post-main .comment-list {
   margin-top: 22px;
 }
-.user-comment {
+.post-main .user-comment {
   display: flex;
   width: 358px;
   justify-content: space-between;
   margin: 0 auto;
 }
-.user-comment .tit-comment {
+.post-main .user-comment .tit-comment {
   display: flex;
   align-items: center;
 }
-.tit-comment .txt-username {
+.post-main .tit-comment .txt-username {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: 500;
@@ -68,19 +68,19 @@ body {
   line-height: 18px;
   margin: 0 6px 0 12px;
 }
-.tit-comment .txt-time {
+.post-main .tit-comment .txt-time {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
   line-height: 13px;
 }
-.btn-more {
+.post-main .btn-more {
   padding: 0;
   border: none;
   background: none;
 }
-.txt-comment {
+.post-main .txt-comment {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: normal;
@@ -89,7 +89,7 @@ body {
   margin: 16px 16px 22px 64px;
 }
 /* 댓글 아래 빈 공간 */
-.white-box {
+.post-main .white-box {
   height: 40px;
   border-bottom: 1px solid #dbdbdb;
 }
