@@ -46,6 +46,28 @@ async function getProfile(){
 }
 getProfile();
 
+//상품정보 받아와서 출력하기
+async function getMyProduct(){
+    const url = "http://146.56.183.55:5050"
+    const myName = localStorage.getItem('accountname');
+    const myToken = localStorage.getItem('accessToken')
+    try {
+        const res = await fetch(`${url}/product/${myName}`, {
+            method: "GET",
+            headers:{
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+        });
+        const json = await res.json();
+        const products = json.data
+        console.log('products',products);
+    } catch (error) {
+        alert(err)
+    }
+}
+
+
 // 포스트 정보 받아와서 출력하기
 async function getMyPost(){
     const res = await fetch(`http://146.56.183.55:5050/post/${localStorage.getItem('accountname')}/userpost`, {

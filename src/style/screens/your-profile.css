@@ -35,10 +35,10 @@
 }
 
 /* 프로필 */
-.your-profile {
+/* .your-profile {
 }
 .my-profile {
-}
+} */
 
 #your-profile-main .profile-area {
   display: flex;
@@ -55,8 +55,13 @@
 }
 
 #your-profile-main .profile img {
-  display: block;
-  margin: 30px auto 0;
+    display: block;
+    margin: 30px auto 0;
+    width: 110px;
+    height: 110px;
+    border: 1px solid #DBDBDB;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 #your-profile-main .profile .profile-title {
@@ -87,8 +92,8 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
-  width: 73%;
-  top: 25%;
+  width: 70%;
+  top: 22%;
   text-align: center;
 }
 
@@ -101,6 +106,7 @@
   letter-spacing: 0em;
 }
 #your-profile-main .followers-text {
+  margin-top: 6px;
   font-family: Spoqa Han Sans Neo;
   font-size: 10px;
   font-style: normal;
@@ -120,6 +126,7 @@
   color: #767676;
 }
 #your-profile-main .followings-text {
+    margin-top: 6px;
   font-family: Spoqa Han Sans Neo;
   font-size: 10px;
   font-style: normal;
@@ -195,16 +202,27 @@
 
 #your-profile-main .post-container {
     display: flex;
-    flex-wrap: nowrap;
+    width: 100%;
     overflow: hidden;
 }
 
 #your-profile-main .home-post {
+  flex-direction: column;
   padding: 16px 16px;
   margin-bottom: 144px;
   min-width: fit-content;
   right: 0%;
   transition: right ease-in-out .3s;
+}
+
+#your-profile-main .post-wrap {
+    margin-bottom: 28px;
+    display: flex;
+    width: 100%;
+}
+
+#your-profile-main .post-section {
+    width: 100%;
 }
 
 /* 바텀 네비게이션 */
@@ -266,9 +284,9 @@
   border-radius: 5px;
   background: #dbdbdb;
 }
-.icon-product-modal ul,
+/* .icon-product-modal ul,
 .icon-post-modal ul {
-}
+} */
 #your-profile-wrap .icon-product-modal ul li,
 #your-profile-wrap .icon-post-modal ul li {
   padding: 14px 26px;
@@ -459,8 +477,8 @@
   margin: 30px 0;
 }
 
-.prodcut-write p {
-}
+/* .prodcut-write p {
+} */
 
 .user-product-preview {
   margin-top: 18px;

@@ -1,7 +1,7 @@
 /*상품 등록 페이지 */
-#add-product-wrap {
+/* #add-product-wrap {
 
-}
+} */
 
 #add-product-wrap .product-write {
     border-top: 0.5px solid #DBDBDB;
@@ -15,7 +15,7 @@
     margin: 30px 0;
 }
 
-#add-product-wrap .prodcut-write p {}
+/* #add-product-wrap .prodcut-write p {} */
 
 #add-product-wrap .user-product-preview {
     margin-top: 18px;
