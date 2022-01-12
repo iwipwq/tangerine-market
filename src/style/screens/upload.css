@@ -38,18 +38,18 @@ textarea:focus {
 }
 
 /* main */
-form {
+.upload-main form {
   position: relative;
 }
-.upload-box {
+.upload-main .upload-box {
   margin-top: 68px;
 }
-.basic-profile-img {
+.upload-main .basic-profile-img {
   position: absolute;
   width: 42px;
   margin-left: 16px;
 }
-.upload-txt {
+.upload-main .upload-txt {
   margin-top: 12px;
   margin-left: 70px;
   font-family: Spoqa Han Sans Neo;
@@ -57,7 +57,7 @@ form {
   font-weight: normal;
   font-size: 14px;
 }
-.upload-txt::placeholder {
+.upload-main .upload-txt::placeholder {
   font-family: Spoqa Han Sans Neo;
   font-style: normal;
   font-weight: normal;
@@ -65,33 +65,33 @@ form {
   line-height: 18px;
   color: #c4c4c4;
 }
-.upload-button {
+.upload-main .upload-button {
   width: 50px;
   height: 50px;
 }
-.upload-photo {
-      position: fixed;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      background: url(/img/upload-file.svg);
-      top: 50%;
-      left: 50%;
-      transform: translate(257%, 630%);
+.upload-main .upload-photo {
+  position: fixed;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background: url(/img/upload-file.svg);
+  top: 50%;
+  left: 50%;
+  transform: translate(257%, 630%);
 }
-.photo-box {
+.upload-main .photo-box {
   width: 100%;
   display: flex;
   margin-left: 70px;
 }
-.upload-img {
+.upload-main .upload-img {
   width: 304px;
   height: 228px;
   border-radius: 10px;
   margin: 0 16px 0 70px;
 }
-.upload--img {
+.upload-main .upload--img {
   width: 168px;
   height: 126px;
   border-radius: 10px;
