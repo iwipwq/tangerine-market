@@ -153,37 +153,70 @@ async function getMyProduct(){
             // if(hearted){
             //     isHeart = 'yes'
             // }
-    
-        document.querySelector('.home-post').innerHTML += `
-            <div class="post-wrap">
-                <h2 class="sr-only">포스트 내용</h2>
-                <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
-                        class="basic-profile-img" /></a>
-                <section class="post-section">
-                    <h3>
-                        <a href="profile/${authorAccount}" class="typography--h3">${authorName}</a>
-                    </h3>
-                    <a href="javascript:void(0)" class="post-more-vertical">
-                        <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
-                    </a>
-                    <a class="post-author typography--12p14h">@ ${authorAccount}</a>
-                    <p class="post-text typography--p">${postContent}</p>
-                    <img src="${postImage}" alt="" class="post-img" />
-                    <button class="like" type="button">
-                        <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
-                        <span class="like-counter typography--12p12h">${postHeartCount}</span>
-                    </button>
-        
-                    <button class="post-comment" type="button">
-                        <img src="../../img/icon-message-circle-small.svg" alt="댓글"
-                            class="icon-message-circle-small" />
-                        <span class="comment-counter typography--12p12h">${postCommentCount}</span>
-                    </button>
-        
-                    <small class="post-date">${postCreateAtYear}년 ${postCreateAtMonth}월 ${postCreateAtDay}일</small>
-                </section>
-            </div>
-        `
+            if (postImage) {   
+                document.querySelector('.home-post').innerHTML += `
+                    <div class="post-wrap">
+                        <h2 class="sr-only">포스트 내용</h2>
+                        <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
+                                class="basic-profile-img" /></a>
+                        <section class="post-section">
+                            <h3>
+                                <a href="profile/${authorAccount}" class="typography--h3">${authorName}</a>
+                            </h3>
+                            <a href="javascript:void(0)" class="post-more-vertical">
+                                <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
+                            </a>
+                            <a class="post-author typography--12p14h">@ ${authorAccount}</a>
+                            <p class="post-text typography--p">${postContent}</p>
+                            <img src="${postImage}" alt="" class="post-img" />
+                            <button class="like" type="button">
+                                <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                                <span class="like-counter typography--12p12h">${postHeartCount}</span>
+                            </button>
+                
+                            <button class="post-comment" type="button">
+                                <img src="../../img/icon-message-circle-small.svg" alt="댓글"
+                                    class="icon-message-circle-small" />
+                                <span class="comment-counter typography--12p12h">${postCommentCount}</span>
+                            </button>
+                
+                            <small class="post-date">${postCreateAtYear}년 ${postCreateAtMonth}월 ${postCreateAtDay}일</small>
+                        </section>
+                    </div>
+            `} else if (!postImage) {
+                document.querySelector('.home-post').innerHTML += `
+                <div class="post-wrap">
+                    <h2 class="sr-only">포스트 내용</h2>
+                    <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
+                            class="basic-profile-img" /></a>
+                    <section class="post-section">
+                        <h3>
+                            <a href="profile/${authorAccount}" class="typography--h3">${authorName}</a>
+                        </h3>
+                        <a href="javascript:void(0)" class="post-more-vertical">
+                            <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
+                        </a>
+                        <a class="post-author typography--12p14h">@ ${authorAccount}</a>
+                        <p class="post-text typography--p">${postContent}</p>
+                        <button class="like" type="button">
+                            <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                            <span class="like-counter typography--12p12h">${postHeartCount}</span>
+                        </button>
+            
+                        <button class="post-comment" type="button">
+                            <img src="../../img/icon-message-circle-small.svg" alt="댓글"
+                                class="icon-message-circle-small" />
+                            <span class="comment-counter typography--12p12h">${postCommentCount}</span>
+                        </button>
+            
+                        <small class="post-date">${postCreateAtYear}년 ${postCreateAtMonth}월 ${postCreateAtDay}일</small>
+                    </section>
+                </div>
+
+            `} else {
+                document.querySelector(".post-area").classList.add("post-empty")
+            }
+
         });
     }
     getMyPost()
