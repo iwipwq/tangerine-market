@@ -15,7 +15,7 @@
                 <a href="#none">
                     <img src="../../img/icon-arrow-left.svg" alt="" class="icon-arrow-left"/>
                 </a>
-                <button href="javascript:void(0)" class="Ms-Disabled-button">
+                <button type="button" class="Ms-Disabled-button">
                     저장
                 </button>
             </div>
@@ -23,8 +23,9 @@
         <main class="product-write">
             <div class="L-upload-img">
                 <p class="typography--12p14h">이미지등록</p>
+                <input type="file" accept="image/*" name="" id="imageUp" multiple>
                 <a class="user-product-preview" href="javascript:void(0)">
-                    <img src="../../img/insung-yoon-urtUmCP1dWE-unsplash.jpg" alt="" class="user-product-img"/>
+                    <!-- <img src="" alt="" class="user-product-img"/> -->
                 </a>
                 <a class="user-product-upload" href="javascript:void(0)">
                     <img src="../../img/img-button.svg" alt="" class="img-button"/>
@@ -33,23 +34,24 @@
             <div class="text-active-input">
                 <p>상품명</p>
                 <form action="">
-                    <input type="text" class="input-email" placeholder="2~15자 이내여야 합니다."/>
+                    <input type="text" class="input-email" id="product-name" placeholder="2~15자 이내여야 합니다."/>
                 </form>
             </div>
             <div class="text-active-input">
                 <p>가격</p>
                 <form action="">
-                    <input type="text" class="input-email" placeholder="숫자만 입력 가능합니다."/>
+                    <input type="text" class="input-email" id="product-price" placeholder="숫자만 입력 가능합니다."/>
                 </form>
             </div>
             <div class="text-active-input">
                 <p>판매링크</p>
                 <form action="">
-                    <input type="text" class="input-email" placeholder="URL을 입력해 주세요."/>
+                    <input type="text" class="input-email" id="product-link" placeholder="URL을 입력해 주세요."/>
                 </form>
             </div>
         </main>
     </div>
+    <script src="../scripts/add-product.js"></script>
 </body>
 </html>
             
