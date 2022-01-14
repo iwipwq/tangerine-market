@@ -1,13 +1,4 @@
 // 상품등록
-// let nameInput = document.getElementById('product-name');
-// let handleInput = (e) => {
-//     e.target.value;
-//     // e.target.value.length;
-//     console.log(e.target.value)
-//     return inputValue = nameInput.value;
-// };
-// nameInput.oninput = handleInput;
-
 let productInput = document.getElementById("product-name");
 let productInputValue = "";
 productInput.addEventListener("input", (e) => {
@@ -29,74 +20,91 @@ linkInput.addEventListener("input", (e) => {
     linkInputValue = e.target.value;
 });
 
-const $image = document.querySelector("#imageUp")
-// const $content = document.querySelector("#content")
-const $imageUploadBtn = document.querySelector(".user-product-upload")
-const $submitBtn = document.querySelector(".Ms-Disabled-button")
+// document.querySelector('#imageInput').addEventListener('change', function() {
+//     if (this.files && this.files[0]) {
+//         console.log('this.file',this.files,'this.files[0]',this.files[0],'filelist',FileList,FileReader)
+//         let img = document.querySelector('.user-product-img');
+//         img.onload = () => {
+//             console.log(URL.revokeObjectURL(img.src));
+//             URL.revokeObjectURL(img.src);  // no longer needed, free memory
+//         }
+//         if(!img.classList.contains("img-visible")){
+//             img.classList.add("img-visible")
+//         }
+//         return img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+//         console.log(img.src)
+//     }
+// });
 
-async function imageUpload(files,index){
-    const formData = new FormData();
-    formData.append("image", files[index]);
-    console.log(formData)
-    const res = await fetch ("http://146.56.183.55:5050/image/uploadfile", {
+const imageInput = document.querySelector('#image-input');
+const submitBtn = document.querySelector('.Ms-Disabled-button')
+
+function previewFile() {
+    let preview = document.querySelector('.user-product-img');
+    let file = document.querySelector('#image-input').files[0];
+    let reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    
+    if(!preview.classList.contains("img-visible")){
+            preview.classList.add("img-visible")
+        }
+}
+
+document.querySelector('#image-input').addEventListener('change',()=>{
+    previewFile();
+})
+
+async function fileUpload(files,index){
+    const url = "http://146.56.183.55:5050";
+    let formData = new FormData();
+    console.log('files[index]로그',files[index])
+    formData.append("image",files[index])
+    const res = await fetch(url+"/image/uploadfile", {
         method: "POST",
         body: formData
     })
-    console.log(data);
-    const data = await res.json()
+    const data = await res.json();
+    console.log('fileUpload응답받은data',data);
     const productImgName = data["filename"];
-    console.log(productImgName)
+    console.log(productImgName);
     return productImgName
 }
-
-async function addProduct(e){
+async function createProduct(_e) {
     const url = "http://146.56.183.55:5050"
-    const myName = localStorage.getItem('accountname');
-    const myToken = localStorage.getItem('accessToken');
-    let imageUrls = []
-    const files =$image.files
+    const token = localStorage.getItem("accessToken")
+    const files = imageInput.files
+    console.log(imageInput.files)
     if (files.length == 1) {
-            const imgurl = await imageUpload(files,[index])
-            console.log('imgurl',imgurl)
-            imageUrls.push(url+imgurl)
-            try {
-                const response = await fetch(`${url}/product`, {
-                    method : "POST",
-                    headers : {
-                        "Authorization" : `Bearer ${myToken}`,
+        let index = 0;
+        const imgurl = await fileUpload(files,index);
+        console.log('con-imageUrls',imgurl);
+        const res = await fetch(url+"/product",{
+            method:"POST",
+            headers:{
+                        "Authorization" : `Bearer ${token}`,
                         "Content-type" : "application/json"
-                    },
-                    body : {
-                        "product":{
-                            "itemName": productInputValue,
-                            "price": parseInt(priceInputValue),
-                            "link": linkInputValue,
-                            "itemImage": imageUrls
-                        }
-                    }
-                })
-                const json = response.json;
-                console.log(json);
-            } catch (error) {
-                
-            }
-        } else {
-            alert("이미지는 한 장만 등록해주세요")
-        }
-}
-$imageUploadBtn.addEventListener('click', (e) => {
-    if($image){
-    $image.click();
+            },
+            body:JSON.stringify({
+                "product":{
+                        "itemName": productInputValue,
+                        "price": parseInt(priceInputValue),
+                        "link": linkInputValue,
+                        "itemImage": url+'/'+imgurl
+                }
+            })
+        })
+        const json = await res.json()
+        console.log(json)
+    }else{
+        alert("이미지는 한 장만 첨부해주세요!")
     }
-});
-$image.addEventListener('change',(handleFiles) => {
-    console.log(files);
-    function handleFiles() {
-        const fileList = this.files; /* 이제 파일 리스트로 작업할 수 있습니다 */
-      }
-    document.querySelector('.user-product-preview').innerHTML += `
-    <img src="" alt="" class="user-product-img"/>
-    `
-    imageUpload();
-})
-$submitBtn.addEventListener('click', addProduct);
+}
+submitBtn.addEventListener('click',createProduct)
+        
