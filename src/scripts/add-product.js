@@ -1,23 +1,54 @@
 // 상품등록
+// 상품명15자 이하 2자 이상
+// let textValid = 15 >= productInputValue.length && productInputValue.length >= 2;
+// 가격값이 숫자인지 확인 
+// let numValid = new RegExp(/^[0-9]+$/).test(priceInputValue);
+// url값이 ftp:// http:// https:// 로 시작하는지 확인
+// let urlValid = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/).test(linkInputValue);
+
 let productInput = document.getElementById("product-name");
 let productInputValue = "";
+// let textValid,numValid,urlValid = 0;
+let textValid = false;
 productInput.addEventListener("input", (e) => {
     console.log(e.target.value);
     productInputValue = e.target.value;
+    console.log(textValid);
+    if (15 >= productInputValue.length && productInputValue.length >= 2) {
+        textValid = true;
+        console.log(textValid);
+    } else {
+        textValid = false;
+        console.log(textValid);
+    }
 });
-
+let numValid = false;
 let priceInput = document.getElementById("product-price");
 let priceInputValue = "";
 priceInput.addEventListener("input", (e) => {
     console.log(e.target.value);
     priceInputValue = e.target.value;
+    if (/^[0-9]+$/.test(priceInputValue)) {
+        numValid = true;
+        console.log(numValid);
+    } else {
+        numValid = false;
+        console.log(numValid);
+    }
 });
-
+let urlValid = false;
 let linkInput = document.getElementById("product-link");
 let linkInputValue = "";
 linkInput.addEventListener("input", (e) => {
     console.log(e.target.value);
     linkInputValue = e.target.value;
+    if(/^(ftp|http|https):\/\/[^ "]+$/.test(linkInputValue)) {
+        urlValid = true;
+        console.log(urlValid);
+    } else {
+        urlValid = false;
+        console.log(urlValid);
+    }
 });
 
 // document.querySelector('#imageInput').addEventListener('change', function() {
@@ -37,7 +68,7 @@ linkInput.addEventListener("input", (e) => {
 // });
 
 const imageInput = document.querySelector('#image-input');
-const submitBtn = document.querySelector('.Ms-Disabled-button')
+const submitBtn = document.querySelector('button[type=button]');
 
 function previewFile() {
     let preview = document.querySelector('.user-product-img');
@@ -102,9 +133,23 @@ async function createProduct(_e) {
         })
         const json = await res.json()
         console.log(json)
+        //window.location.href = "/profile.html"
     }else{
         alert("이미지는 한 장만 첨부해주세요!")
     }
 }
-submitBtn.addEventListener('click',createProduct)
+
+window.addEventListener('keydown', (e)=> {
+    if( textValid && numValid && urlValid ){
+        submitBtn.classList.replace('Ms-Disabled-button','Ms-button');
+        submitBtn.addEventListener('click',createProduct)
+        //location.href('/profile')
+    } else {
+        if (submitBtn.className === 'Ms-Button') {
+        submitBtn.classList.replace('Ms-button','Ms-Disabled-button');
+        } 
+        submitBtn.removeEventListener('click',createProduct)
+    }
+})
+
         

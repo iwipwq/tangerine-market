@@ -7,6 +7,13 @@
     border-radius: 20px;
 }
 
+#add-product-wrap .Ms-button {
+    transition: background-color ease-in-out .2s;
+}
+#add-product-wrap .Ms-Disabled-button {
+    transition: background-color ease-in-out .2s;
+}
+
 #add-product-wrap .product-write {
     border-top: 0.5px solid #DBDBDB;
     display: flex;
