@@ -145,7 +145,7 @@ window.addEventListener('keydown', (e)=> {
         submitBtn.addEventListener('click',createProduct)
         //location.href('/profile')
     } else {
-        if (submitBtn.className === 'Ms-Button') {
+        if (submitBtn.className === 'Ms-button') {
         submitBtn.classList.replace('Ms-button','Ms-Disabled-button');
         } 
         submitBtn.removeEventListener('click',createProduct)
