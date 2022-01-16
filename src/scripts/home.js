@@ -38,7 +38,7 @@ async function getFollowingFeed() {
       //   isHeart = "yes";
       // }
       document.querySelector(".post").innerHTML += `
-           <article class="home-post">
+          <article class="home-post">
             <h2 class="sr-only">포스트섹션</h2>
             <a class="user-profile"
               ><img
@@ -90,24 +90,9 @@ async function getFollowingFeed() {
             </section>
           </article>
       `;
-      const likeBtn = document.querySelector(".like");
-      const iconHeart = likeBtn.querySelector(".icon-heart");
-      function likeUpDown() {
-        if (iconHeart.classList.contains("on")) {
-          iconHeart.classList.remove("on");
-          iconHeart.src = "../../img/icon-heart.svg";
-        } else {
-          iconHeart.classList.add("on");
-          iconHeart.src = "../../img/icon-heart-fill.svg";
-        }
-      }
-
-      likeBtn.addEventListener("click", likeUpDown);
     });
   } catch (err) {
     console.log("요청실패");
   }
 }
 getFollowingFeed();
-
-//좋아요 기능 ui만
