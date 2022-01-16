@@ -43,6 +43,7 @@ textarea:focus {
 }
 .upload-main .upload-box {
   margin-top: 68px;
+  overflow: hidden;
 }
 .upload-main .basic-profile-img {
   position: absolute;
@@ -96,4 +97,30 @@ textarea:focus {
   height: 126px;
   border-radius: 10px;
   margin-left: 8px;
+}
+
+#upload-wrap .img-preview-wrap {
+  padding-right: 80px;
+  width: 100%;
+  margin-top: 16px;
+  margin-left: 70px;
+  display: flex;
+  gap: 8px;
+  overflow-x: scroll;
+}
+
+#upload-wrap .img-preview {
+  width: 304px;
+  height: 228px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#upload-wrap .img-preview-triple {
+  min-width: 168px;
+  max-width: 168px;
+  min-height: 126px;
+  max-height: 126px;
+  border-radius: 10px;
+  object-fit: cover;
 }
