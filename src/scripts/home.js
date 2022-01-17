@@ -18,7 +18,7 @@ async function getFollowingFeed() {
     });
     const resJson = await res.json();
     const posts = resJson.posts;
-    console.log(resJson);
+    console.log("받은자료", resJson);
     posts.forEach((post) => {
       let authorImage = post.author.image;
       const authorAccount = post.author.accountname;
@@ -32,6 +32,8 @@ async function getFollowingFeed() {
       const getYear = date.getFullYear();
       const getMonth = date.getMonth() + 1;
       const getDate = date.getDate();
+      console.log("포스트아이디", post.id);
+
       if (authorImage != "1641803765586.png") {
         authorImage = post.author.image;
       } else {
@@ -80,7 +82,7 @@ async function getFollowingFeed() {
                 />
               </button>
               <span class="like-counter typography--a1">${heartCount}</span>
-              <a href="post.html" class="post-comment">
+              <a href="post.html" class="post-comment" data-post="${post.id}">
                 <img
                   src="../../img/icon-message-circle-small.svg"
                   alt="댓글달기"
@@ -93,6 +95,13 @@ async function getFollowingFeed() {
           </article>
       `;
     });
+    const commentBtn = document.querySelectorAll(".post-comment");
+    commentBtn.forEach((comment) => {
+      const postId = comment.getAttribute("data-post");
+      comment.addEventListener("click", () => {
+        localStorage.setItem("postId", postId);
+      });
+    });
   } catch (err) {
     console.log("요청실패");
   }
@@ -101,10 +110,11 @@ getFollowingFeed();
 
 function likeHeart(value) {
   if (value) {
-    console.log("하트있음");
     return "../../img/icon-heart-fill.svg";
   } else {
-    console.log("하트없음");
     return "../../img/icon-heart.svg";
   }
 }
+
+let commentBtn = document.querySelectorAll(".post-comment");
+console.log("commentBtn", commentBtn);

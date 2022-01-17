@@ -34,6 +34,7 @@ body {
   position: relative;
   overflow: hidden;
   padding-bottom: 80px;
+  width: 100%;
 }
 .post-main .inner {
   height: 100%;
@@ -45,6 +46,9 @@ body {
 .post-main .home-post {
   padding: 16px 16px 20px;
   margin-bottom: 0;
+}
+.post-main .post-section {
+  width: 100%;
 }
 .post-main .user-comment .basic-profile-img {
   border-radius: 50%;
@@ -103,7 +107,7 @@ body {
 }
 
 .post-main .comment {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;

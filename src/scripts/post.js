@@ -1,4 +1,5 @@
-let token = localStorage.getItem("accessToken");
+const token = localStorage.getItem("accessToken");
+const postId = localStorage.getItem("postId");
 //토큰 확인
 function checkToken() {
   if (!token) {
@@ -11,7 +12,7 @@ checkToken();
 async function getPost() {
   const url = "http://146.56.183.55:5050";
   try {
-    const res = await fetch(url + "/post/61e52523848431e191bedc0f", {
+    const res = await fetch(`${url}/post/${postId}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
@@ -116,7 +117,7 @@ getPost();
 async function getComment() {
   const url = "http://146.56.183.55:5050";
   try {
-    const res = await fetch(url + "/post/61e52523848431e191bedc0f/comments", {
+    const res = await fetch(`${url}/post/${postId}/comments`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
@@ -217,7 +218,7 @@ publishBtn.addEventListener("click", writeComment);
 async function writeComment() {
   const url = "http://146.56.183.55:5050";
   try {
-    const res = await fetch(url + "/post/61e52523848431e191bedc0f/comments", {
+    const res = await fetch(`${url}/post/${postId}/comments`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
