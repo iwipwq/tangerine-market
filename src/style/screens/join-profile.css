@@ -26,6 +26,12 @@
 .profile-img {
   position: relative;
 }
+.profile-img .basic-profile-img {
+  width: 110px;
+  height: 110px;
+  border: 1px solid #dbdbdb;
+  border-radius: 50%;
+}
 .profile-img .profile-upload-btn{
   position: absolute;
   width: 36px;
