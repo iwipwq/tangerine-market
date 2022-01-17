@@ -18,25 +18,27 @@ async function getFollowingFeed() {
     });
     const resJson = await res.json();
     const posts = resJson.posts;
+    console.log(resJson);
     posts.forEach((post) => {
-      const authorImage = post.author.image;
+      let authorImage = post.author.image;
       const authorAccount = post.author.accountname;
       const authorName = post.author.username;
       const commentCount = post.commentCount;
       const content = post.content;
       const heartCount = post.heartCount;
-      const postImage = post.image;
+      const postImage = post.image.split(",")[0];
       const createDate = post.createdAt;
       const date = new Date(createDate);
       const getYear = date.getFullYear();
       const getMonth = date.getMonth() + 1;
       const getDate = date.getDate();
+      if (authorImage != "1641803765586.png") {
+        authorImage = post.author.image;
+      } else {
+        authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      }
+      const hearted = likeHeart(post.hearted);
 
-      // const hearted = post.hearted;
-      // let isHeart = "no";
-      // if (hearted) {
-      //   isHeart = "yes";
-      // }
       document.querySelector(".post").innerHTML += `
           <article class="home-post">
             <h2 class="sr-only">포스트섹션</h2>
@@ -72,7 +74,7 @@ async function getFollowingFeed() {
               />
               <button class="like" type="button">
                 <img
-                  src="../../img/icon-heart.svg"
+                  src="${hearted}"
                   alt="좋아요"
                   class="icon-heart"
                 />
@@ -96,3 +98,13 @@ async function getFollowingFeed() {
   }
 }
 getFollowingFeed();
+
+function likeHeart(value) {
+  if (value) {
+    console.log("하트있음");
+    return "../../img/icon-heart-fill.svg";
+  } else {
+    console.log("하트없음");
+    return "../../img/icon-heart.svg";
+  }
+}

@@ -14,7 +14,6 @@ function activeColorBtn() {
     loginBtn.setAttribute("disabled", "disabled");
   }
 }
-
 input.forEach((value) => {
   value.addEventListener("keyup", activeColorBtn);
 });
@@ -35,6 +34,7 @@ async function login() {
       }),
     });
     const resJson = await res.json();
+    console.log("크라라", resJson);
     const pwInput = document.querySelector(".email-pw");
     if (resJson.message) {
       errorTxt.innerText = `*${resJson.message}`;
@@ -49,27 +49,9 @@ async function login() {
       localStorage.setItem("accountname", resJson.user.accountname);
       localStorage.setItem("accessToken", resJson.user.token);
       localStorage.setItem("refreshToken", resJson.user.refreshToken);
+      localStorage.setItem("profileImage", resJson.user.image);
     }
   } catch (err) {}
 }
 
 loginBtn.addEventListener("click", login);
-
-//참고 사항 나중에 삭제
-// function test() {
-//   // 리퀘스트 요청마다 http헤더에 토큰 실어 보내기(인가)
-//   let token = localStorage.getItem("accessToken");
-//   console.log(token);
-//   fetch("http://146.56.183.55:5050/profile/test35123", {
-//     headers: {
-//       "Content-type": "application/json",
-//       Authorization: "Bearer " + token,
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((response) => {
-//       console.log(response);
-//     });
-// }
-
-// testBtn.addEventListener("click", test);
