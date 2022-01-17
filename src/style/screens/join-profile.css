@@ -1,3 +1,7 @@
+#upload-image {
+  display: none;
+}
+
 #join-profile-wrap {
   display: flex;
   flex-direction: column;
@@ -22,14 +26,16 @@
 .profile-img {
   position: relative;
 }
-.profile-upload-btn {
-  background: transparent;
-  border: none;
+.profile-img .profile-upload-btn{
   position: absolute;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background: url(/img/img-btn.png);
   bottom: 2px;
   right: 0;
-  cursor: pointer;
 }
+
 .profile-upload-btn .upload-file {
   width: 36px;
   height: 36px;

@@ -17,13 +17,8 @@
           alt="현재 프로필 사진"
           class="basic-profile-img"
         />
-        <button class="profile-upload-btn">
-          <img
-            src="../../img/upload-file.svg"
-            alt="프로필 사진 업로드 버튼"
-            class="upload-file"
-          />
-        </button>
+        <label for="upload-image" class="profile-upload-btn"></label>
+          <input type="file" class="upload-file" id="upload-image">
       </div>
       <form>
         <div class="text-active-input user-name">
@@ -32,7 +27,7 @@
         </div>
         <div class="text-active-input user-id">
           <label for="user-id">계정 ID</label>
-          <input type="password" id="user-id" class="input-user-id" />
+          <input type="text" id="user-id" class="input-user-id" />
           <strong class="error-txt-syntax">
             *영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.
           </strong>
@@ -40,9 +35,9 @@
         </div>
         <div class="text-active-input user-desc">
           <label for="user-desc">소개</label>
-          <input type="password" id="user-desc" class="input-user-desc" />
+          <input type="text" id="user-desc" class="input-user-desc" />
         </div>
-        <button href="javascript:void(0)" class="L-button start-btn">
+        <button type="button" href="javascript:void(0)" class="L-button start-btn">
           감귤마켓 시작하기
         </button>
       </form>
