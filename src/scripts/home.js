@@ -18,25 +18,29 @@ async function getFollowingFeed() {
     });
     const resJson = await res.json();
     const posts = resJson.posts;
+    console.log("받은자료", resJson);
     posts.forEach((post) => {
-      const authorImage = post.author.image;
+      let authorImage = post.author.image;
       const authorAccount = post.author.accountname;
       const authorName = post.author.username;
       const commentCount = post.commentCount;
       const content = post.content;
       const heartCount = post.heartCount;
-      const postImage = post.image;
+      const postImage = post.image.split(",")[0];
       const createDate = post.createdAt;
       const date = new Date(createDate);
       const getYear = date.getFullYear();
       const getMonth = date.getMonth() + 1;
       const getDate = date.getDate();
+      console.log("포스트아이디", post.id);
 
-      // const hearted = post.hearted;
-      // let isHeart = "no";
-      // if (hearted) {
-      //   isHeart = "yes";
-      // }
+      if (authorImage != "1641803765586.png") {
+        authorImage = post.author.image;
+      } else {
+        authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      }
+      const hearted = likeHeart(post.hearted);
+
       document.querySelector(".post").innerHTML += `
           <article class="home-post">
             <h2 class="sr-only">포스트섹션</h2>
@@ -72,13 +76,13 @@ async function getFollowingFeed() {
               />
               <button class="like" type="button">
                 <img
-                  src="../../img/icon-heart.svg"
+                  src="${hearted}"
                   alt="좋아요"
                   class="icon-heart"
                 />
               </button>
               <span class="like-counter typography--a1">${heartCount}</span>
-              <a href="post.html" class="post-comment">
+              <a href="post.html" class="post-comment" data-post="${post.id}">
                 <img
                   src="../../img/icon-message-circle-small.svg"
                   alt="댓글달기"
@@ -91,8 +95,26 @@ async function getFollowingFeed() {
           </article>
       `;
     });
+    const commentBtn = document.querySelectorAll(".post-comment");
+    commentBtn.forEach((comment) => {
+      const postId = comment.getAttribute("data-post");
+      comment.addEventListener("click", () => {
+        localStorage.setItem("postId", postId);
+      });
+    });
   } catch (err) {
     console.log("요청실패");
   }
 }
 getFollowingFeed();
+
+function likeHeart(value) {
+  if (value) {
+    return "../../img/icon-heart-fill.svg";
+  } else {
+    return "../../img/icon-heart.svg";
+  }
+}
+
+let commentBtn = document.querySelectorAll(".post-comment");
+console.log("commentBtn", commentBtn);
