@@ -56,11 +56,11 @@ async function getFollowingFeed() {
                   >${authorName}</a
                 >
               </h3>
-              <a href="javascript:vold(0)" class="post-more-vertical">
+              <a href="#none" class="post-more-vertical">
                 <img
                   src="../../img/s-icon-more-vertical.svg"
-                  alt=""
-                  class="s-icon-more-vertical"
+                  alt="포스트 신고 버튼"
+                  class="s-icon-more-vertical modal-btn"
                 />
               </a>
               <a class="post-author typography--a">${authorAccount}</a>
@@ -101,6 +101,20 @@ async function getFollowingFeed() {
       comment.addEventListener("click", () => {
         localStorage.setItem("postId", postId);
       });
+    });
+    //신고버튼이벤트
+    const iconMoreVertical = document.querySelectorAll(".modal-btn");
+    const bottomModal = document.querySelector(".icon-post-modal");
+    const screenOverlay = document.querySelector(".screen-overlay");
+    iconMoreVertical.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        bottomModal.classList.toggle("modal-popup");
+        screenOverlay.classList.toggle("overlay-on");
+      });
+    });
+    screenOverlay.addEventListener("click", () => {
+      bottomModal.classList.toggle("modal-popup");
+      screenOverlay.classList.toggle("overlay-on");
     });
   } catch (err) {
     console.log("요청실패");

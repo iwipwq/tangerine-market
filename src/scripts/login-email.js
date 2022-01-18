@@ -50,6 +50,7 @@ async function login() {
       localStorage.setItem("accessToken", resJson.user.token);
       localStorage.setItem("refreshToken", resJson.user.refreshToken);
       localStorage.setItem("profileImage", resJson.user.image);
+      localStorage.setItem("userId", resJson.user._id);
     }
   } catch (err) {}
 }
