@@ -1,5 +1,7 @@
 const token = localStorage.getItem("accessToken");
 const postId = localStorage.getItem("postId");
+const userId = localStorage.getItem("userId");
+console.log("id", userId);
 //토큰 확인
 function checkToken() {
   if (!token) {
@@ -124,18 +126,17 @@ async function getComment() {
       },
     });
     const resJson = await res.json();
-    console.log("댓글", resJson);
+    console.log("댓글리스트", resJson);
     const comments = resJson.comments;
-    console.log("코멘츠", resJson.comments);
     comments.forEach((comment) => {
-      console.log("크크크", comment);
       const authorName = comment.author.username;
       let authorProfileImg = comment.author.image;
       const content = comment.content;
       const day = comment.createdAt;
       const writeDay = timeForToday(day);
-
-      console.log(writeDay);
+      let commentId = comment.id;
+      let authorId = comment.author._id;
+      console.log("코멘트id", commentId);
       if (authorProfileImg != "1641803765586.png") {
         authorProfileImg = comment.author.image;
       } else {
@@ -143,7 +144,7 @@ async function getComment() {
       }
       document.querySelector(".comment-box").innerHTML += `
       <ul>
-      <li class="comment-list">
+      <li class="comment-list" >
         <div class="user-comment">
           <div class="tit-comment">
             <img
@@ -158,7 +159,9 @@ async function getComment() {
             <img
               src="../../img/s-icon-more-vertical.svg"
               alt="댓글옵션보기"
-              class="img-more"
+              class="img-more modal-btn"
+              data-id="${commentId}"
+              data-user="${authorId}"
             />
           </button>
         </div>
@@ -166,6 +169,61 @@ async function getComment() {
       </li>
     </ul>
     `;
+    });
+
+    ///내 댓글이 아닌 경우 신고 모달
+    // 댓글 삭제 모달창
+    const modalBtn = document.querySelectorAll(".modal-btn");
+    let deleteModal = document.querySelector(".comment-delete-modal");
+    let declarationModal = document.querySelector(".comment-Declaration-modal");
+    let screenOverlay = document.querySelector(".screen-overlay");
+    let deleteAlert = document.querySelector(".delete-alert");
+
+    modalBtn.forEach((modal) => {
+      const id = modal.getAttribute("data-id");
+      const author = modal.getAttribute("data-user");
+      modal.addEventListener("click", () => {
+        // let overlayCheck = deleteAlert.classList.contains("on");
+        if (author == userId) {
+          commentId = id;
+          deleteModal.classList.add("modal-popup");
+          screenOverlay.classList.add("overlay-on");
+        } else {
+          screenOverlay.classList.add("overlay-on");
+          declarationModal.classList.add("modal-popup");
+          console.log("당신것이 아닙니다.");
+        }
+      });
+    });
+
+    screenOverlay.addEventListener("click", () => {
+      deleteModal.classList.remove("modal-popup");
+      declarationModal.classList.remove("modal-popup");
+      screenOverlay.classList.remove("overlay-on");
+    });
+
+    // 댓글 삭제 모달 토글
+    let deleteCommentModal = document.querySelector(
+      ".comment-delete-modal ul li"
+    );
+    deleteCommentModal.addEventListener("click", () => {
+      deleteAlert.classList.toggle("on");
+      const screenCheck = screenOverlay.classList.contains("overlay-on");
+      if (screenCheck) {
+        screenOverlay.style.pointerEvents = "none";
+      }
+    });
+
+    let btnCancle = document.querySelector(".btn-alert button");
+    let btnDelete = document.querySelector(".btn-delete");
+
+    btnCancle.addEventListener("click", () => {
+      deleteAlert.classList.remove("on");
+      screenOverlay.style.pointerEvents = "auto";
+    });
+
+    btnDelete.addEventListener("click", () => {
+      deleteComment(commentId);
     });
   } catch (err) {
     console.log("요청실패");
@@ -200,7 +258,6 @@ function timeForToday(value) {
 }
 
 //버튼 활성화
-
 function activePublishBtn() {
   if (inputComment.value) {
     publishBtn.style.color = "#F26E22";
@@ -214,6 +271,7 @@ let inputComment = document.querySelector(".input-comment");
 let publishBtn = document.querySelector(".publish-btn");
 inputComment.addEventListener("keyup", activePublishBtn);
 publishBtn.addEventListener("click", writeComment);
+
 //댓글 게시
 async function writeComment() {
   const url = "http://146.56.183.55:5050";
@@ -235,4 +293,20 @@ async function writeComment() {
   }
   location.reload();
 }
+
 //댓글 삭제
+async function deleteComment(data) {
+  const url = "http://146.56.183.55:5050";
+  try {
+    const res = await fetch(`${url}/post/${postId}/comments/${data}`, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+  } catch (err) {
+    console.log("요청실패");
+  }
+  location.reload();
+}
