@@ -3,8 +3,6 @@ const loginEmail = document.querySelector(".input-email");
 const loginPw = document.querySelector(".input-pw");
 const loginBtn = document.querySelector(".login-btn");
 const input = document.querySelectorAll(".input");
-const errorTxt = document.querySelector(".error-txt");
-
 function activeColorBtn() {
   if (loginEmail.value && loginPw.value) {
     loginBtn.removeAttribute("disabled");
@@ -34,25 +32,32 @@ async function login() {
       }),
     });
     const resJson = await res.json();
-    console.log("크라라", resJson);
-    const pwInput = document.querySelector(".email-pw");
-    if (resJson.message) {
-      errorTxt.innerText = `*${resJson.message}`;
-      pwInput.classList.add("error");
-    } else {
-      pwInput.classList.remove("error");
-      window.location.href = "/src/pages/home.html";
-    }
-
-    // 토큰과 accountname을 로컬스토리지에 저장
-    if (resJson.user.token) {
-      localStorage.setItem("accountname", resJson.user.accountname);
-      localStorage.setItem("accessToken", resJson.user.token);
-      localStorage.setItem("refreshToken", resJson.user.refreshToken);
-      localStorage.setItem("profileImage", resJson.user.image);
-      localStorage.setItem("userId", resJson.user._id);
-    }
+    console.log("받은데이터", resJson);
+    printError(resJson);
+    setLocalUserinfo(resJson);
   } catch (err) {}
 }
 
 loginBtn.addEventListener("click", login);
+
+function printError(error) {
+  const pwInput = document.querySelector(".email-pw");
+  const errorTxt = document.querySelector(".error-txt");
+  if (error.message) {
+    errorTxt.innerText = `*${error.message}`;
+    pwInput.classList.add("error");
+  } else {
+    pwInput.classList.remove("error");
+    window.location.href = "/src/pages/home.html";
+  }
+}
+
+function setLocalUserinfo(userInfo) {
+  if (userInfo.user.token) {
+    localStorage.setItem("accountname", userInfo.user.accountname);
+    localStorage.setItem("accessToken", userInfo.user.token);
+    localStorage.setItem("refreshToken", userInfo.user.refreshToken);
+    localStorage.setItem("profileImage", userInfo.user.image);
+    localStorage.setItem("userId", userInfo.user._id);
+  }
+}
