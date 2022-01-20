@@ -178,6 +178,9 @@
 #your-profile-main .product-ul {
   overflow-x: hidden;
 }
+#your-profile-main .product-li {
+  width: 100%;
+}
 
 /* 포스트 구획 */
 #your-profile-main .post-area {
@@ -215,11 +218,73 @@
   transition: right ease-in-out .3s;
 }
 
+#your-profile-main .user-profile img{
+  border-radius: 50%;
+  height: 42px;
+}
+
+#your-profile-main .post-img-slider {
+  position: relative;
+  margin-top: 16px;
+  width: 304px;
+  height: 228px;
+  overflow-x: scroll;
+  border: 0.5px solid #dbdbdb;
+  border-radius: 10px;
+}
+
+#your-profile-main .post-img-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  right: 0;
+}
+
+#your-profile-main .post-img-list {
+  min-width: 100%;
+}
+
+#your-profile-main .post-img-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#your-profile-main .post-img-btn-container {
+  position: absolute;
+  display: flex;
+  bottom: 6%;
+  gap: 6px;
+  right: 50%;
+  justify-content: center;
+  transform: translateX(50%);
+}
+
+#your-profile-main .post-img-btn {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: all .3s;
+  cursor: pointer;
+}
+
+#your-profile-main .post-img-btn:first-child {
+  background-color: #f26e22
+}
+
+.btn-on {
+  background-color: #f26e22
+}
+
 #your-profile-main .post-wrap {
     margin-bottom: 28px;
     display: flex;
     width: 100%;
 }
+
+
 
 #your-profile-main .post-section {
     width: 100%;
