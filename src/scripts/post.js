@@ -1,6 +1,7 @@
 const token = localStorage.getItem("accessToken");
 const postId = localStorage.getItem("postId");
 const userId = localStorage.getItem("userId");
+
 console.log("id", userId);
 //토큰 확인
 function checkToken() {
