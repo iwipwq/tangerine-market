@@ -1,7 +1,27 @@
 const emailPw = document.querySelector("#login-email-wrap");
+const emailInputs = emailPw.querySelectorAll("input");
+const emailPwBtn = document.querySelector(".next-btn")
 const profile = document.querySelector("#join-profile-wrap");
 const imagePre = document.querySelector(".basic-profile-img")
 const submitBtn = document.querySelector(".start-btn")
+
+//이메일, 패스워드의 인풋 값이 모두 들어와 있으면 다음 버튼활성화
+function able() {
+    let check = 0;
+    for (let i = 0; i < emailInputs.length; i++) {
+      if (emailInputs[i].value !== "") {
+        check += 1;
+      }
+    }
+    if (check === emailInputs.length) {
+      emailPwBtn.disabled = false;
+      emailPwBtn.style.backgroundColor = "#f26e22"
+    } else {
+      emailPwBtn.disabled = true;
+    }
+  }
+  emailPw.addEventListener("keyup", able);
+
 async function checkEmailValid(email) {
     const url = "http://146.56.183.55:5050";
     const res = await fetch(url + '/user/emailValid', {
