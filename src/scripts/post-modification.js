@@ -10,7 +10,10 @@ const imageInput = document.querySelector("#image");
 const uploadBtn = document.querySelector('button[type="button"]');
 const imageBtn = document.querySelector(".upload-photo");
 let imageUrls = [];
-
+text.addEventListener("keyup", function () {
+  uploadBtn.removeAttribute("disabled", "disabled");
+  uploadBtn.style.backgroundColor = "#F26E22";
+});
 // 미리보기이미지 임시 저장소1
 let imgArray = 0;
 // 업로드용 이미지 임시 저장소2 //나중에 합쳐서 다시 짜기
@@ -36,7 +39,6 @@ async function getPost() {
   printPost(data);
   console.log("정보출력", data);
   function printPost(data) {
-    console.log("받은정보", data.post.image.split(","));
     text.value = data.post.content;
     const myProfileImg = document.querySelector(".basic-profile-img");
     myProfileImg.src = profileImage;
@@ -56,7 +58,6 @@ async function getPost() {
         imgArray = imgArray + 1;
       });
     }
-
     if (img.length > 1 && img.length <= 3) {
       const previewImg = document.querySelectorAll(".img-preview-wrap img");
       previewImg.forEach((img) => {
@@ -65,7 +66,6 @@ async function getPost() {
     }
   }
 }
-
 let deletepost = document.querySelectorAll(".delete-btn");
 const previewWrap = document.querySelector(".img-preview-wrap");
 let previewImage = document.querySelectorAll(".list-preview-img img");
@@ -74,37 +74,35 @@ let previewList = document.querySelectorAll(".list-preview-img");
 let observer = new MutationObserver(function (mutations) {
   deletepost = document.querySelectorAll(".delete-btn");
   previewImage = document.querySelectorAll(".list-preview-img img");
-  // tempImgArray = [];
-  // for (let i = 0; i < previewImage.length; i++) {
-  //   tempImgArray.push(previewImage[i].getAttribute("src"));
-  // }
+  // imageInput.value = null;
   imgArray = previewImage.length;
-  // tempImgArray = imageUrls;
-  makeFormdata();
+
+  // console.log("----------------------------------------");
   console.log("변경감시temp", tempImgArray);
   console.log("변경감시url", imageUrls);
   console.log("변경 imgArray", imgArray);
+  // console.log("----------------------------------------");
   deletepost.forEach((del) => {
     del.addEventListener("click", (e) => {
       const removeOne = e.target.parentElement;
-      const index = imageUrls.indexOf(e.target.previousElementSibling.src);
+      let index = imageUrls.indexOf(e.target.previousElementSibling.src);
       removeOne.remove();
-      console.log("변경감시버튼url", imageUrls);
+      uploadBtn.removeAttribute("disabled", "disabled");
+      uploadBtn.style.backgroundColor = "#F26E22";
       imgArray = previewImage.length;
+
       imageUrls.splice(index, 1);
-      tempImgArray = imageUrls;
+      tempImgArray.splice(index, 1);
+
+      console.log("변경감시버튼url", imageUrls);
       console.log("del변경감시temp", tempImgArray);
       console.log("del변경감시url", imageUrls);
-      console.log("이타겟", e.target.previousElementSibling.src);
       const images = document.querySelectorAll(".list-preview-img img");
       if (imgArray > 2 && imgArray <= 3) {
-        console.log("동작안해");
         images.forEach((img) => {
           img.classList.replace("img-preview", "img-preview-triple");
         });
       } else if (imgArray <= 2) {
-        console.log("동작안해하니");
-
         images.forEach((img) => {
           img.classList.replace("img-preview-triple", "img-preview");
         });
@@ -115,7 +113,7 @@ let observer = new MutationObserver(function (mutations) {
 
 let config = { childList: true };
 observer.observe(previewWrap, config);
-console.log("버튼 감지후후", deletepost);
+console.log("델버튼", deletepost);
 
 function makeFormdata() {
   let newImage = tempImgArray.filter(function (n) {
@@ -126,25 +124,18 @@ function makeFormdata() {
   console.log("tempImgArray[1]", tempImgArray[1]);
   console.log("tempImgArray[2]", tempImgArray[2]);
   console.log("newImage1", newImage);
-  if (tempImgArray.length <= 3) {
-    // 새 빈 폼데이터 만들기
-    let formData = new FormData();
-    // 폼 데이터에 tempImgArray에 저장되있던 file데이터 append로 집어넣기
-    if (newImage.length == 1) {
-      formData.append("image", newImage[0]);
-    } else if (newImage.length == 2) {
-      formData.append("image", newImage[1]);
-    } else if (newImage.length == 3) {
-      formData.append("image", newImage[2]);
-    }
-    // for (let index = 0; index < newImage.length; index++) {
-    //   formData.append("image", newImage[index]);
-    // }
-    imageUpload(formData);
+  let formData = new FormData();
+  if (newImage.length == 1) {
+    formData.append("image", newImage[0]);
+  } else if (newImage.length == 2) {
+    formData.append("image", newImage[1]);
+  } else if (newImage.length == 3) {
+    formData.append("image", newImage[2]);
   }
+
+  imageUpload(formData);
 }
 uploadBtn.addEventListener("click", () => {
-  console.log("url", imageUrls);
   updatePost();
 });
 
@@ -152,7 +143,6 @@ getPost();
 console.log("업로드용", tempImgArray);
 
 async function imageUpload(formData) {
-  console.log("폼데이터", formData);
   const url = "http://146.56.183.55:5050";
   const res = await fetch(url + "/image/uploadfiles", {
     method: "POST",
@@ -163,14 +153,17 @@ async function imageUpload(formData) {
   for (let index = 0; index < data.length; index++) {
     imageUrls.push(url + "/" + data[index].filename);
   }
-
-  console.log("맨아래변경감시", imageUrls);
 }
 
 // 이미지미리보기와 한장이상 넣으면 업로드버튼 활성화
 imageInput.addEventListener("change", function () {
   if (tempImgArray.length < 3) {
     tempImgArray.push(imageInput.files[0]);
+    makeFormdata();
+    uploadBtn.removeAttribute("disabled", "disabled");
+    uploadBtn.style.backgroundColor = "#F26E22";
+    console.log("체인지템프어레이렝스", tempImgArray.length);
+    console.log("체인지템프", tempImgArray);
   } else {
     alert("이미지는 3개까지 등록가능 합니다!");
   }
@@ -223,5 +216,3 @@ async function updatePost(_e) {
   console.log(json);
   //window.location.href = "/profile.html" 업로드 후 프로필로 돌아가기
 }
-
-//버튼활성화
