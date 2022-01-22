@@ -15,13 +15,13 @@
     <form>
       <div class="text-active-input email-id">
         <label for="login-id">이메일</label>
-        <input type="email" id="login-id" class="input-id" required="required"/>
-        <strong class="error-txt">*이미 가입된 이메일 주소입니다.</strong>
+        <input type="email" id="login-id" class="input-id" required="required" placeholder="이메일 주소를 입력해 주세요."/>
+        <strong id="email-error" class="error hidden">*이미 가입된 이메일 주소입니다.</strong>
       </div>
       <div class="text-active-input email-pw">
         <label for="login-pw">비밀번호</label>
-        <input type="password" id="login-pw" class="input-pw" required="required" />
-        <strong class="error-txt">*비밀번호는 6자 이상이어야 합니다.</strong>
+        <input type="password" id="login-pw" class="input-pw" required="required" placeholder="비밀번호를 설정해 주세요."/>
+        <strong id="password-error" class="error hidden">*비밀번호는 6자 이상이어야 합니다.</strong>
       </div>
       <button type="button" class="L-button next-btn">
         다음

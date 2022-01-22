@@ -19,18 +19,29 @@
 .email-pw {
   margin-bottom: 30px;
 }
-.text-active-input.email-id .error-txt,
-.text-active-input.email-pw .error-txt {
-  display: none;
+
+#login-id::placeholder,#login-pw::placeholder {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  color: #dbdbdb;
+  font-size: 14px;
+ 
+}
+.text-active-input.email-id .error,
+.text-active-input.email-pw .error {
   color: #eb5757;
   font-size: 12px;
   line-height: 14px;
   font-weight: normal;
 }
-.text-active-input.email-id.error .error-txt,
-.text-active-input.email-pw.error .error-txt {
+.text-active-input.email-id.error .error,
+.text-active-input.email-pw.error .error {
   display: block;
   margin-top: 6px;
+}
+.hidden {
+  display: none;
 }
 .next-btn {
   margin-bottom: 20px;
