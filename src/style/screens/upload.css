@@ -48,7 +48,9 @@ textarea:focus {
 .upload-main .basic-profile-img {
   position: absolute;
   width: 42px;
+  height: 42px;
   margin-left: 16px;
+  border-radius: 50%;
 }
 .upload-main .upload-txt {
   margin-top: 12px;

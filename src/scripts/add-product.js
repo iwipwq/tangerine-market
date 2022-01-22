@@ -26,7 +26,8 @@ let numValid = false;
 let priceInput = document.getElementById("product-price");
 let priceInputValue = "";
 priceInput.addEventListener("input", (e) => {
-    console.log(e.target.value);
+    e.target.value = e.target.value.replace(/,/g,'');
+    console.log('input입력시벨류',e.target.value);
     priceInputValue = e.target.value;
     if (/^[0-9]+$/.test(priceInputValue)) {
         numValid = true;
@@ -36,6 +37,23 @@ priceInput.addEventListener("input", (e) => {
         console.log(numValid);
     }
 });
+priceInput.addEventListener("blur",(e) => {
+    console.log('focusOut');
+    console.log(priceInputValue.toLocaleString());
+    if (isNaN(e.target.value)) {
+        console.log('isNaN')
+        e.target.value = '';
+    }
+    else if (!e.target.value.includes(',')){
+        if (e.target.value =='')
+            e.target.value = '';
+        else {
+            e.target.value = parseInt(document.getElementById('product-price').value).toLocaleString();
+        }
+    }
+})
+
+
 let urlValid = false;
 let linkInput = document.getElementById("product-link");
 let linkInputValue = "";
@@ -133,13 +151,13 @@ async function createProduct(_e) {
         })
         const json = await res.json()
         console.log(json)
-        //window.location.href = "/profile.html"
+        window.location.href = "./my-profile.html"
     }else{
         alert("이미지는 한 장만 첨부해주세요!")
     }
 }
 
-window.addEventListener('keydown', (e)=> {
+window.addEventListener('keyup', (e)=> {
     if( textValid && numValid && urlValid ){
         submitBtn.classList.replace('Ms-Disabled-button','Ms-button');
         submitBtn.addEventListener('click',createProduct)
@@ -152,4 +170,15 @@ window.addEventListener('keydown', (e)=> {
     }
 })
 
-        
+// 뒤로가기 버튼
+let btnBack = document.querySelector('.top-upload-nav a')
+btnBack.addEventListener('click', () => {
+    // 나중에 홈페이지주소넣기
+    if (document.referrer.includes('127.0.0.1:5502')) {
+      console.log('true')
+      window.history.back();
+    }
+    else {
+      window.location.href = "home.html";
+    }
+})          
