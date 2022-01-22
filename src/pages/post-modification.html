@@ -4,30 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>upload</title>
+    <title>포스트 : 수정</title>
     <link rel="stylesheet" href="../style/style.css" />
   </head>
 
   <body>
     <!-- 머리 -->
-    <div class="container" id="upload-wrap">
-      <header class="upload-header">
+    <div class="container" id="post-mod-wrap">
+      <header class="post-mod-header">
         <div class="top-upload-nav">
           <a href="#none"
             ><img
               src="../../img/icon-arrow-left.svg"
-              alt=""
+              alt="뒤로가기"
               class="icon-arrow-left"
           /></a>
-          <button type="button" class="Ms-Disabled-button">업로드</button>
+          <button type="button" disabled class="Ms-Disabled-button">
+            업로드
+          </button>
         </div>
       </header>
-      <main class="upload-main">
+      <main class="post-mod-main">
         <form>
           <div class="upload-box">
             <img
               src="../../img/basic-profile-img-.png"
-              alt=""
+              alt="내 프로필 사진"
               class="basic-profile-img"
             />
             <textarea
@@ -38,15 +40,13 @@
               placeholder="게시글 입력하기"
               class="upload-txt"
             ></textarea>
-            <div class="img-preview-wrap">
-              <!-- <img src="#" alt="sample" class="img-preview"> -->
-            </div>
+            <ul class="img-preview-wrap"></ul>
           </div>
           <label for="image" class="upload-photo"></label>
           <input type="file" id="image" />
         </form>
       </main>
     </div>
-    <script src="../scripts/upload.js"></script>
+    <script src="../scripts/post-modification.js"></script>
   </body>
 </html>

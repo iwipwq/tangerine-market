@@ -18,7 +18,13 @@ async function getFollowingFeed() {
     });
     const resJson = await res.json();
     console.log("받은자료", resJson);
-    printFeed(resJson.posts);
+
+    if (resJson.posts.length != 0) {
+      printFeed(resJson.posts);
+    } else {
+      printNoFeed();
+    }
+
     appearModal();
     savePostId();
   } catch (err) {
@@ -26,6 +32,19 @@ async function getFollowingFeed() {
   }
 }
 getFollowingFeed();
+
+function printNoFeed() {
+  const postCont = document.querySelector(".post");
+  postCont.classList.add("on");
+  postCont.innerHTML += `
+  <h2 class="sr-only">포스트섹션</h2>
+  <div class="nofeed-search">
+    <img src="../../img/symbol-logo-gray.png" alt="감귤마켓로고" />
+    <strong>유저를 검색해 팔로우 해보세요!</strong>
+    <a href="search.html">검색하기</a>
+  </div>
+  `;
+}
 
 function printFeed(posts) {
   posts.forEach((post) => {
