@@ -1,5 +1,8 @@
 const emailPw = document.querySelector("#login-email-wrap");
 const emailInputs = emailPw.querySelectorAll("input");
+const emailError = document.querySelector("#email-error");
+const emailInput = document.querySelector("#login-id")
+const passwordInput = document.querySelector("#login-pw")
 const emailPwBtn = document.querySelector(".next-btn")
 const profile = document.querySelector("#join-profile-wrap");
 const imagePre = document.querySelector(".basic-profile-img")
@@ -9,18 +12,18 @@ const submitBtn = document.querySelector(".start-btn")
 function able() {
     let check = 0;
     for (let i = 0; i < emailInputs.length; i++) {
-      if (emailInputs[i].value !== "") {
-        check += 1;
-      }
+        if (emailInputs[i].value !== "") {
+            check += 1;
+        }
     }
     if (check === emailInputs.length) {
-      emailPwBtn.disabled = false;
-      emailPwBtn.style.backgroundColor = "#f26e22"
+        emailPwBtn.disabled = false;
+        emailPwBtn.style.backgroundColor = "#f26e22"
     } else {
-      emailPwBtn.disabled = true;
+        emailPwBtn.disabled = true;
     }
-  }
-  emailPw.addEventListener("keyup", able);
+}
+emailPw.addEventListener("keyup", able);
 
 async function checkEmailValid(email) {
     const url = "http://146.56.183.55:5050";
@@ -36,28 +39,56 @@ async function checkEmailValid(email) {
         }),
     })
     const json = await res.json()
-    return json.message == "사용 가능한 이메일 입니다." ? true : false
+    if (json.message !== "사용 가능한 이메일 입니다.") {
+        emailError.textContent = json.message;
+        emailError.classList.remove("hidden");
+        emailInput.value = "";
+        emailPwBtn.disabled = true;
+    }
 }
-const nextBtn = document.querySelector(".next-btn");
-nextBtn.addEventListener("click", async () => {
-    const email = document.querySelector("#login-id").value;
-    const pw = document.querySelector("#login-pw").value;
-    if (pw.length > 5) {
-        const emailValid = await checkEmailValid(email)
-        if (emailValid) {
-            emailPw.style.display = "none";
-            profile.style.display = "flex";
-        } else {
-            alert("비밀번호를 다시 입력하세요.")
-        }
-    } else { alert("비밀번호가 잘못되었습니다.") }
-})
-async function imageUpload(files){
+
+emailInput.addEventListener("change", () => {
+    checkEmailValid(emailInput.value);
+});
+
+//email 유효성 검사
+let emailRegExp =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z].{2,3}$/i;
+// /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
+emailInput.addEventListener("change", () => {
+    let emailVal = emailInput.value;
+    if (emailVal.match(emailRegExp) == null) {
+        emailError.textContent = "이메일 형식이 맞지 않습니다.";
+        emailInput.value = "";
+        emailError.classList.remove("hidden");
+    } else {
+        emailError.classList.add("hidden");
+    }
+});
+
+//비밀번호 6자리 이상. 유효성검사
+passwordInput.addEventListener("change", () => {
+    if (passwordInput.value.length >= 6) {
+        passwordError.classList.add("hidden");
+    } else {
+        passwordInput.value = "";
+        const passwordError = document.querySelector("#password-error");
+        passwordError.classList.remove("hidden");
+    }
+});
+
+emailPwBtn.addEventListener("click", async () => {
+    emailPw.style.display = "none";
+    profile.style.display = "flex";
+});
+
+
+async function imageUpload(files) {
     const formData = new FormData();
     formData.append("image", files[0]);//formData.append("키이름","값")
     const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
         method: "POST",
-        body : formData
+        body: formData
     })
     const data = await res.json()
     const productImgName = data["filename"];
@@ -71,22 +102,22 @@ async function profileImage(e) {
     imagePre.src = "http://146.56.183.55:5050/" + result
     console.log(result)
 }
-document.querySelector("#upload-image").addEventListener("change",profileImage)
+document.querySelector("#upload-image").addEventListener("change", profileImage)
 
-async function join(){
+async function join() {
     const email = document.querySelector("#login-id").value;
     const password = document.querySelector("#login-pw").value;
     const userName = document.querySelector("#user-name").value;
     const userId = document.querySelector("#user-id").value;
     const intro = document.querySelector("#user-desc").value;
     const imageUrl = document.querySelector(".basic-profile-img").src
-    try{
+    try {
         const res = await fetch("http://146.56.183.55:5050/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body : JSON.stringify({
+            body: JSON.stringify({
                 "user": {
                     "email": email,
                     "password": password,
@@ -101,14 +132,14 @@ async function join(){
         const json = await res.json()
         const message = json.message
         // if(message=="회원가입 성공"){
-        if(res.status==200){
+        if (res.status == 200) {
             location.href = "./index.html"
         }
-        else{
+        else {
             console.log(json)
         }
-    }catch(err){
+    } catch (err) {
         alert(err)
     }
 }
-submitBtn.addEventListener("click",join)
+submitBtn.addEventListener("click", join)
