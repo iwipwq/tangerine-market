@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .home-header .top-main-nav {
@@ -24,14 +25,51 @@
 .home-main {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   overflow: hidden;
   padding: 0 16px;
+  width: 100%;
+  height: 100%;
 }
 .home-main .post {
   padding: 70px 0;
   height: 100%;
   overflow: scroll;
+  width: 100%;
+}
+.home-main .post.on {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-main .post .nofeed-search {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.home-main .post .nofeed-search img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto 20px;
+}
+.home-main .post .nofeed-search strong {
+  color: #767676;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.home-main .post .nofeed-search a {
+  display: block;
+  padding: 13px 0;
+  width: 130px;
+  margin: 0 auto;
+  background-color: rgba(242, 110, 34, 1);
+  border-radius: 48px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
 }
 .home-main .post-section {
   width: 100%;
