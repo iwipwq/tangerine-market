@@ -1,0 +1,590 @@
+#your-profile-wrap {
+  position: relative;
+  overflow-y: hidden;
+}
+
+#your-profile-wrap header {
+  position: relative;
+  z-index: 20;
+}
+
+#your-profile-main {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  overflow-y: scroll;
+}
+
+/* 스타일 시작 */
+.color--gray {
+  color: #767676;
+}
+
+.color--black {
+  color: #000000;
+}
+
+/* 상단 네비게이션 */
+#profile-nav {
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.call-bottom-modal {
+  background-color: transparent;
+  border: none;
+}
+
+#your-profile-wrap .M-Activ-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 프로필 */
+/* .your-profile {
+}
+.my-profile {
+} */
+
+#your-profile-main .profile-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 390px;
+  position: relative;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+#your-profile-main .profile {
+  text-align: center;
+}
+
+#your-profile-main .profile img {
+  display: block;
+  margin: 30px auto 0;
+  width: 110px;
+  height: 110px;
+  border: 1px solid #dbdbdb;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#your-profile-main .profile .profile-title {
+  display: block;
+  margin-top: 16px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0em;
+}
+#your-profile-main .profile-email {
+  margin-top: 6px;
+}
+#your-profile-main .profile-desc {
+  margin-top: 16px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  color: #767676;
+}
+
+#your-profile-main .follow {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  top: 22%;
+  text-align: center;
+}
+
+#your-profile-main .followers-num {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+}
+#your-profile-main .followers-text {
+  margin-top: 6px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  color: #767676;
+}
+
+#your-profile-main .followings-num {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  color: #767676;
+}
+#your-profile-main .followings-text {
+  margin-top: 6px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  color: #767676;
+}
+
+#your-profile-main .social-btn-area {
+  margin: 24px 0 26px;
+  display: flex;
+  gap: 10px;
+}
+
+#your-profile-main .message-btn,
+#your-profile-main .share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #dbdbdb;
+  background: none;
+  cursor: pointer;
+}
+
+/* 판매 상품 구획 */
+#your-profile-main .product-area {
+  max-width: 390px;
+  margin-top: 6px;
+  padding: 20px 0 20px 21px;
+  background-color: #ffffff;
+  border-top: 0.5px solid #dbdbdb;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+#your-profile-main .product-area h2 {
+  margin-bottom: 16px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0em;
+}
+
+#your-profile-main .product-ul {
+  overflow-x: hidden;
+}
+#your-profile-main .product-li {
+  /* width: 100%; */
+}
+
+/* 포스트 구획 */
+#your-profile-main .post-area {
+  max-width: 390px;
+  margin-top: 6px;
+  background-color: #ffffff;
+}
+
+#your-profile-main .post-area-top {
+  padding: 9px 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border-top: 0.5px solid #dbdbdb;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+#your-profile-main .post-area-top img {
+  margin-right: 16px;
+  vertical-align: bottom;
+}
+
+#your-profile-main .post-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+#your-profile-main .home-post {
+  flex-direction: column;
+  padding: 16px 16px;
+  margin-bottom: 144px;
+  min-width: 100%;
+  right: 0%;
+  transition: right ease-in-out 0.3s;
+}
+
+#your-profile-main .user-profile img {
+  border-radius: 50%;
+  height: 42px;
+}
+
+#your-profile-main .post-img-slider {
+  position: relative;
+  margin-top: 16px;
+  width: 304px;
+  height: 228px;
+  overflow-x: hidden;
+  border: 0.5px solid #dbdbdb;
+  border-radius: 10px;
+}
+
+#your-profile-main .post-img-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  right: 0;
+}
+
+#your-profile-main .post-img-list {
+  min-width: 100%;
+}
+
+#your-profile-main .post-img-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#your-profile-main .post-img-btn-container {
+  position: absolute;
+  display: flex;
+  bottom: 6%;
+  gap: 6px;
+  right: 50%;
+  justify-content: center;
+  transform: translateX(50%);
+}
+
+#your-profile-main .post-img-btn {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+#your-profile-main .post-img-btn:first-child {
+  background-color: #f26e22;
+}
+
+.btn-on {
+  background-color: #f26e22;
+}
+
+#your-profile-main .post-wrap {
+  margin-bottom: 28px;
+  display: flex;
+  width: 100%;
+}
+
+#your-profile-main .post-section {
+  width: 100%;
+}
+
+/* 바텀 네비게이션 */
+#your-profile-wrap .tab-menu {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#your-profile-wrap .tab-menu a:last-of-type {
+ color: #f26e22;
+}
+
+/* 설정 모달 창 */
+#your-profile-wrap .screen-overlay {
+  /* display:none; */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(122, 56, 18, 0);
+  z-index: -1;
+  transition: all ease-in-out 0.2s;
+}
+
+#your-profile-wrap .overlay-on {
+  /* display: block; */
+  z-index: 10;
+  background-color: rgba(122, 56, 18, 0.5);
+}
+
+#your-profile-wrap .icon-product-modal,
+#your-profile-wrap .icon-post-modal {
+  position: absolute;
+  bottom: -20%;
+  max-width: 390px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s;
+  z-index: 20;
+}
+
+#your-profile-wrap .modal-popup {
+  bottom: 0;
+}
+
+#your-profile-wrap .home-wrapper {
+  height: 36px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+#your-profile-wrap .home-indicator {
+  width: 50px;
+  height: 4px;
+  border-radius: 5px;
+  background: #dbdbdb;
+}
+/* .icon-product-modal ul,
+.icon-post-modal ul {
+} */
+#your-profile-wrap .icon-product-modal ul li,
+#your-profile-wrap .icon-post-modal ul li {
+  padding: 14px 26px;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  cursor: pointer;
+}
+#your-profile-wrap .icon-product-modal ul li a,
+#your-profile-wrap .icon-post-modal ul li a {
+  color: #000000;
+}
+
+/* 로그아웃 모달 */
+#your-profile-wrap .delete-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  z-index: -1;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+}
+
+#your-profile-wrap .delete-alert.on {
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  opacity: 1;
+  /* max-width: 252px;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px; */
+}
+
+#your-profile-wrap .btn-alert button:first-child {
+  border-bottom-left-radius: 10px;
+}
+#your-profile-wrap .btn-alert .btn-delete {
+  border-bottom-right-radius: 10px;
+}
+
+/* 포스트 앨범 뷰 */
+#your-profile-main .home-post-album {
+  position: relative;
+  width: 100%;
+  padding: 16px 16px;
+  margin-bottom: 30px;
+  min-width: 100%;
+  right: 100%;
+  transition: right ease-in-out 0.3s;
+}
+
+#your-profile-main .post-album-view {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#your-profile-main .post-album-item {
+  width: 114px;
+  height: 114px;
+  background-color: #c4c4c4;
+}
+#your-profile-main .post-album-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 빈 프로필 */
+#your-profile-main .post-empty {
+  height: 530px;
+  background-color: #f2f2f2;
+}
+
+/* 프로필->팔로워목록 */
+.followers-list {
+  padding-top: 23.5px;
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.cont-mockup {
+  position: relative;
+  background-color: #ffffff;
+  width: 390px;
+  height: 820px;
+}
+
+.nav-fixed {
+  position: absolute;
+  bottom: 0;
+}
+
+/* 프로필 작성 */
+
+.profile-write {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-upload-img {
+  margin: 30px 0;
+}
+
+.user-profile-preview > .basic-profile-img {
+  vertical-align: bottom;
+}
+
+.user-profile-upload {
+  position: relative;
+}
+
+.user-profile-upload > .upload-file {
+  width: 36px;
+  /* height: 36px; */
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.profile-write > .text-active-input {
+  margin-top: 8px;
+}
+
+.profile-write > .text-active-input input {
+  padding-top: 10px;
+}
+
+/*플레이스홀더 브라우저별 호환*/
+/* Chrome/Opera/Safari */
+.input-email::-webkit-input-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* Firefox 19+ */
+.input-email::-moz-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* IE 10+ */
+.input-email:-ms-input-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* Firefox 18- */
+.input-email:-moz-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+
+/*상품 등록 페이지 */
+.product-write {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.L-upload-img {
+  margin: 30px 0;
+}
+
+/* .prodcut-write p {
+} */
+
+.user-product-preview {
+  margin-top: 18px;
+  display: block;
+  height: 204px;
+  width: 322px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-product-preview > .user-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-product-upload {
+  display: block;
+  position: relative;
+}
+
+.user-product-upload > .img-button {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
+.product-write > .text-active-input {
+  margin-top: 8px;
+}
+
+.product-write > .text-active-input input {
+  padding-top: 10px;
+}

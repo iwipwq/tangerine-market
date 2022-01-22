@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>감귤마켓 : 이메일로 로그인</title>
+    <link rel="stylesheet" href="../style/style.css" />
+  </head>
+  <body>
+    <div class="container" id="login-email-wrap">
+      <h1>로그인</h1>
+      <form>
+        <div class="text-active-input email-id">
+          <label for="login-input">이메일</label>
+          <input
+            required="required"
+            type="email"
+            id="login-input"
+            class="input-email input"
+          />
+        </div>
+        <div class="text-active-input email-pw">
+          <label for="login-pw">비밀번호</label>
+          <input
+            type="password"
+            id="login-pw"
+            class="input-pw input"
+            required="required"
+          />
+          <strong class="error-txt"></strong>
+        </div>
+        <button type="button" disabled href="#none" class="L-button login-btn">
+          로그인
+        </button>
+      </form>
+      <a href="join.html" class="email-join__link">이메일로 회원가입</a>
+    </div>
+    <script src="../scripts/login-email.js"></script>
+  </body>
+</html>

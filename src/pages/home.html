@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>감귤마켓 : home</title>
+    <link rel="stylesheet" href="../style/style.css" />
+  </head>
+  <body>
+    <div class="container" id="home-wrap">
+      <header class="home-header">
+        <div class="top-main-nav">
+          <h1>감귤마켓 피드</h1>
+          <a href="search.html"
+            ><img
+              src="../../img/icon-search.svg"
+              alt="계정 검색 하기"
+              class="icon-search"
+          /></a>
+        </div>
+      </header>
+      <main class="home-main">
+        <h2 class="sr-only">컨텐츠</h2>
+        <section class="post"></section>
+      </main>
+      <footer class="home-footer">
+        <div class="tab-menu">
+          <a href="home.html">
+            <img
+              src="../../img/icon-home-fill.svg"
+              alt="홈으로가기"
+              class="icon-home"
+            />
+            홈
+          </a>
+          <a href="chat-list.html">
+            <img
+              src="../../img/icon-message-circle.svg"
+              alt="채팅창으로가기"
+              class="icon-message-circle"
+            />
+            채팅
+          </a>
+          <a href="upload.html">
+            <img
+              src="../../img/icon-edit.svg"
+              alt="게시물 작성 페이지로가기"
+              class="icon-edit"
+            />
+            게시물 작성
+          </a>
+          <a href="my-profile.html">
+            <img
+              src="../../img/icon-user.svg"
+              alt="프로필 보러 가기"
+              class="icon-user"
+            />
+            프로필
+          </a>
+        </div>
+      </footer>
+      <div class="splash fadeout">
+        <img src="../../img/full-logo.png" alt="감귤마켓" />
+      </div>
+      <!-- 하단 신고 모달창 -->
+      <section class="icon-post-modal">
+        <h2 class="sr-only">포스트 신고 모달 창</h2>
+        <div class="home-wrapper">
+          <div class="home-indicator"></div>
+        </div>
+        <ul>
+          <li><a href="javascript:void(0)">신고</a></li>
+        </ul>
+      </section>
+      <div class="screen-overlay"></div>
+    </div>
+    <script src="../scripts/home.js"></script>
+  </body>
+</html>

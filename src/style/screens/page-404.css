@@ -1,0 +1,39 @@
+
+/* 스크롤 바 없애기 */
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+  margin: 200px auto;
+}
+.error-icon {
+  width: 126px;
+  height: 119px;
+}
+.error-txt {
+  font-size: 14px;
+  line-height: 14px;
+  color: #767676;
+  margin-top: 32px;
+}
+.pref-btn {
+  width: 120px;
+  height: 44px;
+  background: #f26e22;
+  border-radius: 44px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: center;
+  margin-top: 20px;
+}

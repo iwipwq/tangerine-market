@@ -1,0 +1,212 @@
+/* 스크롤 바 없애기 */
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+#post-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 50px;
+  overflow: hidden;
+}
+.post-header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.post-main .home-post .user-profile .basic-profile-img {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+}
+.post-header .top-basic-nav {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.post-main {
+  overflow: hidden;
+  padding-bottom: 80px;
+  width: 100%;
+}
+.post-main .inner {
+  height: 100%;
+  overflow: scroll;
+}
+.post-main .home {
+  margin: 5px auto 0;
+}
+.post-main .home-post {
+  padding: 16px 16px 20px;
+  margin-bottom: 0;
+}
+.post-main .post-section {
+  width: 100%;
+}
+.post-main .user-comment .basic-profile-img {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+}
+
+.post-main .comment-box {
+  background-color: #fff;
+  border-top: 1px solid #dbdbdb;
+  margin-bottom: 4px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: scroll;
+}
+.post-main .comment-list {
+  margin-top: 22px;
+}
+.post-main .user-comment {
+  display: flex;
+  width: 358px;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.post-main .user-comment .tit-comment {
+  display: flex;
+  align-items: center;
+}
+.post-main .tit-comment .txt-username {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 6px 0 12px;
+}
+.post-main .tit-comment .txt-time {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 13px;
+}
+.post-main .btn-more {
+  padding: 0;
+  border: none;
+  background: none;
+}
+.post-main .txt-comment {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 16px 16px 22px 64px;
+}
+
+.post-main .comment {
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.post-main .comment .basic-profile {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+}
+
+/* 설정 모달 창 */
+#post-wrap .screen-overlay {
+  /* display:none; */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(122, 56, 18, 0);
+  z-index: -1;
+  transition: all ease-in-out 0.2s;
+}
+
+#post-wrap .overlay-on {
+  /* display: block; */
+  z-index: 10;
+  background-color: rgba(122, 56, 18, 0.5);
+}
+
+#post-wrap .icon-post-modal {
+  position: absolute;
+  bottom: -20%;
+  max-width: 390px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  transition: all cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s;
+  z-index: 20;
+}
+
+#post-wrap .modal-popup {
+  bottom: 0;
+}
+
+#post-wrap .home-wrapper {
+  height: 36px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+#post-wrap .home-indicator {
+  width: 50px;
+  height: 4px;
+  border-radius: 5px;
+  background: #dbdbdb;
+}
+/* .icon-product-modal ul,
+.icon-post-modal ul {
+} */
+#post-wrap .icon-post-modal ul li {
+  padding: 14px 26px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+#post-wrap .icon-post-modal ul li a {
+  color: #000000;
+}
+
+/* 로그아웃 모달 */
+#post-wrap .delete-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  z-index: -1;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+}
+
+#post-wrap .delete-alert.on {
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  opacity: 1;
+  /* max-width: 252px;
+width: 100%;
+background-color: #fff;
+text-align: center;
+border-radius: 10px; */
+}
+
+#post-wrap .btn-alert button:first-child {
+  border-bottom-left-radius: 10px;
+}
+#post-wrap .btn-alert .btn-delete {
+  border-bottom-right-radius: 10px;
+}

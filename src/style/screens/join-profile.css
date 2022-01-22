@@ -1,0 +1,75 @@
+#upload-image {
+  display: none;
+}
+
+#join-profile-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 34px 0 34px;
+}
+
+#join-profile-wrap h1 {
+  margin-bottom: 12px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+}
+.notice-txt {
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--gray);
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.profile-img {
+  position: relative;
+}
+.profile-img .basic-profile-img {
+  width: 110px;
+  height: 110px;
+  border: 1px solid #dbdbdb;
+  border-radius: 50%;
+}
+.profile-img .profile-upload-btn{
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background: url(/img/img-btn.png);
+  bottom: 2px;
+  right: 0;
+}
+
+.profile-upload-btn .upload-file {
+  width: 36px;
+  height: 36px;
+}
+
+.user-name,
+.user-id {
+  margin-bottom: 16px;
+}
+
+.user-desc {
+  margin-bottom: 30px;
+}
+.text-active-input.user-id .error-txt-syntax,
+.text-active-input.user-id .error-txt-used-id {
+  display: none;
+  color: #eb5757;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: normal;
+  margin-top: 6px;
+}
+.text-active-input.user-id.error-syntax .error-txt-syntax,
+.text-active-input.user-id.error-used-id .error-txt-used-id {
+  display: block;
+}
+.start-btn {
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}

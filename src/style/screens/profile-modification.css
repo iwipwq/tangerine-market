@@ -1,0 +1,113 @@
+/* 프로필 작성 */
+#profile-modification-wrap .top-upload-nav {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#profile-modification-wrap .profile-write {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-modification-wrap .profile-upload-img {
+  margin: 30px 0;
+}
+
+#profile-modification-wrap .user-profile-preview > .basic-profile-img {
+  vertical-align: bottom;
+}
+
+#profile-modification-wrap .user-profile-upload {
+  position: relative;
+}
+
+#profile-modification-wrap .user-profile-upload > .upload-file {
+  width: 36px;
+  /* height: 36px; */
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+#profile-modification-wrap .profile-write > .text-active-input {
+  margin-top: 8px;
+}
+
+#profile-modification-wrap .profile-write > .text-active-input input {
+  padding-top: 10px;
+}
+
+/*플레이스홀더 브라우저별 호환*/
+/* Chrome/Opera/Safari */
+#profile-modification-wrap .input-email::-webkit-input-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* Firefox 19+ */
+#profile-modification-wrap .input-email::-moz-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* IE 10+ */
+#profile-modification-wrap .input-email:-ms-input-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+/* Firefox 18- */
+#profile-modification-wrap .input-email:-moz-placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: #dbdbdb;
+}
+
+/* .profile-mod-main .basic-profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+} */
+.profile-mod-main .profile-upload-img {
+  position: relative;
+}
+.profile-mod-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+.profile-mod-main .profile-upload-img input {
+  display: none;
+}
+.profile-mod-main .profile-upload-img .mod-upload-btn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+.profile-mod-main .profile-upload-img .mod-upload-btn img {
+  width: 36px;
+  height: 36px;
+}
+.profile-mod-main .error-text {
+  color: #eb5757;
+  font-size: 12px;
+}

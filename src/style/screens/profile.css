@@ -1,0 +1,415 @@
+/* 간격조절용 클래스 지워도 됨*/
+.temp-cont {
+    max-width: 100%;
+    display: flex;
+    margin-top: 2em;
+}
+.temp-cont-item {
+    width: 100%;
+    margin: 2em;
+}
+.gap-wrapper {
+    margin-top: 40px;
+}
+
+/* 스타일 시작 */
+.color--gray {
+    color: #767676;
+}
+
+.color--black {
+    color: #000000;
+}
+
+body{
+    background-color: #E5E5E5;
+    font-family: Spoqa Han Sans Neo;
+}
+
+main{
+    background-color: #F2F2F2;
+    max-width: 390px;
+    min-width: 390px;
+}
+
+/* 프로필 */
+/* .your-profile {}
+.my-profile {} */
+
+.profile-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 390px;
+    position: relative;
+    background-color: #ffffff;
+    border: 0.5px solid #DBDBDB;
+}
+
+.profile {
+    text-align: center;    
+}
+
+.profile img{    
+    display: block;
+    margin: 30px auto 0;
+}
+
+.profile h3{
+    margin-top: 16px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+}
+.profile-email{
+   margin-top: 6px;
+}
+.profile-desc{
+    margin-top: 16px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    color: #767676
+}
+
+.follow {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 73%;
+    top: 25%;
+    text-align: center;
+}
+
+.followers-num{
+    font-family: Spoqa Han Sans Neo;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+.followers-text {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    color: #767676;
+}
+
+.followings-num {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #767676;
+}
+.followings-text {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    color: #767676;
+}
+
+.social-btn-area {
+    margin: 14px 0 26px;
+    display: flex;
+    gap: 10px;
+}
+
+.message-btn,
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #DBDBDB;
+    background: none;
+    cursor: pointer;
+}
+
+/* 판매 상품 구획 */
+.product-area {
+    max-width: 390px;
+    margin-top: 6px;
+    padding: 20px 0 20px 21px;
+    background-color: #ffffff;
+    border-top: 0.5px solid #DBDBDB;
+    border-bottom: 0.5px solid #DBDBDB;
+}
+
+.product h3{
+    margin-bottom: 16px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+}
+
+.product-ul {
+    overflow-x: hidden;
+}
+
+/* 포스트 구획 */
+.post-area {
+    max-width: 390px;
+    margin-top: 6px;
+    background-color: #ffffff;;
+}
+
+.post-area-top {
+    padding: 9px 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    border-top: 0.5px solid #DBDBDB;
+    border-bottom: 0.5px solid #DBDBDB;
+}
+
+.post-area-top img {
+    margin-right: 16px;
+}
+
+.home-post {
+    padding: 16px 16px 30px;
+}
+
+/* 바텀 네비게이션 */
+.tab-menu {
+    border-top: 0.5px solid #DBDBDB;
+}
+
+
+
+/* 설정 모달 창 */
+.icon-product-modal,
+.icon-post-modal {
+    max-width: 390px;
+    padding-bottom: 10px;
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.home-wrapper {
+    height: 36px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-indicator {
+    width: 50px;
+    height: 4px;
+    border-radius: 5px;
+    background: #DBDBDB;
+}
+/* .icon-product-modal ul,
+.icon-post-modal ul {
+    
+} */
+.icon-product-modal ul li,
+.icon-post-modal ul li {
+    padding: 14px 26px;
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em; 
+}
+.icon-product-modal ul li a,
+.icon-post-modal ul li a {
+    color: #000000;
+}
+
+/* 포스트 앨범 뷰 */
+.post-album-view {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.post-album-item {
+    width: 114px;
+    height: 114px;
+    background-color: #C4C4C4;
+}
+.post-album-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 빈 프로필 */
+.post-empty {
+    height: 530px;
+    background-color: #F2F2F2;
+}
+
+/* 프로필->팔로워목록 */
+.followers-list {
+    padding-top:23.5px;
+    border-top: 0.5px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+}
+.cont-mockup {
+    position: relative;
+    background-color: #ffffff;
+    width: 390px;
+    height: 820px;
+}
+
+.nav-fixed {
+    position:absolute;
+    bottom: 0;
+}
+
+/* 프로필 작성 */
+
+.profile-write {
+    border-top: 0.5px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-upload-img {
+    margin: 30px 0;
+}
+
+.user-profile-preview>.basic-profile-img {
+    vertical-align: bottom;
+}
+
+.user-profile-upload {
+    position: relative;
+}
+
+.user-profile-upload>.upload-file {
+    width: 36px;
+    /* height: 36px; */
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.profile-write>.text-active-input {
+    margin-top: 8px;
+}
+
+.profile-write>.text-active-input input {
+    padding-top: 10px;
+}
+
+/*플레이스홀더 브라우저별 호환*/
+/* Chrome/Opera/Safari */
+.input-email::-webkit-input-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* Firefox 19+ */
+.input-email::-moz-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* IE 10+ */
+.input-email:-ms-input-placeholder {
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+/* Firefox 18- */
+.input-email:-moz-placeholder {  
+    font-family: Spoqa Han Sans Neo;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    color: #DBDBDB;
+}
+
+/*상품 등록 페이지 */
+.product-write {
+    border-top: 0.5px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.L-upload-img {
+    margin: 30px 0;
+}
+
+/* .prodcut-write p {} */
+
+.user-product-preview {
+    margin-top: 18px;
+    display: block;
+    height: 204px;
+    width: 322px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.user-product-preview>.user-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-product-upload {
+    display: block;
+    position: relative;
+}
+
+.user-product-upload>.img-button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+}
+
+.product-write>.text-active-input {
+    margin-top: 8px;
+}
+
+.product-write>.text-active-input input {
+    padding-top: 10px;
+}

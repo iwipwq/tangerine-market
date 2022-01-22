@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감귤마켓 : 내 프로필 수정</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <div class="container" id="profile-modification-wrap">
+        <header class="profile-mod-header">
+            <h1 class="sr-only">프로필 작성 페이지</h2>
+            <div class="top-upload-nav">
+                <a href="./my-profile.html">
+                    <img src="../../img/icon-arrow-left.svg" alt="" class="icon-arrow-left"/>
+                </a>
+                <button href="javascript:void(0)" class="Ms-Disabled-button btn-save" disabled="disabled">
+                    저장
+                </button>
+            </div>
+        </header>
+        <main class="profile-mod-main">
+            <form>
+                <div class="profile-write">
+                    <div class="profile-upload-img">
+                        <img src="../../img/basic-profile-img-.png" alt="프로필사진" class="profile-mod-img">
+                        <label for="img-upload" class="mod-upload-btn"><img src="../../img/upload-file.svg" alt="프로필사진업로드" ></label>
+                        <input type="file" accept="image/*" id="img-upload">
+                    </div>
+                    <div class="text-active-input">
+                        <p>사용자이름</p>
+                            <input type="text" class="input-email profile-user-name" placeholder="2~10자 이내여야 합니다."/>
+                            <strong class="error-text error-text-username"></strong>
+                    </div>
+                    <div class="text-active-input profile-mod-acconunt-name">
+                        <p>계정ID</p>
+                            <input type="text" class="input-email profile-account-name" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다."/>
+                            <strong class="error-text error-text-account"></strong>
+                    </div>
+                    <div class="text-active-input">
+                        <p>소개</p>
+                            <input type="text" class="input-email profile-intro" placeholder="자신과 판매할 상품에 대해 소개해 주세요!"/>
+                            <strong class="error-text error-text-intro"></strong>
+                    </div>
+            </div>
+            </form>
+        </main>
+    </div>
+    <script src="../scripts/profile-modification.js"></script>
+</body>
+</html>
+    
+

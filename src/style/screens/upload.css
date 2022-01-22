@@ -1,0 +1,128 @@
+/* reset */
+textarea {
+  border: none;
+  resize: none;
+}
+textarea:focus {
+  outline: none;
+}
+#image {
+  display: none;
+}
+
+/* 스크롤 바 없애기 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+#upload-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.upload-header {
+  position: fixed;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.upload-header .top-upload-nav {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* main */
+.upload-main form {
+  position: relative;
+}
+.upload-main .upload-box {
+  margin-top: 68px;
+  overflow: hidden;
+}
+.upload-main .basic-profile-img {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  margin-left: 16px;
+  border-radius: 50%;
+}
+.upload-main .upload-txt {
+  margin-top: 12px;
+  margin-left: 70px;
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+.upload-main .upload-txt::placeholder {
+  font-family: Spoqa Han Sans Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #c4c4c4;
+}
+.upload-main .upload-button {
+  width: 50px;
+  height: 50px;
+}
+.upload-main .upload-photo {
+  position: fixed;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background: url(/img/upload-file.svg);
+  top: 50%;
+  left: 50%;
+  transform: translate(257%, 630%);
+}
+.upload-main .photo-box {
+  width: 100%;
+  display: flex;
+  margin-left: 70px;
+}
+.upload-main .upload-img {
+  width: 304px;
+  height: 228px;
+  border-radius: 10px;
+  margin: 0 16px 0 70px;
+}
+.upload-main .upload--img {
+  width: 168px;
+  height: 126px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
+
+#upload-wrap .img-preview-wrap {
+  padding-right: 80px;
+  width: 100%;
+  margin-top: 16px;
+  margin-left: 70px;
+  display: flex;
+  gap: 8px;
+  overflow-x: scroll;
+}
+
+#upload-wrap .img-preview {
+  width: 304px;
+  height: 228px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#upload-wrap .img-preview-triple {
+  min-width: 168px;
+  max-width: 168px;
+  min-height: 126px;
+  max-height: 126px;
+  border-radius: 10px;
+  object-fit: cover;
+}
