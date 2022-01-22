@@ -10,11 +10,6 @@ textarea:focus {
   display: none;
 }
 
-/* 스크롤 바 없애기 */
-::-webkit-scrollbar {
-  display: none;
-}
-
 #upload-wrap {
   display: flex;
   flex-direction: column;

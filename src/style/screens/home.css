@@ -7,6 +7,13 @@
   overflow: hidden;
 }
 
+#home-wrap {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+#home-wrap::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .home-header .top-main-nav {
   position: absolute;
   z-index: 20;
@@ -37,6 +44,13 @@
   height: 100%;
   overflow: scroll;
   width: 100%;
+}
+.home-main .post {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.home-main .post::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 .home-main .post.on {
   display: flex;
