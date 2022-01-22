@@ -1,11 +1,3 @@
-/* 스크롤 바 없애기 */
-body {
-  -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-
 #post-wrap {
   display: flex;
   flex-direction: column;
