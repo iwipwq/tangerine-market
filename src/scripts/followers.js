@@ -1,5 +1,6 @@
 //팔로워 정보 가져오기
-const token = localStorage.getItem("token"); 
+const username = localStorage.getItem("accountname")
+const token = localStorage.getItem("accessToken"); 
 async function getFollowers() {
     const url = `http://146.56.183.55:5050/profile/${username}/follower`;
     const res = await fetch(url, {
@@ -10,7 +11,7 @@ async function getFollowers() {
         }
     })
     const json = await res.json();
-    // console.log(json);
+    console.log(json);
     json.forEach(follower => {
         document.querySelector('.followers-list').innerHTML += `<div class="user-follow">
                             <img src="${follower.image}" alt="" class="user-search-img" />
@@ -22,4 +23,5 @@ async function getFollowers() {
                         </div>`
     })
 }
+getFollowers();
 
