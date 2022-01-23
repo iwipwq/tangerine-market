@@ -1,0 +1,21 @@
+/* 프로필->팔로워목록 */
+.followers-list {
+    padding-top:23.5px;
+    border-top: 0.5px solid #DBDBDB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+}
+.cont-mockup {
+    position: relative;
+    background-color: #ffffff;
+    width: 390px;
+    height: 820px;
+}
+
+.nav-fixed {
+    position:absolute;
+    bottom: 0;
+}
