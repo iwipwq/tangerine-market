@@ -2,7 +2,6 @@ const token = localStorage.getItem("accessToken");
 const postId = localStorage.getItem("postId");
 const userId = localStorage.getItem("userId");
 
-console.log("id", userId);
 //토큰 확인
 function checkToken() {
   if (!token) {
@@ -106,10 +105,8 @@ async function getPost() {
 
 function likeHeart(value) {
   if (value) {
-    console.log("하트있음");
     return "../../img/icon-heart-fill.svg";
   } else {
-    console.log("하트없음");
     return "../../img/icon-heart.svg";
   }
 }
@@ -127,7 +124,6 @@ async function getComment() {
       },
     });
     const resJson = await res.json();
-    console.log("댓글리스트", resJson);
     const comments = resJson.comments;
     comments.forEach((comment) => {
       const authorName = comment.author.username;
@@ -137,7 +133,6 @@ async function getComment() {
       const writeDay = timeForToday(day);
       let commentId = comment.id;
       let authorId = comment.author._id;
-      console.log("코멘트id", commentId);
       if (authorProfileImg != "1641803765586.png") {
         authorProfileImg = comment.author.image;
       } else {
@@ -192,7 +187,6 @@ async function getComment() {
         } else {
           screenOverlay.classList.add("overlay-on");
           declarationModal.classList.add("modal-popup");
-          console.log("당신것이 아닙니다.");
         }
       });
     });

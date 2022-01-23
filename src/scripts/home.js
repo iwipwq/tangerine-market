@@ -2,7 +2,7 @@ let token = localStorage.getItem("accessToken");
 
 function checkToken() {
   if (!token) {
-    window.location.href = "/src/pages/login.html";
+    window.location.href = "../pages/home.html";
   }
 }
 checkToken();
@@ -27,6 +27,7 @@ async function getFollowingFeed() {
 
     appearModal();
     savePostId();
+    saveYourAccountId();
   } catch (err) {
     console.log("요청실패");
   }
@@ -79,10 +80,11 @@ function printFeed(posts) {
     /></a>
     <section class="post-section">
       <h3>
-        <a href="javascript:void(0)" class="typography--h3"
+        <a href="your-profile.html" class="typography--h3 your-link" data-account="${authorAccount}"
           >${authorName}</a
         >
-      </h3>
+        </h3>
+        <a href="your-profile.html" class="post-author typography--a your-link" data-account="${authorAccount}">${authorAccount}</a>
       <a href="#none" class="post-more-vertical">
         <img
           src="../../img/s-icon-more-vertical.svg"
@@ -90,7 +92,6 @@ function printFeed(posts) {
           class="s-icon-more-vertical modal-btn"
         />
       </a>
-      <a class="post-author typography--a">${authorAccount}</a>
       <p class="post-text typography--p">
         ${content}
       </p>
@@ -130,6 +131,17 @@ function savePostId() {
     const postId = comment.getAttribute("data-post");
     comment.addEventListener("click", () => {
       localStorage.setItem("postId", postId);
+    });
+  });
+}
+
+function saveYourAccountId() {
+  const linkProfile = document.querySelectorAll(".your-link");
+  linkProfile.forEach((link) => {
+    const yourAccountId = link.getAttribute("data-account");
+    console.log(yourAccountId);
+    link.addEventListener("click", () => {
+      localStorage.setItem("yourAccountId", yourAccountId);
     });
   });
 }

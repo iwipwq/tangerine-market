@@ -72,22 +72,7 @@ let previewImage = document.querySelectorAll(".list-preview-img img");
 let previewList = document.querySelectorAll(".list-preview-img");
 
 function makeFormdata() {
-  // let newImage = tempImgArray.filter(function (n) {
-  //   return "string" != typeof n;
-  // });
-  // console.log("tempImgArray1", tempImgArray);
-  // console.log("tempImgArray[0]", tempImgArray[0]);
-  // console.log("tempImgArray[1]", tempImgArray[1]);
-  // console.log("tempImgArray[2]", tempImgArray[2]);
-  // console.log("newImage1", newImage);
   let formData = new FormData();
-  // if (newImage.length == 1) {
-  //   formData.append("image", newImage[0]);
-  // } else if (newImage.length == 2) {
-  //   formData.append("image", newImage[1]);
-  // } else if (newImage.length == 3) {
-  //   formData.append("image", newImage[2]);
-  // }
   formData.append("image", tempImgArray);
   imageUpload(formData);
 }
@@ -195,8 +180,6 @@ async function updatePost(_e) {
     }),
   });
   const json = await res.json();
-  console.log(json);
-  //window.location.href = "/profile.html" 업로드 후 프로필로 돌아가기
 }
 
 let observer = new MutationObserver(function (mutations) {
@@ -207,8 +190,7 @@ let observer = new MutationObserver(function (mutations) {
       img.classList.replace("img-preview", "img-preview-triple");
     });
   }
-  // tempImgArray = imageUrls;
-  // let array = [];
+
   console.log("변경감시url", imageUrls);
   imgArray = previewImage.length;
   console.log("----------------------------------------");
@@ -228,16 +210,6 @@ let observer = new MutationObserver(function (mutations) {
       imageUrls = imageUrls.filter(function (data) {
         return data != e.target.previousElementSibling.src;
       });
-      // tempImgArray = tempImgArray.filter(function (data) {
-      //   return data != e.target.previousElementSibling.src;
-      // });
-      // const index = imageUrls.indexOf(e.target.previousElementSibling.src);
-      // delete imageUrls[index];
-      // delete tempImgArray[index];
-      // console.log("");
-      // imageUrls.splice(index, 1);
-      // tempImgArray.splice(index, 1);
-
       console.log("변경감시버튼url", imageUrls);
       console.log("del변경감시temp", tempImgArray);
       console.log("del변경감시url", imageUrls);
