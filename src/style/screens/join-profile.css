@@ -57,7 +57,6 @@
 }
 .text-active-input.user-id .error-txt-syntax,
 .text-active-input.user-id .error-txt-used-id {
-  display: none;
   color: #eb5757;
   font-size: 12px;
   line-height: 14px;
@@ -72,4 +71,19 @@
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
+  background-color: #ffc7a7;
+  transition: all 1s;
+}
+.start-btn:disabled {
+  background-color: #ffc7a7;
+  cursor: auto;
+}
+
+#user-name::placeholder,#user-id::placeholder,#user-desc::placeholder {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  color: #dbdbdb;
+  font-size: 14px;
+ 
 }
