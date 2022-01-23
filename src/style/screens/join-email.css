@@ -49,4 +49,9 @@
   font-weight: 500;
   cursor: pointer;
   background-color: #ffc7a7;
+  transition: all 1s;
+}
+.next-btn:disabled {
+  background-color: #ffc7a7;
+  cursor: auto;
 }

@@ -48,7 +48,7 @@ function printError(error) {
     pwInput.classList.add("error");
   } else {
     pwInput.classList.remove("error");
-    window.location.href = "/src/pages/home.html";
+    window.location.href = "../pages/home.html";
   }
 }
 

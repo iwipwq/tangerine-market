@@ -23,8 +23,8 @@
           <a href="#none">
             <img
               src="../../img/icon-more-vertical.svg"
-              alt=""
-              class="icon-more-vertical"
+              alt="설정 및 로그아웃"
+              class="icon-more-vertical setting-logout"
             />
           </a>
         </div>
@@ -50,6 +50,16 @@
           </form>
         </div>
       </main>
+      <section class="post-Declaration-modal icon-post-modal">
+        <h2 class="sr-only">포스트 신고 모달</h2>
+        <div class="home-wrapper">
+          <div class="home-indicator"></div>
+        </div>
+        <ul>
+          <li><a href="#none">신고</a></li>
+        </ul>
+      </section>
+
       <section class="comment-delete-modal icon-post-modal">
         <h2 class="sr-only">댓글 삭제 모달 창</h2>
         <div class="home-wrapper">
@@ -78,7 +88,27 @@
           <button type="button" class="btn-delete">삭제</button>
         </div>
       </div>
+
+      <section class="setting-logout-modal icon-post-modal">
+        <h2 class="sr-only">설정 로그아웃 모달 창</h2>
+        <div class="home-wrapper">
+          <div class="home-indicator"></div>
+        </div>
+        <ul>
+          <li><a href="javascript:void(0)">설정 및 개인정보</a></li>
+          <li class="logout"><a href="javascript:void(0)">로그아웃</a></li>
+        </ul>
+      </section>
+
+      <div class="logout-alert">
+        <p>로그아웃 하시겠어요?</p>
+        <div class="btn-alert">
+          <button type="button">취소</button>
+          <button type="button" class="btn-logout">로그아웃</button>
+        </div>
+      </div>
     </div>
+
     <script src="../scripts/post.js"></script>
   </body>
 </html>
