@@ -6,6 +6,7 @@
   padding-top: 50px;
   overflow: hidden;
 }
+
 .post-main .inner {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -18,7 +19,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 20;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .post-main .home-post .user-profile .basic-profile-img {
@@ -180,7 +181,6 @@
   color: #000000;
 }
 
-/* 로그아웃 모달 */
 #post-wrap .delete-alert {
   position: absolute;
   top: 50%;
@@ -208,3 +208,57 @@ border-radius: 10px; */
 #post-wrap .btn-alert .btn-delete {
   border-bottom-right-radius: 10px;
 }
+
+#post-wrap .logout-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  z-index: -1;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
+}
+
+#post-wrap .logout-alert {
+  max-width: 252px;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#post-wrap .logout-alert p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 22px 0;
+}
+#post-wrap .logout-alert .btn-alert {
+  display: flex;
+  justify-content: space-between;
+}
+#post-wrap .logout-alert .btn-alert button {
+  width: 50%;
+  cursor: pointer;
+  border: 0.5px solid #dbdbdb;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 14px 0;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+#post-wrap .logout-alert .btn-alert .btn-logout {
+  color: var(--orange);
+}
+#post-wrap .logout-alert.on {
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  opacity: 1;
+}
+/* 
+#post-wrap .btn-alert button:first-child {
+  border-bottom-left-radius: 10px;
+}
+#post-wrap .btn-alert .btn-delete {
+  border-bottom-right-radius: 10px;
+} */

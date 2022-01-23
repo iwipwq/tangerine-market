@@ -5,7 +5,7 @@ const userId = localStorage.getItem("userId");
 //토큰 확인
 function checkToken() {
   if (!token) {
-    window.location.href = "/src/pages/login.html";
+    window.location.href = "../pages/login.html";
   }
 }
 checkToken();
@@ -37,11 +37,11 @@ async function getPost() {
     const hearted = likeHeart(post.hearted);
     const myProfileImage = localStorage.getItem("profileImage");
 
-    if (authorImage != "1641803765586.png") {
+    if (authorImage.includes("http")) {
       authorImage = post.author.image;
     } else {
       //기본이미지
-      authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      authorImage = "../../img/basic-profile.png";
     }
 
     document.querySelector(".post-main .home").innerHTML += `
@@ -59,7 +59,7 @@ async function getPost() {
             >${authorName}</a
           >
         </h3>
-        <a href="javascript:vold(0)" class="post-more-vertical">
+        <a href="#none" class="post-more-vertical">
           <img
             src="../../img/s-icon-more-vertical.svg"
             alt=""
@@ -125,6 +125,7 @@ async function getComment() {
     });
     const resJson = await res.json();
     const comments = resJson.comments;
+    console.log(resJson);
     comments.forEach((comment) => {
       const authorName = comment.author.username;
       let authorProfileImg = comment.author.image;
@@ -133,10 +134,11 @@ async function getComment() {
       const writeDay = timeForToday(day);
       let commentId = comment.id;
       let authorId = comment.author._id;
-      if (authorProfileImg != "1641803765586.png") {
+      console.log();
+      if (authorProfileImg.includes("http")) {
         authorProfileImg = comment.author.image;
       } else {
-        authorImage = "http://146.56.183.55:5050/1641803765586.png";
+        authorProfileImg = "../../img/basic-profile.png";
       }
       document.querySelector(".comment-box").innerHTML += `
       <ul>
@@ -166,63 +168,111 @@ async function getComment() {
     </ul>
     `;
     });
+    logoutModal();
+    commetModal();
+  } catch (err) {
+    console.log("요청실패dd");
+    location.reload(true);
+  }
+}
 
-    ///내 댓글이 아닌 경우 신고 모달
-    // 댓글 삭제 모달창
-    const modalBtn = document.querySelectorAll(".modal-btn");
-    let deleteModal = document.querySelector(".comment-delete-modal");
-    let declarationModal = document.querySelector(".comment-Declaration-modal");
-    let screenOverlay = document.querySelector(".screen-overlay");
-    let deleteAlert = document.querySelector(".delete-alert");
+function commetModal() {
+  ///내 댓글이 아닌 경우 신고 모달
+  // 댓글 삭제 모달창
+  const modalBtn = document.querySelectorAll(".modal-btn");
+  let deleteModal = document.querySelector(".comment-delete-modal");
+  let declarationModal = document.querySelector(".comment-Declaration-modal");
+  let screenOverlay = document.querySelector(".screen-overlay");
+  let deleteAlert = document.querySelector(".delete-alert");
+  const postModalBtn = document.querySelector(".post-more-vertical");
 
-    modalBtn.forEach((modal) => {
-      const id = modal.getAttribute("data-id");
-      const author = modal.getAttribute("data-user");
-      modal.addEventListener("click", () => {
-        // let overlayCheck = deleteAlert.classList.contains("on");
-        if (author == userId) {
-          commentId = id;
-          deleteModal.classList.add("modal-popup");
-          screenOverlay.classList.add("overlay-on");
-        } else {
-          screenOverlay.classList.add("overlay-on");
-          declarationModal.classList.add("modal-popup");
-        }
-      });
-    });
+  //포스트 모달
+  postModalBtn.addEventListener("click", () => {
+    screenOverlay.classList.add("overlay-on");
+    declarationModal.classList.add("modal-popup");
+  });
 
-    screenOverlay.addEventListener("click", () => {
-      deleteModal.classList.remove("modal-popup");
-      declarationModal.classList.remove("modal-popup");
-      screenOverlay.classList.remove("overlay-on");
-    });
-
-    // 댓글 삭제 모달 토글
-    let deleteCommentModal = document.querySelector(
-      ".comment-delete-modal ul li"
-    );
-    deleteCommentModal.addEventListener("click", () => {
-      deleteAlert.classList.toggle("on");
-      const screenCheck = screenOverlay.classList.contains("overlay-on");
-      if (screenCheck) {
-        screenOverlay.style.pointerEvents = "none";
+  //댓글 모달
+  modalBtn.forEach((modal) => {
+    const id = modal.getAttribute("data-id");
+    const author = modal.getAttribute("data-user");
+    modal.addEventListener("click", () => {
+      if (author == userId) {
+        commentId = id;
+        deleteModal.classList.add("modal-popup");
+        screenOverlay.classList.add("overlay-on");
+      } else {
+        screenOverlay.classList.add("overlay-on");
+        declarationModal.classList.add("modal-popup");
       }
     });
+  });
 
-    let btnCancle = document.querySelector(".btn-alert button");
-    let btnDelete = document.querySelector(".btn-delete");
+  screenOverlay.addEventListener("click", () => {
+    deleteModal.classList.remove("modal-popup");
+    declarationModal.classList.remove("modal-popup");
+    screenOverlay.classList.remove("overlay-on");
+  });
 
-    btnCancle.addEventListener("click", () => {
-      deleteAlert.classList.remove("on");
-      screenOverlay.style.pointerEvents = "auto";
-    });
+  // 댓글 삭제 모달 토글
+  let deleteCommentModal = document.querySelector(
+    ".comment-delete-modal ul li"
+  );
+  deleteCommentModal.addEventListener("click", () => {
+    deleteAlert.classList.toggle("on");
+    const screenCheck = screenOverlay.classList.contains("overlay-on");
+    if (screenCheck) {
+      screenOverlay.style.pointerEvents = "none";
+    }
+  });
 
-    btnDelete.addEventListener("click", () => {
-      deleteComment(commentId);
-    });
-  } catch (err) {
-    console.log("요청실패");
-  }
+  let btnCancle = document.querySelector(".btn-alert button");
+  let btnDelete = document.querySelector(".btn-delete");
+
+  btnCancle.addEventListener("click", () => {
+    deleteAlert.classList.remove("on");
+    screenOverlay.style.pointerEvents = "auto";
+  });
+
+  btnDelete.addEventListener("click", () => {
+    deleteComment(commentId);
+  });
+}
+
+function logoutModal() {
+  let screenOverlay = document.querySelector(".screen-overlay");
+  const logoutBtn = document.querySelector(".setting-logout");
+  const logoutModal = document.querySelector(".setting-logout-modal");
+  const logoutAlert = document.querySelector(".logout-alert");
+
+  let btnCancle = document.querySelector(".logout-alert button");
+  let btnlogout = document.querySelector(".btn-logout");
+  logoutBtn.addEventListener("click", () => {
+    screenOverlay.classList.add("overlay-on");
+    logoutModal.classList.add("modal-popup");
+  });
+
+  screenOverlay.addEventListener("click", () => {
+    logoutModal.classList.remove("modal-popup");
+    screenOverlay.classList.remove("overlay-on");
+  });
+  let modalListlogout = document.querySelector(".setting-logout-modal .logout");
+  modalListlogout.addEventListener("click", () => {
+    logoutAlert.classList.toggle("on");
+    const screenCheck = screenOverlay.classList.contains("overlay-on");
+    if (screenCheck) {
+      screenOverlay.style.pointerEvents = "none";
+    }
+  });
+  btnCancle.addEventListener("click", () => {
+    logoutAlert.classList.remove("on");
+    screenOverlay.style.pointerEvents = "auto";
+  });
+
+  btnlogout.addEventListener("click", () => {
+    window.localStorage.clear();
+    window.location.href = "../pages/login.html";
+  });
 }
 getComment();
 
@@ -286,7 +336,7 @@ async function writeComment() {
   } catch (err) {
     console.log("요청실패");
   }
-  location.reload();
+  location.reload(true);
 }
 
 //댓글 삭제
@@ -303,5 +353,5 @@ async function deleteComment(data) {
   } catch (err) {
     console.log("요청실패");
   }
-  location.reload();
+  location.reload(true);
 }

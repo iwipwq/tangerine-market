@@ -17,7 +17,6 @@ async function getFollowingFeed() {
       },
     });
     const resJson = await res.json();
-    console.log("받은자료", resJson);
 
     if (resJson.posts.length != 0) {
       printFeed(resJson.posts);
@@ -63,12 +62,12 @@ function printFeed(posts) {
     const getMonth = date.getMonth() + 1;
     const getDate = date.getDate();
 
-    if (authorImage != "1641803765586.png") {
+    if (authorImage.includes("http")) {
       authorImage = post.author.image;
     } else {
-      authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      //기본이미지
+      authorImage = "../../img/basic-profile.png";
     }
-
     document.querySelector(".post").innerHTML += `
   <article class="home-post">
     <h2 class="sr-only">포스트섹션</h2>
@@ -139,7 +138,6 @@ function saveYourAccountId() {
   const linkProfile = document.querySelectorAll(".your-link");
   linkProfile.forEach((link) => {
     const yourAccountId = link.getAttribute("data-account");
-    console.log(yourAccountId);
     link.addEventListener("click", () => {
       localStorage.setItem("yourAccountId", yourAccountId);
     });
@@ -158,6 +156,7 @@ function appearModal() {
   const iconMoreVertical = document.querySelectorAll(".modal-btn");
   const bottomModal = document.querySelector(".icon-post-modal");
   const screenOverlay = document.querySelector(".screen-overlay");
+
   iconMoreVertical.forEach((btn) => {
     btn.addEventListener("click", () => {
       bottomModal.classList.toggle("modal-popup");
