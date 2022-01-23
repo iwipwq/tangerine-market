@@ -35,14 +35,14 @@ async function getProfile(){
     `;
     // console.log(document.querySelector(".follow"));
     document.querySelector(".follow").innerHTML += `
-        <div class="followers">
+        <a href= "./followers.html"class="followers">
             <p class="followers-num">${userFollowerCount}</p>
             <p class="followers-text">followers</p>
-        </div>
-        <div class="followings">
+        </a>
+        <a href= "./followings.html" class="followings">
             <p class="followings-num">${userFollowingCount}</p>
             <p class="followings-text">followings</p>
-        </div>
+        </a>
     `;
     }
 
