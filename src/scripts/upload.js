@@ -9,10 +9,11 @@ const imageBtn = document.querySelector(".upload-photo")
 const imgArray = [];
 // 업로드용 이미지 임시 저장소2 //나중에 합쳐서 다시 짜기
 const tempImgArray = [];
-imageInput.addEventListener('change', () => {
-    tempImgArray.push(imageInput.files[0])
-    console.log(tempImgArray);
-}) 
+// imageInput.addEventListener('change', () => {
+//     console.log('파일리스트',e.target.FileList);
+//     tempImgArray.push(imageInput.files[0])
+//     console.log(tempImgArray);
+// }) 
 // x 축으로 스크롤하기
 const scrollContainer = document.querySelector(".img-preview-wrap");
 
@@ -42,13 +43,13 @@ async function createPost(_e) {
     const url = "http://146.56.183.55:5050";
     const token = localStorage.getItem("accessToken");
     let textValue = text.value;
-    if(tempImgArray.length <= 3) {
+    if(imgArray.length <= 3) {
         imageUrls= [];
         // 새 빈 폼데이터 만들기
         let formData = new FormData();
         // 폼 데이터에 tempImgArray에 저장되있던 file데이터 append로 집어넣기
-        for (let index = 0; index < tempImgArray.length; index++) {
-            formData.append("image",tempImgArray[index])
+        for (let index = 0; index < imgArray.length; index++) {
+            formData.append("image",imgArray[index])
             console.log('for문속index값',index);            
         }
         // 만들어진 formdata를 imageUplad함수에 전달해주고 실행
@@ -78,27 +79,52 @@ async function createPost(_e) {
 }
 // 이미지미리보기와 한장이상 넣으면 업로드버튼 활성화
 imageInput.addEventListener('change', function() {
-    if ( tempImgArray.length == 0) {
+    if (0 <= imgArray.length && imgArray.length <= 2) {
         console.log('this.file',this.files,'this.files[0]',this.files[0],'filelist',FileList,FileReader)
         console.log('파일0번 url만들기',URL.createObjectURL(this.files[0]))
         document.querySelector(".img-preview-wrap").innerHTML += `
-        <img src="${URL.createObjectURL(this.files[0])}" alt="sample" class="img-preview">
+            <li class="data">
+                <img src="${URL.createObjectURL(this.files[0])}" alt="업로드 이미지 미리보기" class="img-preview">
+                <button type="button" class="x-delete-button num"><img src="/img/x.svg" alt="이미지 등록해제 버튼"></button>
+            </li>
         `
-        imgArray.push('1');
+        setTimeout(()=> {
+            // console.log('셋타임아웃 돌입 후 imgArray.lenght',imgArray.length)
+            // console.log('셋타임아웃 돌입 후 요소찾기',document.querySelector(`.data${imgArray.length - 1} .x-delete-button`))
+            // console.log('셋타임아웃 돌입 후 요소찾기2',document.querySelector(`.x-delete-button`))
+            console.log('number',`.x-delete-button.num${imgArray.length - 1}`);
+            // document.querySelector(`.x-delete-button.num${imgArray.length - 1}`).addEventListener('click', (e) => {
+            //     console.log('지금 이벤트 타겟',e.currentTarget)
+            //     console.log('삭제버튼작동!')
+            // })
+            document.querySelectorAll('li').forEach ((element,index) => {
+                console.log('파일가지고오기',this.files[index].name)
+                element.setAttribute('fileName',this.files[index].name)
+                element.addEventListener('click', (e) => {
+                    console.log('현재이벤트타겟',e.currentTarget);
+                    console.log('삭제버튼실행')
+                    console.log(e.currentTarget)
+                    console.log('타입',typeof(e.currentTarget))
+                    console.log(e.currentTarget.className.replace('data',''));
+                    console.log(e.currentTarget.getAttribute('fileName'))
+                    // e.currentTarget.remove();
+                })
+            })
+        },200)
+        imgArray.push(this.files[0]);
         if(document.querySelector(".img-preview-wrap").innerHTML.length > 100) {
             uploadBtn.classList.replace("Ms-Disabled-button","Ms-button")
-            uploadBtn.addEventListener('click', () => {
-                createPost();
-            })
+        } else {
+            uploadBtn.classList.replace("Ms-button","Ms-Disabled-button");
         }
         
-    } else if ( tempImgArray.length == 1 || tempImgArray.length == 2 ) {
-        document.querySelector(".img-preview-wrap").innerHTML += `
-        <img src="${URL.createObjectURL(this.files[0])}" alt="sample" class="img-preview-triple">
-        `
-        imgArray.push('1');
-        document.querySelector(".img-preview-wrap img").classList.replace("img-preview","img-preview-triple");
-    } else {
+    // } else if ( tempImgArray.length == 1 || tempImgArray.length == 2 ) {
+    //     document.querySelector(".img-preview-wrap").innerHTML += `
+    //     <img src="${URL.createObjectURL(this.files[0])}" alt="sample" class="img-preview-triple">
+    //     `
+    //     imgArray.push(this.files[0]);
+    //     document.querySelector(".img-preview-wrap img").classList.replace("img-preview","img-preview-triple");
+    } else if(imgArray.length >= 3 ){
         alert("이미지는 3개까지 등록가능 합니다!")
     }
 });
@@ -114,9 +140,6 @@ text.addEventListener("input", (e) => {
   }
   else {
     uploadBtn.classList.replace("Ms-Disabled-button","Ms-button")
-    uploadBtn.addEventListener('click', () => {
-    createPost();
-    });
   }
 })
 
@@ -124,6 +147,17 @@ text.addEventListener("input", (e) => {
 if(localStorage.getItem('profileImage')){
   document.querySelector('.basic-profile-img').src = localStorage.getItem('profileImage');
 }
+
+//업로드 런쳐
+uploadBtn.addEventListener('click', (e) => {
+    if (e.currentTarget.classList.value === 'Ms-button') {
+        createPost();
+        console.log('업로드 성공!')
+    }
+    else if (e.currentTarget.classList.value === 'Ms-Disabled-button') {
+        console.log('어허 이렇게 올리면 못써')
+    }
+});
 
 // 뒤로가기 버튼
 
@@ -137,4 +171,4 @@ btnBack.addEventListener('click', () => {
     else {
       window.location.href = "home.html";
     }
-})         
+});         

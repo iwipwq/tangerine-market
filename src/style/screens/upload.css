@@ -96,6 +96,17 @@ textarea:focus {
   margin-left: 8px;
 }
 
+#upload-wrap .img-preview-wrap li{
+  position: relative;
+}
+
+#upload-wrap .img-preview-wrap li button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0px;
+}
+
 #upload-wrap .img-preview-wrap {
   padding-right: 80px;
   width: 100%;

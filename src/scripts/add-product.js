@@ -125,7 +125,7 @@ async function fileUpload(files,index){
     console.log(productImgName);
     return productImgName
 }
-async function createProduct(_e) {
+async function createProduct() {
     const url = "http://146.56.183.55:5050"
     const token = localStorage.getItem("accessToken")
     const files = imageInput.files
@@ -160,13 +160,22 @@ async function createProduct(_e) {
 window.addEventListener('keyup', (e)=> {
     if( textValid && numValid && urlValid ){
         submitBtn.classList.replace('Ms-Disabled-button','Ms-button');
-        submitBtn.addEventListener('click',createProduct)
+        // submitBtn.addEventListener('click',createProduct)
         //location.href('/profile')
     } else {
         if (submitBtn.className === 'Ms-button') {
         submitBtn.classList.replace('Ms-button','Ms-Disabled-button');
         } 
-        submitBtn.removeEventListener('click',createProduct)
+        // submitBtn.removeEventListener('click',createProduct)
+    }
+})
+
+submitBtn.addEventListener('click', (e) => {
+    console.log(e.currentTarget.classList.value == 'Ms-Disabled-button');
+    if(e.currentTarget.classList.value === 'Ms-Disabled-button'){
+        console.log('양식을 모두 채워주세요')
+    } else if (e.currentTarget.classList.value === 'Ms-button'){
+        createProduct();
     }
 })
 

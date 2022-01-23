@@ -530,7 +530,8 @@ async function loadPage() {
     iconPostSecondBtn.addEventListener("click", (e) => {
         if(e.currentTarget.innerText === '수정') {
             console.log('수정페이지실행');
-            // window.location.href = "../pages/profile-modification";
+            localStorage.setItem('postId', idBox[0]);
+            window.location.href = "../pages/post-modification.html";
         } else if (e.currentTarget.innerText === '로그아웃') {
             deleteAlert.classList.toggle("on");
         }
