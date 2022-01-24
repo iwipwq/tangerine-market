@@ -172,5 +172,6 @@ async function modifyMyProfile() {
     }
     localStorage.setItem("accountname", json.user.accountname);
   }
+  location.reload();
 }
 saveBtn.addEventListener("click", modifyMyProfile);
