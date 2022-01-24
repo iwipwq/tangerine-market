@@ -1,5 +1,5 @@
 //게시글 작성
-const postId = "61ea3d62458f1ddd2e2c0c4c";
+const postId = localStorage.getItem('postId');
 const token = localStorage.getItem("accessToken");
 const profileImage = localStorage.getItem("profileImage");
 console.log("포스트아이디", postId);
@@ -180,6 +180,7 @@ async function updatePost(_e) {
     }),
   });
   const json = await res.json();
+  location.reload();
 }
 
 let observer = new MutationObserver(function (mutations) {
