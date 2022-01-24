@@ -14,13 +14,11 @@ async function getMyProfile() {
       },
     });
     const myProfile = await res.json();
-    console.log("내프로필정보", myProfile);
     const profile = myProfile.profile;
     const username = profile.username;
     const myAccountname = profile.accountname;
     const intro = profile.intro;
     const profileImage = profile.image;
-    console.log(profileImage);
 
     const inputUsername = document.querySelector(".profile-user-name");
     const inputAccountname = document.querySelector(".profile-account-name");
@@ -36,7 +34,13 @@ async function getMyProfile() {
     inputImage.src = profileImage;
     profileOrigin = inputImage.src;
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 getMyProfile();
@@ -63,21 +67,17 @@ imgUpload.addEventListener("change", (e) => {
 async function fileUpload(files, index) {
   const url = "http://146.56.183.55:5050";
   let formData = new FormData();
-  console.log("files[index]로그", files[index]);
   formData.append("image", files[index]);
   const res = await fetch(url + "/image/uploadfile", {
     method: "POST",
     body: formData,
   });
   const data = await res.json();
-  console.log("fileUpload응답받은data", data);
   const productImgName = data["filename"];
-  console.log(productImgName);
   return productImgName;
 }
 
 //account네임 유효성검사
-
 function checkValidation() {
   let userName = document.querySelector(".profile-user-name");
   let account = document.querySelector(".profile-account-name");
@@ -85,7 +85,6 @@ function checkValidation() {
   let accountError = document.querySelector(".error-text-account");
   let check = /[^\w_.]/g;
   userError.innerText = "";
-  console.log("하하하", userName.value);
   if (userName.value.length < 2) {
     userError.innerText = "2자~10자 이내여야 합니다.";
   } else if (userName.value.length > 10) {
@@ -93,8 +92,6 @@ function checkValidation() {
   } else {
     userError.innerText = "";
   }
-  console.log("유저네임", userName.value);
-  console.log("어카운드", account.value);
 
   if (check.test(account.value)) {
     accountError.innerText = "영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.";
@@ -122,7 +119,6 @@ async function modifyMyProfile() {
   const inputUsername = document.querySelector(".profile-user-name");
   const inputAccountname = document.querySelector(".profile-account-name");
   const inputIntro = document.querySelector(".profile-intro");
-  console.log(imgUpload.files);
   if (files.length == 1) {
     let index = 0;
     const imgurl = await fileUpload(files, index);

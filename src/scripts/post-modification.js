@@ -1,23 +1,18 @@
 //게시글 작성
-const postId = localStorage.getItem('postId');
+const postId = localStorage.getItem("postId");
 const token = localStorage.getItem("accessToken");
 const profileImage = localStorage.getItem("profileImage");
-console.log("포스트아이디", postId);
-
 let text = document.querySelector("textarea");
-
 const imageInput = document.querySelector("#image");
 const uploadBtn = document.querySelector('button[type="button"]');
 const imageBtn = document.querySelector(".upload-photo");
 let imageUrls = [];
+let imgArray = 0;
+let tempImgArray = [];
 text.addEventListener("keyup", function () {
   uploadBtn.removeAttribute("disabled", "disabled");
   uploadBtn.style.backgroundColor = "#F26E22";
 });
-// 미리보기이미지 임시 저장소1
-let imgArray = 0;
-// 업로드용 이미지 임시 저장소2 //나중에 합쳐서 다시 짜기
-let tempImgArray = [];
 
 // x 축으로 스크롤하기
 const scrollContainer = document.querySelector(".img-preview-wrap");
@@ -37,7 +32,6 @@ async function getPost() {
   });
   const data = await res.json();
   printPost(data);
-  console.log("정보출력", data);
   function printPost(data) {
     text.value = data.post.content;
     const myProfileImg = document.querySelector(".basic-profile-img");
@@ -53,7 +47,6 @@ async function getPost() {
               </button>
             </li>
             `;
-        // tempImgArray.push(src);
         imageUrls.push(src);
         imgArray = imgArray + 1;
       });
@@ -81,7 +74,6 @@ uploadBtn.addEventListener("click", () => {
 });
 
 getPost();
-console.log("업로드용", tempImgArray);
 
 async function imageUpload(formData) {
   const url = "http://146.56.183.55:5050";
@@ -90,11 +82,9 @@ async function imageUpload(formData) {
     body: formData,
   });
   const data = await res.json();
-  console.log("폼데이터리스폰스", data);
   for (let index = 0; index < data.length; index++) {
     imageUrls.push(url + "/" + data[index].filename);
   }
-  console.log("폼데이터리스폰스url", imageUrls);
 }
 
 function readImage(input) {
@@ -114,7 +104,6 @@ function readImage(input) {
 }
 
 imageInput.addEventListener("change", function (e) {
-  // tempImgArray.push(imageInput.files[0]);
   tempImgArray = imageInput.files[0];
   readImage(e.target);
   makeFormdata();
@@ -122,44 +111,6 @@ imageInput.addEventListener("change", function (e) {
   uploadBtn.style.backgroundColor = "#F26E22";
   e.target.value = "";
 });
-// 이미지미리보기와 한장이상 넣으면 업로드버튼 활성화
-// imageInput.addEventListener("change", function () {
-//   if (tempImgArray.length < 3) {
-//     tempImgArray.push(imageInput.files[0]);
-//     makeFormdata();
-//     console.log("체인지템프", tempImgArray);
-//     uploadBtn.removeAttribute("disabled", "disabled");
-//     uploadBtn.style.backgroundColor = "#F26E22";
-//     console.log("체인지템프어레이렝스", tempImgArray.length);
-//   } else {
-//     alert("이미지는 3개까지 등록가능 합니다!");
-//   }
-//   imgArray = imgArray + 1;
-//   if (imgArray == 1) {
-//     document.querySelector(".img-preview-wrap").innerHTML += `
-//         <li class="list-preview-img">
-//           <img src="${URL.createObjectURL(
-//             this.files[0]
-//           )}" alt="포스트사진" class="img-preview">
-//           <button type="button" class="delete-btn"></button>
-//         </li>
-//         `;
-//   } else if (imgArray > 1 && imgArray <= 3) {
-//     document.querySelector(".img-preview-wrap").innerHTML += `
-//         <li class="list-preview-img">
-//           <img src="${URL.createObjectURL(
-//             this.files[0]
-//           )}" alt="포스트사진" class="img-preview-triple">
-//           <button type="button" class="delete-btn"></button>
-//         </li>
-//         `;
-//     document
-//       .querySelector(".img-preview-wrap img")
-//       .classList.replace("img-preview", "img-preview-triple");
-//   } else if (imgArray > 3) {
-//     alert("이미지는 3개까지 등록가능 합니다!");
-//   }
-// });
 
 async function updatePost(_e) {
   const url = "http://146.56.183.55:5050";
@@ -175,7 +126,7 @@ async function updatePost(_e) {
     body: JSON.stringify({
       post: {
         content: textValue,
-        image: imageUrls + "", //"imageurl1", "imageurl2" 형식으로
+        image: imageUrls + "",
       },
     }),
   });
@@ -192,12 +143,7 @@ let observer = new MutationObserver(function (mutations) {
     });
   }
 
-  console.log("변경감시url", imageUrls);
   imgArray = previewImage.length;
-  console.log("----------------------------------------");
-  console.log("변경감시temp", tempImgArray);
-  console.log("변경 imgArray", imgArray);
-  console.log("----------------------------------------");
   deletepost.forEach((del) => {
     del.addEventListener("click", (e) => {
       const removeOne = e.target.parentElement;
@@ -211,9 +157,6 @@ let observer = new MutationObserver(function (mutations) {
       imageUrls = imageUrls.filter(function (data) {
         return data != e.target.previousElementSibling.src;
       });
-      console.log("변경감시버튼url", imageUrls);
-      console.log("del변경감시temp", tempImgArray);
-      console.log("del변경감시url", imageUrls);
       const images = document.querySelectorAll(".list-preview-img img");
       if (imgArray > 2 && imgArray <= 3) {
         images.forEach((img) => {
@@ -230,4 +173,3 @@ let observer = new MutationObserver(function (mutations) {
 
 let config = { childList: true };
 observer.observe(previewWrap, config);
-console.log("델버튼", deletepost);

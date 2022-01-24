@@ -28,7 +28,13 @@ async function getFollowingFeed() {
     savePostId();
     saveYourAccountId();
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 getFollowingFeed();
