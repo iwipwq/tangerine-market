@@ -409,7 +409,7 @@ async function loadPage() {
                 break;
             
             case '로그아웃' : 
-                localStorage.removeItem("accessToken");
+                localStorage.clear();
                 window.location.href = "../pages/login.html";
                 break;
             default:
