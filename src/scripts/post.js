@@ -98,8 +98,9 @@ async function getPost() {
     </article>
   `;
     document.querySelector(".comment .basic-profile").src = myProfileImage;
+    postModal();
   } catch (err) {
-    console.log("요청실패");
+    console.log("요청실패post");
   }
 }
 
@@ -168,11 +169,10 @@ async function getComment() {
     </ul>
     `;
     });
-    logoutModal();
+
     commetModal();
   } catch (err) {
-    console.log("요청실패dd");
-    location.reload(true);
+    console.log("요청실패-댓글");
   }
 }
 
@@ -184,13 +184,6 @@ function commetModal() {
   let declarationModal = document.querySelector(".comment-Declaration-modal");
   let screenOverlay = document.querySelector(".screen-overlay");
   let deleteAlert = document.querySelector(".delete-alert");
-  const postModalBtn = document.querySelector(".post-more-vertical");
-
-  //포스트 모달
-  postModalBtn.addEventListener("click", () => {
-    screenOverlay.classList.add("overlay-on");
-    declarationModal.classList.add("modal-popup");
-  });
 
   //댓글 모달
   modalBtn.forEach((modal) => {
@@ -207,7 +200,6 @@ function commetModal() {
       }
     });
   });
-
   screenOverlay.addEventListener("click", () => {
     deleteModal.classList.remove("modal-popup");
     declarationModal.classList.remove("modal-popup");
@@ -238,7 +230,15 @@ function commetModal() {
     deleteComment(commentId);
   });
 }
-
+function postModal() {
+  const postModalBtn = document.querySelector(".post-more-vertical");
+  let screenOverlay = document.querySelector(".screen-overlay");
+  let declarationModal = document.querySelector(".comment-Declaration-modal");
+  postModalBtn.addEventListener("click", () => {
+    screenOverlay.classList.add("overlay-on");
+    declarationModal.classList.add("modal-popup");
+  });
+}
 function logoutModal() {
   let screenOverlay = document.querySelector(".screen-overlay");
   const logoutBtn = document.querySelector(".setting-logout");
@@ -334,9 +334,15 @@ async function writeComment() {
       }),
     });
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
-  location.reload(true);
+  location.reload();
 }
 
 //댓글 삭제
@@ -351,7 +357,14 @@ async function deleteComment(data) {
       },
     });
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
-  location.reload(true);
+  location.reload();
 }
+logoutModal();
