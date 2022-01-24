@@ -11,21 +11,12 @@ async function getProfile(){
     const json = await res.json();
     if(res.status == 200) {
     const myProfile = json.profile
-    // console.log(myProfile);
-    // console.log(myProfile.followingCount);
-    // console.log(myProfile.accountname);
-    // console.log(document.querySelector(".profile"));
-    // console.log(document.querySelector(".profile").innerHTML);
-
     const userAccountname = myProfile.accountname;
-    // const userFollower = myProfile.follower
     const userFollowerCount = myProfile.followerCount;
-    // const userFollowing = myProfile.following
     const userFollowingCount = myProfile.followingCount;
     const userImage = myProfile.image;
     const userIntro = myProfile.intro;
     const userName = myProfile.username;
-    // const userId = myProfile._id;
 
     document.querySelector(".profile").innerHTML += `
         <img src="${userImage}" alt="${userName} 프로필사진" class="basic-profile-img" />
@@ -33,7 +24,6 @@ async function getProfile(){
         <p class="profile-email typography--12p14h">@ ${userAccountname}</p>
         <p class="profile-desc">${userIntro}</p>
     `;
-    // console.log(document.querySelector(".follow"));
     document.querySelector(".follow").innerHTML += `
         <a href= "./followers.html"class="followers">
             <p class="followers-num">${userFollowerCount}</p>
@@ -78,26 +68,14 @@ async function getMyProduct(){
             const productsAmount = json.data
             const products = json.product 
             console.log('products',products);
-            // console.log(document.querySelector('.product-ul').innerHTML);
             if(json.product == '') {
                 document.querySelector('.product-area').style.display = 'none';
             } else {
                 products.forEach( product => {
-
-                    // const id = product.id
                     const itemImage = product.itemImage
                     const itemName = product.itemName
-                    // const link = product.link
                     const price = product.price.toLocaleString()
-                    // const updatedAt = product.updatedAt
-                    
-                    // id: "61dfa229cb4b3316dc267bee"
-                    // itemImage: "http://146.56.183.55:5050/1642045984961.png"
-                    // itemName: "안녕asff"
-                    // link: "https://brunch.co.kr/@ddangdol/5"
-                    // price: 214000
-                    // updatedAt: "2022-01-13T03:53:13.399Z"
-    
+
                     document.querySelector('.product-ul').innerHTML += `
                         <li class="product-li">
                             <img src="${itemImage}" alt="${itemName} 상품 사진" />
@@ -133,16 +111,9 @@ async function getMyPost(){
     });
     const json = await res.json();
     const myPost = json.post
-    // console.log('myPostObject',myPost);
-    // console.log('typeof',typeof(myPost));
-    // console.log('myPostObject-index0',myPost[0]);
-    // console.log('author',myPost[0].author);
-    // console.log('authorimage',myPost[0].author.image);
-    // console.log('myPostImage',myPost[0].image);
     console.log (json.post)
     myPost.forEach((element, index, array) => {
         const authorImage = element.author.image
-        // console.log(authorImage);
         const authorAccount = element.author.accountname
         const authorName = element.author.username
         const postCommentCount = element.commentCount
@@ -151,23 +122,11 @@ async function getMyPost(){
         const postHearted = element.hearted
         const postImageRaw = element.image
         const postImage = element.image.split(',');
-        console.log('배열로 나눈 포스트이미지',postImage);
-        console.log('문자열 그대로 포스트이미지',postImageRaw);
         const postCreateAt = element.createdAt.replace(/-/g,'')
         const postCreateAtYear = postCreateAt.slice(0,4);
         const postCreateAtMonth = postCreateAt.slice(4,6);
         const postCreateAtDay = postCreateAt.slice(6,8);
         const postId = element.author._id
-        console.log('id값',postId)
-        console.log('forEach안에서 this',this);
-        console.log('forEach안에서 postImage의this',this.postImageRaw);
-        console.log('그냥element값',element);
-        console.log('forEach-index값',index);
-        console.log('forEach-array값',array);
-        // let isHeart = "no"
-        // if(hearted){
-        //     isHeart = 'yes'
-        // }
         
         if (postImageRaw) {
             if (postImage.length > 1){
@@ -205,42 +164,8 @@ async function getMyPost(){
                     </section>
                 </div>
                 `
-                // postImage.forEach(element => {
-                //     console.log('post안 forEach문',element);
-                //     document.querySelector('.post-section').children[4].innerHTML += `
-                //     <li><img src="${element}" alt="유저 업로드 이미지"/></li>
-                //     `
-                // });
                 
                 console.log('포스트이미지 2개이상일때 배열',postImage)
-                // gg = Object.assign(document.createElement('a'),{href:'http://someurl.com',innerText:"Bonus points?"});
-                // let imgList = Object.assign(docuemnt.createElement("li"),{className:'post-img-list'});
-                // let imgItem = Object.assign(docuemnt.createElement("img"),{className:'post-img-item'});
-                // let imgList = document.createElement('li')
-                // imgList.className = 'post-img-list';
-                // let imgItem = document.createElement('img')
-                // imgItem.className = 'post-img-item';
-
-                // let imgCont = document.querySelector('.post-img-container')
-                // imgCont.appendChild(li)
-                // imgList.appendChild(imgItem)
-                // imgItem.src = postImage[i]
-
-                // for (let i = 0; i < postImage.length; i++){
-                //     let imgList = document.createElement('li')
-                //     imgList.className = 'post-img-list';
-                //     let imgItem = document.createElement('img')
-                //     imgItem.className = 'post-img-item';
-                //     let imgCont = document.querySelector('.post-img-container')
-                //     imgCont.appendChild(imgList)
-                //     imgList.appendChild(imgItem)
-                //     imgItem.src = postImage[i]
-                //     console.log('1순회당 이미지',postImage[i])
-                //     console.log('순회',i)
-                //     console.log('this i는 뭐임',this.i)
-                //     console.log('this getMyPost는 뭐임',this.getMyPost)
-                //     console.log('순회당 imgCont내용물',imgCont)
-                // }
                 
 
             } else {
@@ -316,13 +241,6 @@ async function getMyPost(){
     console.log('return하기 전 myPost',myPost);
     return myPost;
 }
-// getMyPost()
-    
-
-
-// 포스트 삭제/수정 모달 토글
-// let postMoreBtn = document.querySelector(".post-more-vertical")
-// document.querySelector(".post-more-vertical").addEventListener("click", toggleModal)
 
 // 리스트보기, 앨범보기 토글
 let btnListView = document.querySelector(".btn-list-on");
@@ -363,13 +281,11 @@ scrollContainer.addEventListener("wheel", (evt) => {
 
     // 페이지 로딩 후 할 작업들
 async function loadPage() {
-    // await getMyPost();
     const takeOutPost = await getMyPost();
     console.log('takeOut길이',takeOutPost.length)
     console.log('takeOutPost값',takeOutPost)
     // 그림 나눠주기
     for (let postIndex=0; postIndex < takeOutPost.length; postIndex++){
-        // document.querySelector(`._data${postIndex}`).setAttribute(name,value)
         let postImage = takeOutPost[postIndex].image.split(',');
         console.log('loadPage안 if문 돌기 전 postImage',postImage);
         console.log('postIndex',postIndex);
@@ -388,7 +304,6 @@ async function loadPage() {
                 imgItem.className = 'post-img-item';
                 let imgCont = document.querySelector(`._data${postIndex} .post-img-container`)
                 
-                // setTimeout(() => {console.log("this is the first message")}, 5000);
                 setTimeout(() => {
                     console.log("setTimeOut 150시작")
                     imgCont.appendChild(imgList)
@@ -406,22 +321,10 @@ async function loadPage() {
                     
                     let imgBtnCont = document.querySelector(`._data${postIndex} .post-img-btn-container`)
                     
-                    // function scrollCont() {
-                    //     document.querySelector(`._data${postIndex} .post-img-btn-container`).scrollTo({
-                    //         left: 304 * i ,
-                    //         behavior: 'smooth'
-                    //     })
-                    //     console.log('스크롤함수호출됨')
-                    // }
                     imgBtn.addEventListener('click',(e)=>{
                         console.log("버튼 이벤트리스너 호출됨")
-                        // e.currentTarget.parentElement.children.classList.remove('btn-on')
-                        // e.currentTarget.parentElement.firstElementChild.classList.remove(':first-child')
-                        // e.currentTarget.classList.toggle('btn-on')
-                        // e.currentTarget.parentElement.parentElement.parentElement.parentElement.clientWidth
 
                         e.currentTarget.parentElement.previousElementSibling.style.transitionDuration = ".3s";
-                        // e.currentTarget.parentElement.previousElementSibling.style.right = `${304* i}px`;
                         e.currentTarget.parentElement.previousElementSibling.scrollTo({
                                     left: parseInt(getComputedStyle(e.currentTarget.parentElement.parentElement).width) * i ,
                                     behavior: 'smooth'
@@ -434,59 +337,14 @@ async function loadPage() {
                     imgBtnCont.appendChild(imgBtn)
                     console.log('setTimeOut150 끝')
                 }, 150);
-                
             }
-
         } else if (postImage[0] =='') {
             console.log('이미지없음')
         }
-
-        
     }
 
     console.log(takeOutPost);
-    // if (document.querySelector('post-img-container').innerHTML == '')
-    // imgIndex = document.querySelector(".post-img-container");
-    // console.log(imgIndex)
-    // scrollBtn = document.querySelector(".post-img-btn");
-    // console.log(scrollBtn)
-    
-    
-    // scrollBtn.addEventListener("click", (e) => {
-    //     imgIndex.cloneNode
-    // })
-
-    //--------------------------모달관련------------------------------
-
-    // if(e.currentTarget == postMoreBtn) {
-    //     let newLi = document.createElement("li");
-    //     newLi.innerText = "웹 사이트에서 상품 보기"
-    //     document.querySelector(".icon-post-modal ul").children[0].innerText = ''
-    //     document.querySelector(".icon-post-modal ul").children[1].innerText = ''
-    //     insertAfter(document.createElement("li"), document.querySelector(".icon-post-modal ul").lastElementChild)
-    // }
-
-    //utility
-    function insertAfter(newNode, existingNode) {
-        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-    }
-
-    // function modalSelector(){
-    //     // 하단 모달창 토글
-    //     let navMoreBtn = document.querySelector(".call-bottom-modal");
-    //     let bottomModal = document.querySelector(".icon-post-modal");
-    //     let screenOverlay = document.querySelector(".screen-overlay");
-    //     let existigNode = inserAfter(newNode, existingNode);
-
-        
-    //         let newLi = document.createElement("li");
-    //         document.querySelector(".icon-post-modal ul").children[0].innerText = '삭제'
-    //         document.querySelector(".icon-post-modal ul").children[1].innerText = '수정'
-                
-    // }   
-
-    // 하단 모달창 토글
-    
+  
     let navMoreBtn = document.querySelector(".call-bottom-modal");
     let bottomModal = document.querySelector(".icon-post-modal");
     let screenOverlay = document.querySelector(".screen-overlay");
@@ -604,10 +462,6 @@ async function loadPage() {
 }
 loadPage();
 
-// scrollBtn("click", (e) => {
-// imgIndex.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-// })
-
 //글삭함수
 async function deletePost() {
     const url = "http://146.56.183.55:5050"
@@ -661,7 +515,6 @@ async function getComment(e) {
     } catch (error) {
         console.log('에러발생')
     }
-    //GET /post/:post_id/comments
 }
 
 
