@@ -121,11 +121,10 @@ accountInput.addEventListener("change", () => {
 });
 
 // 회원가입 버튼 활성화
-const userName = document.querySelector("#user-name").value;
-const userId = document.querySelector("#user-id").value;
-const intro = document.querySelector("#user-desc").value;
+const userName = document.querySelector("#user-name");
+const userId = document.querySelector("#user-id");
 function submitAble() {
-    if (userName && userId && intro) {
+    if (userName.value && userId.value) {
         submitBtn.removeAttribute("disabled");
         submitBtn.style.backgroundColor = "#F26E22";
     } else {
