@@ -1,3 +1,47 @@
+/* 스크롤 바 관련 */
+/* Works on Firefox */
+#your-profile-wrap {
+  scrollbar-width: 3px;
+  scrollbar-color: transparent #f26e22;
+}
+
+/* Works on Chrome, Edge, and Safari */
+#your-profile-main::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* #your-profile-main::-webkit-scrollbar-track {
+  background: none;
+} */
+
+#your-profile-main::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+    border: 3px solid #f26e22;
+}
+#your-profile-main::-webkit-scrollbar-track-piece:end {
+  margin-top: 10px;
+  background: none;
+}
+
+#your-profile-main::-webkit-scrollbar-track-piece:start {
+  margin-bottom: 10px;
+  background: none;
+}
+/*이미지슬라이더*/
+#your-profile-main .post-img-slider ul {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#your-profile-main .post-img-slider ul::-webkit-scrollbar {
+  display: none;
+}
+
+/*상품정보*/
+#your-profile-main .product-ul::-webkit-scrollbar {
+  display: none;
+}
+
+/*본문*/
 #your-profile-wrap {
   position: relative;
   overflow-y: hidden;
@@ -183,7 +227,10 @@
 }
 
 #your-profile-main .product-ul {
-  overflow-x: hidden;
+  overflow-x: scroll;
+  scrollbar-width: 3px;
+  scrollbar-color: transparent #f26e22;
+  
 }
 #your-profile-main .product-li {
   /* width: 100%; */
@@ -278,11 +325,11 @@
   cursor: pointer;
 }
 
-#your-profile-main .post-img-btn:first-child {
+/* #your-profile-main .post-img-btn:first-child {
   background-color: #f26e22;
-}
+} */
 
-.btn-on {
+#your-profile-main .post-img-btn.abled {
   background-color: #f26e22;
 }
 
@@ -588,3 +635,4 @@
 .product-write > .text-active-input input {
   padding-top: 10px;
 }
+

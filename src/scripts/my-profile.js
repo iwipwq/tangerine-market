@@ -67,7 +67,6 @@ async function getMyProduct(){
             console.log(res.status);
             const productsAmount = json.data
             const products = json.product 
-            console.log('products',products);
             if(json.product == '') {
                 document.querySelector('.product-area').style.display = 'none';
             } else {
@@ -305,37 +304,33 @@ async function loadPage() {
                 let imgCont = document.querySelector(`._data${postIndex} .post-img-container`)
                 
                 setTimeout(() => {
-                    console.log("setTimeOut 150시작")
                     imgCont.appendChild(imgList)
                     imgList.appendChild(imgItem)
                     imgItem.src = postImage[i]
-                    console.log(i,'번재 순회 이미지',postImage[i])
-                    console.log(i,'순회째')
-                    console.log(postImage)
-                    console.log('this i는 뭐임',this.i)
-                    console.log('this getMyPost는 뭐임',this.getMyPost)
-                    console.log(i,'번째 순회 imgCont내용물',imgCont)
 
                     let imgBtn = document.createElement('li')
-                    imgBtn.className =`post-img-btn _index${i}`;
+                    imgBtn.className =`post-img-btn`;
                     
                     let imgBtnCont = document.querySelector(`._data${postIndex} .post-img-btn-container`)
                     
                     imgBtn.addEventListener('click',(e)=>{
                         console.log("버튼 이벤트리스너 호출됨")
-
+                        e.currentTarget.parentElement.childNodes.forEach(child => {
+                            if(child.className.includes('abled')) {
+                                child.classList.remove('abled');
+                            }
+                            e.currentTarget.classList.add('abled');
+                        })
                         e.currentTarget.parentElement.previousElementSibling.style.transitionDuration = ".3s";
                         e.currentTarget.parentElement.previousElementSibling.scrollTo({
                                     left: parseInt(getComputedStyle(e.currentTarget.parentElement.parentElement).width) * i ,
                                     behavior: 'smooth'
                                 })
-                                
-                        console.log('이벤트리스너 안의 i값',i)
-                        console.log('imgBtn의 currentTarget의 부모의첫번째형제 ',e.currentTarget.parentElement.previousElementSibling);
-                        console.log('스크롤함수호출됨')
                     })
                     imgBtnCont.appendChild(imgBtn)
-                    console.log('setTimeOut150 끝')
+                    document.querySelectorAll('.post-img-btn:first-child').forEach(element => {
+                        element.classList.add('abled');
+                        })
                 }, 150);
             }
         } else if (postImage[0] =='') {
@@ -360,12 +355,7 @@ async function loadPage() {
         if(!overlayCheck) {
         bottomModal.classList.toggle("modal-popup");
         screenOverlay.classList.toggle("overlay-on");
-        console.log('this.target로그',e.currentTarget);
-        console.log('postMoreBtn[i]값',postMoreBtn[i]);
-        console.log('커런트타겟 postMoreBtn이랑 같은지',e.currentTarget == document.querySelectorAll(".post-more-vertical")[e.currentTarget.index]);
-        console.log('e.currenttarget.nodeIndex',e.currentTarget.index,)
             if(e.currentTarget == document.querySelectorAll(".post-more-vertical")[e.currentTarget.index]) {
-                console.log('this.target로그',e.currentTarget);
                 document.querySelector(".icon-post-modal ul").children[0].innerText = '삭제'
                 document.querySelector(".icon-post-modal ul").children[1].innerText = '수정'
                 document.querySelector(".delete-alert p").innerText ='게시글을 삭제할까요?'
@@ -400,7 +390,7 @@ async function loadPage() {
             deleteAlert.classList.toggle("on");
             btnDelete.innerText = '삭제'
         } else if (e.currentTarget.innerText === '설정 및 개인정보') {
-            console.log('설정 및 개인정보 ->프로필수정페이지로')
+            window.location.href = "../pages/profile-modification.html"
         }
     })
 
@@ -415,10 +405,7 @@ async function loadPage() {
     btnDelete.addEventListener("click", (e) => {
         switch (document.querySelector(".icon-post-modal ul").children[1].innerText) {
             case '수정': 
-                console.log('삭제실행');
-                console.log('삭제모달 현재타겟',e.currentTarget)
                 deletePost();
-                
                 break;
             
             case '로그아웃' : 
@@ -433,15 +420,12 @@ async function loadPage() {
     
     // 포스트 삭제/수정 모달 토글
     setTimeout(()=>{
-        console.log('셋타임200시작')
         
         for(i=0; i < postMoreBtn.length; i++) {
-            console.log('index값',i)
-            console.log('postMoreBtn[index]값',postMoreBtn[i]) 
             postMoreBtn[i].index = i;
             postMoreBtn[i].addEventListener("click", (e) => toggleModal(e))
         }
-        console.log('셋타임200종료')
+
     },200)
 
     //--------------------------모달관련 끝------------------------------
@@ -467,7 +451,6 @@ async function deletePost() {
     const url = "http://146.56.183.55:5050"
     const myName = localStorage.getItem('accountname');
     const myToken = localStorage.getItem('accessToken')
-    console.log('내 토큰 잘 들어왔나',myToken);
     try {
         const res = await fetch(url+'/post/'+idBox[0], {
             method: "DELETE",
@@ -478,12 +461,8 @@ async function deletePost() {
     
         });
         const result = await res.json();
-        console.log(res);
-        console.log(result);
-        console.log(result.message);
         alert(result.message);
         window.location.reload();
-        //DELETE /post/:post_id
         
     } catch (error) {
         console.log(res);
