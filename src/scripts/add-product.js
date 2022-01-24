@@ -1,14 +1,5 @@
-// 상품등록
-// 상품명15자 이하 2자 이상
-// let textValid = 15 >= productInputValue.length && productInputValue.length >= 2;
-// 가격값이 숫자인지 확인 
-// let numValid = new RegExp(/^[0-9]+$/).test(priceInputValue);
-// url값이 ftp:// http:// https:// 로 시작하는지 확인
-// let urlValid = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/).test(linkInputValue);
-
 let productInput = document.getElementById("product-name");
 let productInputValue = "";
-// let textValid,numValid,urlValid = 0;
 let textValid = false;
 productInput.addEventListener("input", (e) => {
     console.log(e.target.value);
@@ -68,22 +59,6 @@ linkInput.addEventListener("input", (e) => {
         console.log(urlValid);
     }
 });
-
-// document.querySelector('#imageInput').addEventListener('change', function() {
-//     if (this.files && this.files[0]) {
-//         console.log('this.file',this.files,'this.files[0]',this.files[0],'filelist',FileList,FileReader)
-//         let img = document.querySelector('.user-product-img');
-//         img.onload = () => {
-//             console.log(URL.revokeObjectURL(img.src));
-//             URL.revokeObjectURL(img.src);  // no longer needed, free memory
-//         }
-//         if(!img.classList.contains("img-visible")){
-//             img.classList.add("img-visible")
-//         }
-//         return img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-//         console.log(img.src)
-//     }
-// });
 
 const imageInput = document.querySelector('#image-input');
 const submitBtn = document.querySelector('button[type=button]');
