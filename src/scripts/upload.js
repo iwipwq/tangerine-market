@@ -97,9 +97,9 @@ imageInput.addEventListener('change', function() {
             //     console.log('지금 이벤트 타겟',e.currentTarget)
             //     console.log('삭제버튼작동!')
             // })
+            console.log('파일가지고오기',this.files[0].name)
+            document.querySelector('li:last-child').setAttribute('fileName',this.files[0].name);
             document.querySelectorAll('li').forEach ((element,index) => {
-                console.log('파일가지고오기',this.files[index].name)
-                element.setAttribute('fileName',this.files[index].name)
                 element.addEventListener('click', (e) => {
                     console.log('현재이벤트타겟',e.currentTarget);
                     console.log('삭제버튼실행')
@@ -107,7 +107,13 @@ imageInput.addEventListener('change', function() {
                     console.log('타입',typeof(e.currentTarget))
                     console.log(e.currentTarget.className.replace('data',''));
                     console.log(e.currentTarget.getAttribute('fileName'))
-                    // e.currentTarget.remove();
+                    imgArray.forEach( (file,fileIndex) => {
+                        console.log('imgArrforEach',file.name);
+                        if(file.name === e.currentTarget.getAttribute('fileName')){
+                            return imgArray.splice(fileIndex, 1);
+                        }
+                    })
+                    e.currentTarget.remove();
                 })
             })
         },200)
