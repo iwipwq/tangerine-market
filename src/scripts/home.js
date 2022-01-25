@@ -8,7 +8,7 @@ function checkToken() {
 checkToken();
 
 async function getFollowingFeed() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(url + "/post/feed", {
       headers: {

@@ -5,7 +5,7 @@ let profileOrigin = "";
 
 //내 프로필 정보 가져오기
 async function getMyProfile() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(url + "/profile/" + accountname, {
       headers: {
@@ -65,7 +65,7 @@ imgUpload.addEventListener("change", (e) => {
 
 //이미지 파일네임 받기
 async function fileUpload(files, index) {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   let formData = new FormData();
   formData.append("image", files[index]);
   const res = await fetch(url + "/image/uploadfile", {
@@ -114,7 +114,7 @@ inputEvent.forEach((value) => {
 inputImage.addEventListener("change", checkValidation);
 //내 프로필 수정
 async function modifyMyProfile() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   const files = imgUpload.files;
   const inputUsername = document.querySelector(".profile-user-name");
   const inputAccountname = document.querySelector(".profile-account-name");

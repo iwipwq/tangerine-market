@@ -12,7 +12,7 @@ checkToken();
 
 //포스트 작성
 async function getPost() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}`, {
       headers: {
@@ -122,7 +122,7 @@ getPost();
 
 //댓글 리스트 작성
 async function getComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       headers: {
@@ -331,7 +331,7 @@ publishBtn.addEventListener("click", writeComment);
 
 //댓글 게시
 async function writeComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       method: "post",
@@ -359,7 +359,7 @@ async function writeComment() {
 
 //댓글 삭제
 async function deleteComment(data) {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments/${data}`, {
       method: "delete",
