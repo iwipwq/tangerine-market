@@ -18,7 +18,7 @@ scrollContainer.addEventListener("wheel", (evt) => {
 });
 
 async function imageUpload(formData) {
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const res = await fetch(url+"/image/uploadfiles", {
         method: "POST",
         body: formData
@@ -34,7 +34,7 @@ async function imageUpload(formData) {
     return imageUrls;
 }
 async function createPost(_e) {
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const token = localStorage.getItem("accessToken");
     let textValue = text.value;
     if(imgArray.length <= 3) {

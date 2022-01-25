@@ -1,6 +1,6 @@
 // 프로필 정보 받아와서 출력하기
 async function getProfile(){
-    const res = await fetch(`http://146.56.183.55:5050/profile/${localStorage.getItem('yourAccountId')}`, {
+    const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('yourAccountId')}`, {
         method: "GET", 
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -53,7 +53,7 @@ getProfile();
 
 //상품정보 받아와서 출력하기
 async function getMyProduct(){
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myName = localStorage.getItem('yourAccountId');
     const myToken = localStorage.getItem('accessToken')
     try {
@@ -103,7 +103,7 @@ async function getMyProduct(){
     
 // 포스트 정보 받아와서 출력하기
 async function getMyPost(){
-    const res = await fetch(`http://146.56.183.55:5050/post/${localStorage.getItem('yourAccountId')}/userpost`, {
+    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('yourAccountId')}/userpost`, {
         method: "GET",
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -438,6 +438,20 @@ async function loadPage() {
         for(i=0; i < postMoreBtn.length; i++) {
             postMoreBtn[i].index = i;
             postMoreBtn[i].addEventListener("click", (e) => toggleModal(e))
+            
+            document.querySelectorAll('.icon-heart')[i].index = i;
+            document.querySelectorAll('.icon-heart')[i].addEventListener("click",async(e) => {
+                if(!takeOutPost[i].hearted) {
+                    e.currentTarget.children[0].src = "../../img/icon-heart-fill.svg"
+                    e.currentTarget.children[1].innerText = `${parseInt(e.currentTarget.children[1].innerText) + 1}`
+                    love(e);
+                } else if (takeOutPost[i].hearted) {
+                    e.currentTarget.children[0].src = "../../img/icon-heart.svg"
+                    e.currentTarget.children[1].innerText = `${parseInt(e.currentTarget.children[1].innerText) - 1}`
+                    dislove(e);
+                }
+
+            })
         }
 
     },200)
@@ -463,7 +477,7 @@ loadPage();
 //신고함수
 async function reportPost() {
     console.log('신고함수실행됨')
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+'/post/'+idBox[0]+'/report', {
@@ -494,10 +508,52 @@ async function getComment(e) {
     window.location.href = "./post.html"
 }
 
+//좋아요함수
+async function love(e) {
+    console.log('좋아요함수실행됨')
+    const url = "https://api.mandarin.cf"
+    const myToken = localStorage.getItem('accessToken')
+    const postId = e.currentTarget.parentElement.parentElement.getAttribute('postId');
+    try {
+        const res = await fetch(url+'/post/'+postId+'/heart', {
+            method: "POST",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+        })
+    }
+    catch(error) {
+        console.log(res);
+        console.log('오류발생, 존재하지 않는 사용자입니다.')
+    }
+}
+
+//좋아요취소함수
+async function dislove(e) {
+    console.log('좋아요취소실행됨')
+    const url = "https://api.mandarin.cf"
+    const myToken = localStorage.getItem('accessToken')
+    const postId = e.currentTarget.parentElement.parentElement.getAttribute('postId');
+    try {
+        const res = await fetch(url+'/post/'+postId+'/unheart', {
+            method: "POST",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+        })
+    }
+    catch(error) {
+        console.log(res);
+        console.log('오류발생, 존재하지 않는 사용자입니다.')
+    }
+}
+
 //팔로우함수
 async function follow(e) {
     console.log('팔로우함수실행됨')
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/follow`, {
@@ -522,7 +578,7 @@ async function follow(e) {
 //언팔로우함수
 async function unfollow(e) {
     console.log('언팔로우함수실행됨')
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/unfollow`, {
@@ -545,7 +601,7 @@ async function unfollow(e) {
 }
 
 document.querySelector('.M-button').addEventListener('click', async(e) => {
-    const res = await fetch(`http://146.56.183.55:5050/profile/${localStorage.getItem('yourAccountId')}`, {
+    const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('yourAccountId')}`, {
         method: "GET", 
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,

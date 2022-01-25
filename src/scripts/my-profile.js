@@ -1,7 +1,7 @@
 // 프로필 정보 받아와서 출력하기
 async function getProfile(){
     try {
-        const res = await fetch(`http://146.56.183.55:5050/profile/${localStorage.getItem('accountname')}`, {
+        const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('accountname')}`, {
         method: "GET", 
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -51,7 +51,7 @@ getProfile();
 
 //상품정보 받아와서 출력하기
 async function getMyProduct(){
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myName = localStorage.getItem('accountname');
     const myToken = localStorage.getItem('accessToken')
     try {
@@ -101,7 +101,7 @@ async function getMyProduct(){
     
 // 포스트 정보 받아와서 출력하기
 async function getMyPost(){
-    const res = await fetch(`http://146.56.183.55:5050/post/${localStorage.getItem('accountname')}/userpost`, {
+    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('accountname')}/userpost`, {
         method: "GET",
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -459,7 +459,7 @@ loadPage();
 
 //글삭함수
 async function deletePost() {
-    const url = "http://146.56.183.55:5050"
+    const url = "https://api.mandarin.cf"
     const myName = localStorage.getItem('accountname');
     const myToken = localStorage.getItem('accessToken')
     try {
@@ -489,7 +489,7 @@ async function getComment(e) {
     window.location.href = "./post.html"
     const postId = e.currentTarget.parentElement.parentElement.getAttribute('postId');
     console.log(postId);
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const myName = localStorage.getItem('accountname');
     const myToken = localStorage.getItem('accessToken');
     try {
