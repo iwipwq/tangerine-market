@@ -24,6 +24,7 @@ async function getProfile(){
     const userIntro = myProfile.intro;
     const userName = myProfile.username;
     // const userId = myProfile._id;
+    const userIsfollow = myProfile.isfollow
 
     document.querySelector(".profile").innerHTML += `
         <img src="${userImage}" alt="${userName} 프로필사진" class="basic-profile-img" />
@@ -42,7 +43,11 @@ async function getProfile(){
             <p class="followings-text">followings</p>
         </div>
     `;
-    
+    if(userIsfollow) {
+        document.querySelector('#your-profile-wrap .M-button').classList.add('followed')
+        document.querySelector('#your-profile-wrap .M-button.followed').innerText = '언팔로우'
+    }
+    return userIsfollow;
 }
 getProfile();
 
@@ -451,7 +456,7 @@ async function loadPage() {
         else {
             window.location.href = "home.html";
         }
-    })     
+    })
 }
 loadPage();
 
@@ -489,4 +494,73 @@ async function getComment(e) {
     window.location.href = "./post.html"
 }
 
+//팔로우함수
+async function follow(e) {
+    console.log('팔로우함수실행됨')
+    const url = "http://146.56.183.55:5050"
+    const myToken = localStorage.getItem('accessToken')
+    try {
+        const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/follow`, {
+            method: "POST",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+    
+        });
+        const result = await res.json();
+        console.log(result);
+        document.querySelector('#your-profile-wrap .M-button').classList.add('followed')
+        document.querySelector('#your-profile-wrap .M-button').innerText = '언팔로우'
+        
+    } catch (error) {
+        console.log(res);
+        console.log('오류발생,존재하지 않는 사용자입니다.');
+    }
+}
 
+//언팔로우함수
+async function unfollow(e) {
+    console.log('언팔로우함수실행됨')
+    const url = "http://146.56.183.55:5050"
+    const myToken = localStorage.getItem('accessToken')
+    try {
+        const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/unfollow`, {
+            method: "DELETE",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+    
+        });
+        const result = await res.json();
+        console.log(result);
+        document.querySelector('#your-profile-wrap .M-button').classList.remove('followed')
+        document.querySelector('#your-profile-wrap .M-button').innerText = '팔로우'
+        
+    } catch (error) {
+        console.log(res);
+        console.log('오류발생,존재하지 않는 사용자입니다..');
+    }
+}
+
+document.querySelector('.M-button').addEventListener('click', async(e) => {
+    const res = await fetch(`http://146.56.183.55:5050/profile/${localStorage.getItem('yourAccountId')}`, {
+        method: "GET", 
+        headers:{
+                "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
+                "Content-type" : "application/json"
+        }
+    });
+    const json = await res.json();
+    const myProfile = json.profile
+    // const userId = myProfile._id;
+    const userIsfollow = myProfile.isfollow
+    
+    if(userIsfollow) {
+        unfollow();
+    }
+    else if (!userIsfollow) {
+        follow();
+    }
+})

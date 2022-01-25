@@ -206,6 +206,20 @@
   cursor: pointer;
 }
 
+#your-profile-main .M-button {
+  transition: all ease-in-out .3s;
+}
+
+#your-profile-main .M-button.followed {
+  background-color: #ffffff;
+  color: #767676;
+  border: 1px solid #dbdbdb;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
 /* 판매 상품 구획 */
 #your-profile-main .product-area {
   max-width: 390px;
@@ -231,9 +245,6 @@
   scrollbar-width: 3px;
   scrollbar-color: transparent #f26e22;
   
-}
-#your-profile-main .product-li {
-  /* width: 100%; */
 }
 
 /* 포스트 구획 */
