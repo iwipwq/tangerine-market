@@ -74,7 +74,7 @@ imageInput.addEventListener('change', function() {
         document.querySelector(".img-preview-wrap").innerHTML += `
             <li class="data">
                 <img src="${URL.createObjectURL(this.files[0])}" alt="업로드 이미지 미리보기" class="img-preview">
-                <button type="button" class="x-delete-button num"><img src="/img/x.svg" alt="이미지 등록해제 버튼"></button>
+                <button type="button" class="x-delete-button num"><img src="../../img/x.svg" alt="이미지 등록해제 버튼"></button>
             </li>
         `
         setTimeout(()=> {
