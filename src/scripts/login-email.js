@@ -17,7 +17,7 @@ input.forEach((value) => {
 });
 
 async function login() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(url + "/user/login", {
       method: "POST",

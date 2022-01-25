@@ -12,7 +12,7 @@ checkToken();
 
 //포스트 작성
 async function getPost() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}`, {
       headers: {
@@ -100,7 +100,13 @@ async function getPost() {
     document.querySelector(".comment .basic-profile").src = myProfileImage;
     postModal();
   } catch (err) {
-    console.log("요청실패post");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 
@@ -116,7 +122,7 @@ getPost();
 
 //댓글 리스트 작성
 async function getComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       headers: {
@@ -172,7 +178,13 @@ async function getComment() {
 
     commetModal();
   } catch (err) {
-    console.log("요청실패-댓글");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 
@@ -319,7 +331,7 @@ publishBtn.addEventListener("click", writeComment);
 
 //댓글 게시
 async function writeComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       method: "post",
@@ -347,7 +359,7 @@ async function writeComment() {
 
 //댓글 삭제
 async function deleteComment(data) {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments/${data}`, {
       method: "delete",
