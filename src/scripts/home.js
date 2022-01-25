@@ -2,7 +2,7 @@ let token = localStorage.getItem("accessToken");
 
 function checkToken() {
   if (!token) {
-    window.location.href = "../pages/login.htmll";
+    window.location.href = "../pages/login.html";
   }
 }
 checkToken();
