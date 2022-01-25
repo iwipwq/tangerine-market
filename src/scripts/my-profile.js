@@ -166,39 +166,47 @@ async function getMyPost(){
                 
                 console.log('포스트이미지 2개이상일때 배열',postImage)
                 
+                document.querySelector('.post-album-view').innerHTML += `
+                <li class="post-album-item"><img src="${postImage[0]}" alt="사용자 업로드 이미지" class="upload-img-album"><img src="../../img/iccon-img-layers.svg" alt="${postImage.length - 1}장의 사진 더보기" class="icon-img-layers"></li>
+                `
 
             } else {
                 console.log("if if else")
-            document.querySelector('.home-post').innerHTML += `
-                <div class="post-wrap _data${index}">
-                    <h2 class="sr-only">${index + 1}번째 포스트 내용</h2>
-                    <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
-                            class="basic-profile-img" /></a>
-                    <section class="post-section">
-                        <h3>
-                            <a href="profile/${authorAccount}" class="typography--h3">${authorName}</a>
-                        </h3>
-                        <a href="javascript:void(0)" class="post-more-vertical">
-                            <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
-                        </a>
-                        <a class="post-author typography--12p14h">@ ${authorAccount}</a>
-                        <p class="post-text typography--p">${postContent}</p>
-                        <img src="${postImage[0]}" alt="" class="post-img" />
-                        <button class="like" type="button">
-                            <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
-                            <span class="like-counter typography--12p12h">${postHeartCount}</span>
-                        </button>
-            
-                        <button class="post-comment" type="button">
-                            <img src="../../img/icon-message-circle-small.svg" alt="댓글"
-                                class="icon-message-circle-small" />
-                            <span class="comment-counter typography--12p12h">${postCommentCount}</span>
-                        </button>
-            
-                        <small class="post-date">${postCreateAtYear}년 ${postCreateAtMonth}월 ${postCreateAtDay}일</small>
-                    </section>
-                </div>
+                document.querySelector('.home-post').innerHTML += `
+                    <div class="post-wrap _data${index}">
+                        <h2 class="sr-only">${index + 1}번째 포스트 내용</h2>
+                        <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
+                                class="basic-profile-img" /></a>
+                        <section class="post-section">
+                            <h3>
+                                <a href="profile/${authorAccount}" class="typography--h3">${authorName}</a>
+                            </h3>
+                            <a href="javascript:void(0)" class="post-more-vertical">
+                                <img src="../../img/s-icon-more-vertical.svg" alt="" class="s-icon-more-vertical" />
+                            </a>
+                            <a class="post-author typography--12p14h">@ ${authorAccount}</a>
+                            <p class="post-text typography--p">${postContent}</p>
+                            <img src="${postImage[0]}" alt="" class="post-img" />
+                            <button class="like" type="button">
+                                <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                                <span class="like-counter typography--12p12h">${postHeartCount}</span>
+                            </button>
+                
+                            <button class="post-comment" type="button">
+                                <img src="../../img/icon-message-circle-small.svg" alt="댓글"
+                                    class="icon-message-circle-small" />
+                                <span class="comment-counter typography--12p12h">${postCommentCount}</span>
+                            </button>
+                
+                            <small class="post-date">${postCreateAtYear}년 ${postCreateAtMonth}월 ${postCreateAtDay}일</small>
+                        </section>
+                    </div>
+                    `
+
+                document.querySelector('.post-album-view').innerHTML += `
+                <li class="post-album-item"><img src="${postImage[0]}" alt="사용자 업로드 이미지" class="upload-img-album"></li>
                 `
+
                 }
         } else if (!postImageRaw) {
             console.log("else if")
@@ -250,6 +258,7 @@ btnListView.addEventListener("click",()=> {
     if (homePost[1].className === "home-post-album") {
     homePost.forEach(element => {
         element.className ="home-post"
+        element.removeAttribute('style');
     });
     let albumOff = btnAlbumView.innerHTML.replace(/-on/g,'-off');
     btnAlbumView.innerHTML = albumOff;
@@ -262,6 +271,8 @@ btnAlbumView.addEventListener("click",()=> {
     if (homePost[0].className === "home-post") {
     homePost.forEach(element => {
         element.className = "home-post-album"
+        element.style.height = `${parseInt(getComputedStyle(document.querySelector('.post-album-view')).height) + 130}px`;
+        // element.style.height = `300px`;
     });
     }
     let listOff = btnListView.innerHTML.replace(/-on/g,'-off');
