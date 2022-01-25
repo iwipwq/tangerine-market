@@ -32,7 +32,6 @@ async function login() {
       }),
     });
     const resJson = await res.json();
-    console.log("받은데이터", resJson);
     printError(resJson);
     setLocalUserinfo(resJson);
   } catch (err) {
