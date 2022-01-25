@@ -162,7 +162,9 @@ async function getMyPost(){
                 `
                 
                 console.log('포스트이미지 2개이상일때 배열',postImage)
-                
+                document.querySelector('.post-album-view').innerHTML += `
+                <li class="post-album-item"><img src="${postImage[0]}" alt="사용자 업로드 이미지" class="upload-img-album"><img src="../../img/iccon-img-layers.svg" alt="${postImage.length - 1}장의 사진 더보기" class="icon-img-layers"></li>
+                `
 
             } else {
                 console.log("if if else")
@@ -196,6 +198,11 @@ async function getMyPost(){
                     </section>
                 </div>
                 `
+
+                document.querySelector('.post-album-view').innerHTML += `
+                <li class="post-album-item"><img src="${postImage[0]}" alt="사용자 업로드 이미지" class="upload-img-album"></li>
+                `
+
                 }
         } else if (!postImageRaw) {
             console.log("else if")
@@ -247,6 +254,7 @@ btnListView.addEventListener("click",()=> {
     if (homePost[1].className === "home-post-album") {
     homePost.forEach(element => {
         element.className ="home-post"
+        element.removeAttribute('style');
     });
     let albumOff = btnAlbumView.innerHTML.replace(/-on/g,'-off');
     btnAlbumView.innerHTML = albumOff;
@@ -259,6 +267,8 @@ btnAlbumView.addEventListener("click",()=> {
     if (homePost[0].className === "home-post") {
     homePost.forEach(element => {
         element.className = "home-post-album"
+        element.style.height = `${parseInt(getComputedStyle(document.querySelector('.post-album-view')).height) + 130}px`;
+        // element.style.height = `300px`;
     });
     }
     let listOff = btnListView.innerHTML.replace(/-on/g,'-off');
