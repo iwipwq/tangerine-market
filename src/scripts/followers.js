@@ -2,7 +2,7 @@
 const username = localStorage.getItem("accountname")
 const token = localStorage.getItem("accessToken"); 
 async function getFollowers() {
-    const url = `http://146.56.183.55:5050/profile/${username}/follower`;
+    const url = `https://api.mandarin.cf/profile/${username}/follower`;
     const res = await fetch(url, {
         method: "GET",
         headers: {
