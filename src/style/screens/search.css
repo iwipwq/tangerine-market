@@ -34,8 +34,22 @@
   height: 100%;
   overflow: scroll;
 }
+.search-main .user-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.search-main .user-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .search-main .user-list .user-search {
   margin-bottom: 16px;
+  display: block;
+}
+.search-main .user-list .user-search a {
+  display: flex;
+}
+.search-main .user-list .user-search a img {
+  border-radius: 50%;
 }
 
 .search-footer .tab-menu {
