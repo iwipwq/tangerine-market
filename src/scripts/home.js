@@ -7,6 +7,8 @@ function checkToken() {
 }
 checkToken();
 
+//좋아요함수
+
 async function getFollowingFeed() {
   const url = "https://api.mandarin.cf";
   try {
@@ -27,6 +29,7 @@ async function getFollowingFeed() {
     appearModal();
     savePostId();
     saveYourAccountId();
+    likeChange();
   } catch (err) {
     if (res.status == 401) {
       alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
@@ -67,11 +70,11 @@ function printFeed(posts) {
     const getYear = date.getFullYear();
     const getMonth = date.getMonth() + 1;
     const getDate = date.getDate();
-
-    if (authorImage.includes("http")) {
+    if (authorImage.includes("127.0.0.1")) {
+      authorImage = "../../img/basic-profile.png";
+    } else if (authorImage.includes("http")) {
       authorImage = post.author.image;
     } else {
-      //기본이미지
       authorImage = "../../img/basic-profile.png";
     }
     document.querySelector(".post").innerHTML += `
@@ -107,7 +110,7 @@ function printFeed(posts) {
         alt="포스트 이미지"
         class="post-img"
       />
-      <button class="like" type="button">
+      <button class="like" type="button" data-post="${post.id}" data-heart="${post.hearted}">
         <img
           src="${hearted}"
           alt="좋아요"
@@ -173,4 +176,59 @@ function appearModal() {
     bottomModal.classList.toggle("modal-popup");
     screenOverlay.classList.toggle("overlay-on");
   });
+}
+
+function likeChange() {
+  const likeBtn = document.querySelectorAll(".like");
+  likeBtn.forEach((like) => {
+    const postId = like.getAttribute("data-post");
+    like.addEventListener("click", () => {
+      if (like.childNodes[1].src.includes("heart-fill")) {
+        dislike(postId);
+        like.nextElementSibling.innerText =
+          like.nextElementSibling.innerText - 1;
+        like.childNodes[1].setAttribute("src", "../../img/icon-heart.svg");
+      } else {
+        likes(postId);
+        like.nextElementSibling.innerText =
+          Number(like.nextElementSibling.innerText) + 1;
+        like.childNodes[1].setAttribute("src", "../../img/icon-heart-fill.svg");
+      }
+    });
+  });
+}
+
+async function likes(postId) {
+  const url = "https://api.mandarin.cf";
+  try {
+    const res = await fetch(url + "/post/" + postId + "/heart", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+    const result = res.json();
+    // love();
+  } catch (error) {}
+}
+
+//좋아요취소함수
+async function dislike(postId) {
+  const url = "https://api.mandarin.cf";
+
+  try {
+    const res = await fetch(url + "/post/" + postId + "/unheart", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+    const result = res.json();
+    // love();
+  } catch (error) {
+    if (res.status == 400) {
+    }
+  }
 }
