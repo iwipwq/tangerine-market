@@ -13,9 +13,23 @@
     background-color: #ffffff;
     width: 390px;
     height: 820px;
+    border-radius: 20px;
 }
 
 .nav-fixed {
     position:absolute;
     bottom: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: 1px solid #DBDBDB;
+}
+
+.f-image {
+    border-radius: 50px;
+}
+
+.f-radius {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 14px 12px 14px 16px;
 }

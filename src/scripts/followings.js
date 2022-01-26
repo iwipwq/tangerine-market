@@ -1,8 +1,8 @@
-//팔로워 정보 가져오기
+//팔로잉 정보 가져오기
 const username = localStorage.getItem("accountname")
 const token = localStorage.getItem("accessToken"); 
-async function getFollowers() {
-    const url = `https://api.mandarin.cf/profile/${username}/follower`;
+async function getFollowings() {
+    const url = `https://api.mandarin.cf/profile/${username}/following`;
     const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -23,5 +23,5 @@ async function getFollowers() {
                         </div>`
     })
 }
-getFollowers();
+getFollowings();
 
