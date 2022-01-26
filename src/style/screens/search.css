@@ -61,3 +61,8 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
+.search-main .highlight {
+  font-weight: bold;
+  color: #f26e22;
+}
