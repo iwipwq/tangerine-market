@@ -1,6 +1,6 @@
 //팔로워 정보 가져오기
 const username = localStorage.getItem("accountname")
-const token = localStorage.getItem("accessToken"); 
+const token = localStorage.getItem("accessToken");
 async function getFollowers() {
     const url = `https://api.mandarin.cf/profile/${username}/follower`;
     const res = await fetch(url, {
@@ -22,6 +22,13 @@ async function getFollowers() {
                             <button class="S-button">팔로우</button>
                         </div>`
     })
+    const followBtn = document.querySelectorAll(".S-button");
+    console.log(followBtn);
+    for (let index = 0; index < followBtn.length; index++) {
+        if (json[index].isfollow == true) {
+            followBtn[index].classList.add("f-button");
+            followBtn[index].textContent = "언팔로우"
+        }
+    }
 }
 getFollowers();
-

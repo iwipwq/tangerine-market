@@ -19,7 +19,7 @@ async function getFollowings() {
                                 <p class="user-name-title">${follower.username}</p>
                                 <p class="user-name-sub">${follower.intro}</p>
                             </div>
-                            <button class="S-button">팔로우</button>
+                            <button class="S-button f-button">취소</button>
                         </div>`
     })
 }
