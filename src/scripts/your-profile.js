@@ -1,4 +1,5 @@
 // 프로필 정보 받아와서 출력하기
+<<<<<<< HEAD
 async function getProfile() {
   const res = await fetch(
     `https://api.mandarin.cf/profile/${localStorage.getItem("yourAccountId")}`,
@@ -28,6 +29,28 @@ async function getProfile() {
   const userName = myProfile.username;
   // const userId = myProfile._id;
   const userIsfollow = myProfile.isfollow;
+=======
+async function getProfile(){
+    const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('yourAccountId')}`, {
+        method: "GET", 
+        headers:{
+                "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
+                "Content-type" : "application/json"
+        }
+    });
+    const json = await res.json();
+    const myProfile = json.profile
+    const userAccountname = myProfile.accountname;
+    // const userFollower = myProfile.follower
+    const userFollowerCount = myProfile.followerCount;
+    // const userFollowing = myProfile.following
+    const userFollowingCount = myProfile.followingCount;
+    const userImage = myProfile.image;
+    const userIntro = myProfile.intro;
+    const userName = myProfile.username;
+    // const userId = myProfile._id;
+    const userIsfollow = myProfile.isfollow
+>>>>>>> upstream/dev
 
   document.querySelector(".profile").innerHTML += `
         <img src="${userImage}" alt="${userName} 프로필사진" class="basic-profile-img" />
@@ -35,8 +58,12 @@ async function getProfile() {
         <p class="profile-email typography--12p14h">@ ${userAccountname}</p>
         <p class="profile-desc">${userIntro}</p>
     `;
+<<<<<<< HEAD
   console.log(document.querySelector(".follow"));
   document.querySelector(".follow").innerHTML += `
+=======
+    document.querySelector(".follow").innerHTML += `
+>>>>>>> upstream/dev
         <div class="followers">
             <p class="followers-num">${userFollowerCount}</p>
             <p class="followers-text">followers</p>
@@ -108,6 +135,7 @@ async function getMyProduct() {
 getMyProduct();
 
 // 포스트 정보 받아와서 출력하기
+<<<<<<< HEAD
 async function getMyPost() {
   const res = await fetch(
     `https://api.mandarin.cf/post/${localStorage.getItem(
@@ -144,6 +172,42 @@ async function getMyPost() {
       if (postImage.length > 1) {
         console.log("if if");
         document.querySelector(".home-post").innerHTML += `
+=======
+async function getMyPost(){
+    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('yourAccountId')}/userpost`, {
+        method: "GET",
+        headers:{
+                "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
+                "Content-type" : "application/json"
+        }
+    });
+    const json = await res.json();
+    const myPost = json.post
+    myPost.forEach((element, index, array) => {
+        const authorImage = element.author.image
+        const authorAccount = element.author.accountname
+        const authorName = element.author.username
+        const postCommentCount = element.commentCount
+        const postContent = element.content
+        const postHeartCount = element.heartCount
+        const postHearted = element.hearted
+        const postImageRaw = element.image
+        const postImage = element.image.split(',');
+        const postCreateAt = element.createdAt.replace(/-/g,'')
+        const postCreateAtYear = postCreateAt.slice(0,4);
+        const postCreateAtMonth = postCreateAt.slice(4,6);
+        const postCreateAtDay = postCreateAt.slice(6,8);
+        const postId = element.author._id
+        let heartSrc = '../../img/icon-heart.svg'
+        if(postHearted) {
+            heartSrc = '../../img/icon-heart-fill.svg'
+        }
+
+        if (postImageRaw) {
+            if (postImage.length > 1){
+                console.log("if if")
+                document.querySelector('.home-post').innerHTML += `
+>>>>>>> upstream/dev
                 <div class="post-wrap _data${index}">
                     <h2 class="sr-only">${index + 1}번째 포스트 내용</h2>
                     <a class="user-profile"><img src="${authorImage}" alt="${authorName} 프로필 사진"
@@ -162,7 +226,7 @@ async function getMyPost() {
                             <ul class="post-img-btn-container"></ul>
                         </div>
                         <button class="like" type="button">
-                            <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                            <img src="${heartSrc}" alt="좋아요" class="icon-heart" />
                             <span class="like-counter typography--12p12h">${postHeartCount}</span>
                         </button>
             
@@ -203,7 +267,7 @@ async function getMyPost() {
                         <p class="post-text typography--p">${postContent}</p>
                         <img src="${postImage[0]}" alt="" class="post-img" />
                         <button class="like" type="button">
-                            <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                            <img src="${heartSrc}" alt="좋아요" class="icon-heart" />
                             <span class="like-counter typography--12p12h">${postHeartCount}</span>
                         </button>
             
@@ -239,7 +303,7 @@ async function getMyPost() {
                     <a class="post-author typography--12p14h">@ ${authorAccount}</a>
                     <p class="post-text typography--p">${postContent}</p>
                     <button class="like" type="button">
-                        <img src="../../img/icon-heart.svg" alt="좋아요" class="icon-heart" />
+                        <img src="${heartSrc}" alt="좋아요" class="icon-heart" />
                         <span class="like-counter typography--12p12h">${postHeartCount}</span>
                     </button>
         
@@ -253,6 +317,7 @@ async function getMyPost() {
                 </section>
             </div>
 
+<<<<<<< HEAD
         `;
     } else {
       console.log("else");
@@ -262,6 +327,14 @@ async function getMyPost() {
   });
   console.log("return하기 전 myPost", myPost);
   return myPost;
+=======
+        `} else {
+            console.log("else")
+            document.querySelector(".post-area").classList.add("post-empty")
+        }
+    });
+    return myPost;
+>>>>>>> upstream/dev
 }
 
 // 리스트보기, 앨범보기 토글
@@ -310,6 +383,7 @@ scrollContainer.addEventListener("wheel", (evt) => {
 
 // 페이지 로딩 후 할 작업들
 async function loadPage() {
+<<<<<<< HEAD
   const takeOutPost = await getMyPost();
   console.log("takeOut길이", takeOutPost.length);
   console.log("takeOutPost값", takeOutPost);
@@ -379,6 +453,57 @@ async function loadPage() {
       }
     } else if (postImage[0] == "") {
       console.log("이미지없음");
+=======
+    const takeOutPost = await getMyPost();
+    // 그림 나눠주기
+    for (let postIndex=0; postIndex < takeOutPost.length; postIndex++){
+        let postImage = takeOutPost[postIndex].image.split(',');
+        document.querySelector(`.post-wrap._data${postIndex}`).setAttribute('postId',takeOutPost[postIndex].id)
+        document.querySelector(`.post-wrap._data${postIndex} .post-comment`).addEventListener("click", (e) => {
+            getComment(e)
+        })
+        if(postImage[0] !== '') {
+            for (let i = 0; i < postImage.length; i++){
+                
+                let imgList = document.createElement('li')
+                imgList.className = 'post-img-list';
+                let imgItem = document.createElement('img')
+                imgItem.className = 'post-img-item';
+                let imgCont = document.querySelector(`._data${postIndex} .post-img-container`)
+                
+                setTimeout(() => {
+                    imgCont.appendChild(imgList)
+                    imgList.appendChild(imgItem)
+                    imgItem.src = postImage[i]
+
+                    let imgBtn = document.createElement('li')
+                    imgBtn.className =`post-img-btn`;
+                    
+                    let imgBtnCont = document.querySelector(`._data${postIndex} .post-img-btn-container`)
+                    
+                    imgBtn.addEventListener('click',(e)=>{
+                        e.currentTarget.parentElement.childNodes.forEach(child => {
+                            if(child.className.includes('abled')) {
+                                child.classList.remove('abled');
+                            }
+                            e.currentTarget.classList.add('abled');
+                        })
+                        e.currentTarget.parentElement.previousElementSibling.style.transitionDuration = ".3s";
+                        e.currentTarget.parentElement.previousElementSibling.scrollTo({
+                                    left: parseInt(getComputedStyle(e.currentTarget.parentElement.parentElement).width) * i ,
+                                    behavior: 'smooth'
+                                })
+                    })
+                    imgBtnCont.appendChild(imgBtn)
+                    document.querySelectorAll('.post-img-btn:first-child').forEach(element => {
+                        element.classList.add('abled');
+                        })
+                }, 150);
+            }
+        } else if (postImage[0] =='') {
+            console.log('이미지없음')
+        }
+>>>>>>> upstream/dev
     }
   }
 
@@ -463,6 +588,7 @@ async function loadPage() {
     }
   });
 
+<<<<<<< HEAD
   // 두번째 모달 - 글삭제,취소 / 로그아웃,취소 분기
   let btnCancle = document.querySelector(".btn-alert button");
   let btnDelete = document.querySelector(".btn-delete");
@@ -470,6 +596,41 @@ async function loadPage() {
   btnCancle.addEventListener("click", () => {
     deleteAlert.classList.remove("on");
   });
+=======
+    btnDelete.addEventListener("click", (e) => {
+        switch (document.querySelector(".icon-post-modal ul").children[1].innerText) {
+            case '신고': 
+                reportPost();
+                break;
+            
+            case '로그아웃' : 
+                localStorage.clear();
+                window.location.href = "../pages/login.html";
+                break;
+            default:
+                break;
+        }
+        
+    })
+
+    // 포스트 삭제/수정 모달 토글
+    setTimeout(()=>{
+        
+        for(i=0; i < postMoreBtn.length; i++) {
+            postMoreBtn[i].index = i;
+            postMoreBtn[i].addEventListener("click", (e) => toggleModal(e))
+            
+            document.querySelectorAll('.icon-heart')[i].addEventListener("click",(e) => {
+                //좋아요/좋아요취소 부터 정하고 서버에 값 업데이트하기
+                if(!e.currentTarget.src.includes('heart-fill.svg')){
+                    like(e);
+                }
+                else if(e.currentTarget.src.includes('heart-fill.svg')){
+                    dislike(e);
+                }
+            })
+        }
+>>>>>>> upstream/dev
 
   btnDelete.addEventListener("click", (e) => {
     switch (
@@ -567,8 +728,8 @@ async function getComment(e) {
   window.location.href = "./post.html";
 }
 
-//좋아요함수
 async function love(e) {
+<<<<<<< HEAD
   console.log("좋아요함수실행됨");
   const url = "https://api.mandarin.cf";
   const myToken = localStorage.getItem("accessToken");
@@ -607,6 +768,76 @@ async function dislove(e) {
     console.log(res);
     console.log("오류발생, 존재하지 않는 사용자입니다.");
   }
+=======
+    //좋아요 값 다시 받아서 뿌려주기
+    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('yourAccountId')}/userpost`, {
+        method: "GET",
+        headers:{
+                "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
+                "Content-type" : "application/json"
+        }
+    });
+    const json = await res.json();
+    const heartCheck = json.post
+    heartCheck.forEach((element, index) => {
+        const HeartCount = element.heartCount
+        const Hearted = element.hearted
+        let heartSrc = '../../img/icon-heart.svg'
+        if(Hearted) {
+            heartSrc = '../../img/icon-heart-fill.svg'
+        }
+        document.querySelectorAll(".icon-heart")[index].src = heartSrc;
+        document.querySelectorAll(".like-counter")[index].innerText = HeartCount;
+    })
+}
+
+//좋아요함수
+async function like(e) {
+    console.log('좋아요함수실행됨')
+    const url = "https://api.mandarin.cf"
+    const myToken = localStorage.getItem('accessToken')
+    const postId = e.currentTarget.parentElement.parentElement.parentElement.getAttribute('postId');
+    try {
+        const res = await fetch(url+'/post/'+postId+'/heart', {
+            method: "POST",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+        })
+        const result = res.json();
+        love(e);
+    }
+    catch(error) {
+        console.log(res);
+        console.log('오류발생, 존재하지 않는 사용자입니다.')
+    }
+}
+
+//좋아요취소함수
+async function dislike(e) {
+    const url = "https://api.mandarin.cf"
+    const myToken = localStorage.getItem('accessToken')
+    const postId = e.currentTarget.parentElement.parentElement.parentElement.getAttribute('postid');
+    try {
+        const res = await fetch(url+'/post/'+postId+'/unheart', {
+            method: "DELETE",
+            headers: {
+                "Authorization" : `Bearer ${myToken}`,
+                "Content-type" : "application/json"
+            }
+        })
+        const result = res.json();
+        love(e);
+    }
+    catch(error) {
+        if(res.status == 400){
+            console.log(res.message);
+        }
+        console.log(res);
+        console.log('오류발생, 존재하지 않는 사용자입니다.')
+    }
+>>>>>>> upstream/dev
 }
 
 //팔로우함수
