@@ -14,7 +14,7 @@ async function getProfile(){
     const userAccountname = myProfile.accountname;
     const userFollowerCount = myProfile.followerCount;
     const userFollowingCount = myProfile.followingCount;
-    const userImage = myProfile.image;
+    let userImage = myProfile.image;
     const userIntro = myProfile.intro;
     const userName = myProfile.username;
 
@@ -116,7 +116,7 @@ async function getMyPost(){
     const myPost = json.post
     console.log (json.post)
     myPost.forEach((element, index, array) => {
-        const authorImage = element.author.image
+        let authorImage = element.author.image
         const authorAccount = element.author.accountname
         const authorName = element.author.username
         const postCommentCount = element.commentCount
