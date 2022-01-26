@@ -109,6 +109,7 @@ async function getMyPost(){
     });
     const json = await res.json();
     const myPost = json.post
+    console.log(myPost);
     myPost.forEach((element, index, array) => {
         let authorImage = element.author.image
         const authorAccount = element.author.accountname
@@ -118,7 +119,11 @@ async function getMyPost(){
         const postHeartCount = element.heartCount
         const postHearted = element.hearted
         const postImageRaw = element.image
-        const postImage = element.image.split(',');
+        console.log(postImageRaw);
+        let postImage
+        if (postImageRaw) {
+            postImage = element.image.split(',')
+        }
         const postCreateAt = element.createdAt.replace(/-/g,'')
         const postCreateAtYear = postCreateAt.slice(0,4);
         const postCreateAtMonth = postCreateAt.slice(4,6);
@@ -646,3 +651,5 @@ document.querySelector('.M-button').addEventListener('click', async(e) => {
         follow();
     }
 })
+
+document.querySelector('.tab-menu a:last-child').style.color = '#767676'
