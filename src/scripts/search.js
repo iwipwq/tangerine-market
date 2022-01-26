@@ -17,6 +17,7 @@ searchInput.addEventListener("keyup", () => {
     userList.innerHTML = "";
   }
 });
+
 async function getUserList(word) {
   const url = "https://api.mandarin.cf";
   try {
@@ -26,44 +27,58 @@ async function getUserList(word) {
         Authorization: "Bearer " + token,
       },
     });
+
     const resJson = await res.json();
-    console.log(resJson);
-    const userList = document.querySelector(".user-list");
-    resJson.forEach((res) => {
-      userList.innerHTML += `
-    <li class="user-search">
-      <a href="your-profile.html" class="user-list-link" data-account="${res.accountname}">
-          <img
-            src="${res.image}"
-            alt="프로필 사진"
-            class="user-search-img"
-          />
-          <div class="user-name">
-            <p class="user-name-title">${res.username}</p>
-            <p class="user-name-sub">@ ${res.accountname}</p>
-          </div>
-      </a>
-    </li>
-    `;
-    });
-    const listLink = document.querySelectorAll(".user-list-link");
-    console.log("리스트링크", listLink);
-    listLink.forEach((item) => {
-      const yourAccountId = item.getAttribute("data-account");
-      console.log(yourAccountId);
-      item.addEventListener("click", () => {
-        localStorage.setItem("yourAccountId", yourAccountId);
-      });
-    });
-  } catch (err) {
-    if (res.status == 401) {
-      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
-      location.href = "./login.html";
-    } else {
-      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
-      location.href = "./home.html";
+    printUserList(resJson);
+    getAccountId();
+    wordHighlight(word);
+  } catch (err) {}
+}
+
+function printUserList(userInfo) {
+  const userList = document.querySelector(".user-list");
+
+  userInfo.forEach((user) => {
+    if (user.image.includes("127.0.0.1")) {
+      user.image = "../../img/basic-profile.png";
     }
-  }
+    userList.innerHTML += `
+  <li class="user-search">
+    <a href="your-profile.html" class="user-list-link" data-account="${user.accountname}">
+        <img
+          src="${user.image}"
+          alt="프로필 사진"
+          class="user-search-img"
+        />
+        <div class="user-name">
+          <p class="user-name-title">${user.username}</p>
+          <p class="user-name-sub">@ ${user.accountname}</p>
+        </div>
+    </a>
+  </li>
+  `;
+  });
+}
+
+function getAccountId() {
+  const listLink = document.querySelectorAll(".user-list-link");
+  listLink.forEach((item) => {
+    const yourAccountId = item.getAttribute("data-account");
+    item.addEventListener("click", () => {
+      localStorage.setItem("yourAccountId", yourAccountId);
+    });
+  });
+}
+
+function wordHighlight(word) {
+  const regex = new RegExp(word, "g");
+  const userName = document.querySelectorAll(".user-name-title");
+  userName.forEach((e) => {
+    e.innerHTML = e.innerHTML.replace(
+      regex,
+      "<span class='highlight'>" + word + "</span>"
+    );
+  });
 }
 
 getUserList();
