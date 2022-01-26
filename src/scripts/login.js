@@ -2,7 +2,7 @@ let token = localStorage.getItem("accessToken");
 
 function splash() {
   if (token) {
-    window.location.href = "/home.html";
+    window.location.href = "../pages/home.html";
   }
 }
 

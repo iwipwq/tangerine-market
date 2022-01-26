@@ -5,28 +5,27 @@ const emailInput = document.querySelector("#login-id")
 const passwordInput = document.querySelector("#login-pw")
 const emailPwBtn = document.querySelector(".next-btn")
 const profile = document.querySelector("#join-profile-wrap");
+const profileInput = profile.querySelectorAll("input")
 const imagePre = document.querySelector(".basic-profile-img")
 const submitBtn = document.querySelector(".start-btn")
 
 //이메일, 패스워드의 인풋 값이 모두 들어와 있으면 다음 버튼활성화
 function able() {
-    let check = 0;
-    for (let i = 0; i < emailInputs.length; i++) {
-        if (emailInputs[i].value !== "") {
-            check += 1;
-        }
-    }
-    if (check === emailInputs.length) {
-        emailPwBtn.disabled = false;
-        emailPwBtn.style.backgroundColor = "#f26e22"
+    if (emailInput.value && passwordInput.value) {
+        emailPwBtn.removeAttribute("disabled");
+        emailPwBtn.style.backgroundColor = "#F26E22";
     } else {
-        emailPwBtn.disabled = true;
+        emailPwBtn.style.backgroundColor = "#FFC7A7";
+        emailPwBtn.setAttribute("disabled", "disabled");
     }
 }
-emailPw.addEventListener("keyup", able);
+emailInputs.forEach((value) => {
+    value.addEventListener("keyup", able);
+});
+
 
 async function checkEmailValid(email) {
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     const res = await fetch(url + '/user/emailValid', {
         method: "POST",
         headers: {
@@ -67,6 +66,7 @@ emailInput.addEventListener("change", () => {
 });
 
 //비밀번호 6자리 이상. 유효성검사
+const passwordError = document.querySelector("#password-error")
 passwordInput.addEventListener("change", () => {
     if (passwordInput.value.length >= 6) {
         passwordError.classList.add("hidden");
@@ -86,7 +86,7 @@ emailPwBtn.addEventListener("click", async () => {
 async function imageUpload(files) {
     const formData = new FormData();
     formData.append("image", files[0]);//formData.append("키이름","값")
-    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+    const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
         method: "POST",
         body: formData
     })
@@ -95,14 +95,46 @@ async function imageUpload(files) {
     return productImgName
 }
 
+//프로필 설정 화면
 
 async function profileImage(e) {
     const files = e.target.files
     const result = await imageUpload(files)
-    imagePre.src = "http://146.56.183.55:5050/" + result
+    imagePre.src = "https://api.mandarin.cf/" + result
     console.log(result)
 }
 document.querySelector("#upload-image").addEventListener("change", profileImage)
+
+// 프로필설정 계정 ID 정규표현식
+const accountInput = document.querySelector("#user-id")
+accountInput.addEventListener("change", () => {
+    let accountRegExp = /^[a-zA-Z0-9._]+$/;
+    // let accountRegExp = /^(?=.*[a-zA-Z0-9._]).{1,15}$/;
+    // let accountRegExp =  /^(?=.*[a-zA-Z])(?=.*[._])(?=.*[0-9])$/;
+    // let accountVal = account.value;
+    const accOnly = document.querySelector("#id-error");
+    if (accountInput.value.match(accountRegExp) == null) {
+        accOnly.classList.remove("hidden");
+    } else {
+        accOnly.classList.add("hidden");
+    }
+});
+
+// 회원가입 버튼 활성화
+const userName = document.querySelector("#user-name");
+const userId = document.querySelector("#user-id");
+function submitAble() {
+    if (userName.value && userId.value) {
+        submitBtn.removeAttribute("disabled");
+        submitBtn.style.backgroundColor = "#F26E22";
+    } else {
+        submitBtn.style.backgroundColor = "#FFC7A7";
+        submitBtn.setAttribute("disabled", "disabled");
+    }
+}
+profileInput.forEach((value) => {
+    value.addEventListener("keyup", submitAble);
+});
 
 async function join() {
     const email = document.querySelector("#login-id").value;
@@ -112,7 +144,7 @@ async function join() {
     const intro = document.querySelector("#user-desc").value;
     const imageUrl = document.querySelector(".basic-profile-img").src
     try {
-        const res = await fetch("http://146.56.183.55:5050/user", {
+        const res = await fetch("https://api.mandarin.cf/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -133,7 +165,7 @@ async function join() {
         const message = json.message
         // if(message=="회원가입 성공"){
         if (res.status == 200) {
-            location.href = "./index.html"
+            location.href = "../pages/login.html"
         }
         else {
             console.log(json)

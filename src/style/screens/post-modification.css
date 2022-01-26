@@ -9,15 +9,14 @@
   display: none;
 }
 
-/* 스크롤 바 없애기 */
-
 #post-mod-wrap {
   display: flex;
   flex-direction: column;
   position: relative;
+  /* overflow-x: scroll; */
 }
 
-.post-mod-header {
+#post-mod-wrap .post-mod-header {
   position: fixed;
   width: 100%;
   position: absolute;
@@ -37,6 +36,7 @@
 .post-mod-main form {
   position: relative;
 }
+
 .post-mod-main .upload-box {
   margin-top: 68px;
   overflow: hidden;

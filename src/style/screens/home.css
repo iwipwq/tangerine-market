@@ -7,6 +7,13 @@
   overflow: hidden;
 }
 
+#home-wrap {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+#home-wrap::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .home-header .top-main-nav {
   position: absolute;
   z-index: 20;
@@ -37,6 +44,14 @@
   height: 100%;
   overflow: scroll;
   width: 100%;
+}
+
+.home-main .post {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.home-main .post::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 .home-main .post.on {
   display: flex;
@@ -73,6 +88,17 @@
 }
 .home-main .post-section {
   width: 100%;
+}
+.home-main .post-section .post-more-vertical {
+  position: absolute;
+  top: -6px;
+  right: -3px;
+}
+.home-main .post-section h3 {
+  display: block;
+}
+.home-main .post-section h3 a {
+  display: block;
 }
 .home-main .basic-profile-img {
   border-radius: 50%;

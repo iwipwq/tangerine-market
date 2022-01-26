@@ -1,14 +1,5 @@
-// 상품등록
-// 상품명15자 이하 2자 이상
-// let textValid = 15 >= productInputValue.length && productInputValue.length >= 2;
-// 가격값이 숫자인지 확인 
-// let numValid = new RegExp(/^[0-9]+$/).test(priceInputValue);
-// url값이 ftp:// http:// https:// 로 시작하는지 확인
-// let urlValid = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/).test(linkInputValue);
-
 let productInput = document.getElementById("product-name");
 let productInputValue = "";
-// let textValid,numValid,urlValid = 0;
 let textValid = false;
 productInput.addEventListener("input", (e) => {
     console.log(e.target.value);
@@ -69,22 +60,6 @@ linkInput.addEventListener("input", (e) => {
     }
 });
 
-// document.querySelector('#imageInput').addEventListener('change', function() {
-//     if (this.files && this.files[0]) {
-//         console.log('this.file',this.files,'this.files[0]',this.files[0],'filelist',FileList,FileReader)
-//         let img = document.querySelector('.user-product-img');
-//         img.onload = () => {
-//             console.log(URL.revokeObjectURL(img.src));
-//             URL.revokeObjectURL(img.src);  // no longer needed, free memory
-//         }
-//         if(!img.classList.contains("img-visible")){
-//             img.classList.add("img-visible")
-//         }
-//         return img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-//         console.log(img.src)
-//     }
-// });
-
 const imageInput = document.querySelector('#image-input');
 const submitBtn = document.querySelector('button[type=button]');
 
@@ -111,7 +86,7 @@ document.querySelector('#image-input').addEventListener('change',()=>{
 })
 
 async function fileUpload(files,index){
-    const url = "http://146.56.183.55:5050";
+    const url = "https://api.mandarin.cf";
     let formData = new FormData();
     console.log('files[index]로그',files[index])
     formData.append("image",files[index])
@@ -125,8 +100,8 @@ async function fileUpload(files,index){
     console.log(productImgName);
     return productImgName
 }
-async function createProduct(_e) {
-    const url = "http://146.56.183.55:5050"
+async function createProduct() {
+    const url = "https://api.mandarin.cf"
     const token = localStorage.getItem("accessToken")
     const files = imageInput.files
     console.log(imageInput.files)
@@ -160,13 +135,22 @@ async function createProduct(_e) {
 window.addEventListener('keyup', (e)=> {
     if( textValid && numValid && urlValid ){
         submitBtn.classList.replace('Ms-Disabled-button','Ms-button');
-        submitBtn.addEventListener('click',createProduct)
+        // submitBtn.addEventListener('click',createProduct)
         //location.href('/profile')
     } else {
         if (submitBtn.className === 'Ms-button') {
         submitBtn.classList.replace('Ms-button','Ms-Disabled-button');
         } 
-        submitBtn.removeEventListener('click',createProduct)
+        // submitBtn.removeEventListener('click',createProduct)
+    }
+})
+
+submitBtn.addEventListener('click', (e) => {
+    console.log(e.currentTarget.classList.value == 'Ms-Disabled-button');
+    if(e.currentTarget.classList.value === 'Ms-Disabled-button'){
+        console.log('양식을 모두 채워주세요')
+    } else if (e.currentTarget.classList.value === 'Ms-button'){
+        createProduct();
     }
 })
 

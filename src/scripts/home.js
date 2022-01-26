@@ -2,13 +2,15 @@ let token = localStorage.getItem("accessToken");
 
 function checkToken() {
   if (!token) {
-    window.location.href = "/src/pages/login.html";
+    window.location.href = "../pages/login.html";
   }
 }
 checkToken();
 
+//좋아요함수
+
 async function getFollowingFeed() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(url + "/post/feed", {
       headers: {
@@ -17,7 +19,6 @@ async function getFollowingFeed() {
       },
     });
     const resJson = await res.json();
-    console.log("받은자료", resJson);
 
     if (resJson.posts.length != 0) {
       printFeed(resJson.posts);
@@ -27,8 +28,16 @@ async function getFollowingFeed() {
 
     appearModal();
     savePostId();
+    saveYourAccountId();
+    likeChange();
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 getFollowingFeed();
@@ -61,13 +70,13 @@ function printFeed(posts) {
     const getYear = date.getFullYear();
     const getMonth = date.getMonth() + 1;
     const getDate = date.getDate();
-
-    if (authorImage != "1641803765586.png") {
+    if (authorImage.includes("127.0.0.1")) {
+      authorImage = "../../img/basic-profile.png";
+    } else if (authorImage.includes("http")) {
       authorImage = post.author.image;
     } else {
-      authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      authorImage = "../../img/basic-profile.png";
     }
-
     document.querySelector(".post").innerHTML += `
   <article class="home-post">
     <h2 class="sr-only">포스트섹션</h2>
@@ -79,10 +88,11 @@ function printFeed(posts) {
     /></a>
     <section class="post-section">
       <h3>
-        <a href="javascript:void(0)" class="typography--h3"
+        <a href="your-profile.html" class="typography--h3 your-link" data-account="${authorAccount}"
           >${authorName}</a
         >
-      </h3>
+        </h3>
+        <a href="your-profile.html" class="post-author typography--a your-link" data-account="${authorAccount}">${authorAccount}</a>
       <a href="#none" class="post-more-vertical">
         <img
           src="../../img/s-icon-more-vertical.svg"
@@ -90,7 +100,6 @@ function printFeed(posts) {
           class="s-icon-more-vertical modal-btn"
         />
       </a>
-      <a class="post-author typography--a">${authorAccount}</a>
       <p class="post-text typography--p">
         ${content}
       </p>
@@ -101,7 +110,7 @@ function printFeed(posts) {
         alt="포스트 이미지"
         class="post-img"
       />
-      <button class="like" type="button">
+      <button class="like" type="button" data-post="${post.id}" data-heart="${post.hearted}">
         <img
           src="${hearted}"
           alt="좋아요"
@@ -134,6 +143,16 @@ function savePostId() {
   });
 }
 
+function saveYourAccountId() {
+  const linkProfile = document.querySelectorAll(".your-link");
+  linkProfile.forEach((link) => {
+    const yourAccountId = link.getAttribute("data-account");
+    link.addEventListener("click", () => {
+      localStorage.setItem("yourAccountId", yourAccountId);
+    });
+  });
+}
+
 function likeHeart(value) {
   if (value) {
     return "../../img/icon-heart-fill.svg";
@@ -146,6 +165,7 @@ function appearModal() {
   const iconMoreVertical = document.querySelectorAll(".modal-btn");
   const bottomModal = document.querySelector(".icon-post-modal");
   const screenOverlay = document.querySelector(".screen-overlay");
+
   iconMoreVertical.forEach((btn) => {
     btn.addEventListener("click", () => {
       bottomModal.classList.toggle("modal-popup");
@@ -156,4 +176,59 @@ function appearModal() {
     bottomModal.classList.toggle("modal-popup");
     screenOverlay.classList.toggle("overlay-on");
   });
+}
+
+function likeChange() {
+  const likeBtn = document.querySelectorAll(".like");
+  likeBtn.forEach((like) => {
+    const postId = like.getAttribute("data-post");
+    like.addEventListener("click", () => {
+      if (like.childNodes[1].src.includes("heart-fill")) {
+        dislike(postId);
+        like.nextElementSibling.innerText =
+          like.nextElementSibling.innerText - 1;
+        like.childNodes[1].setAttribute("src", "../../img/icon-heart.svg");
+      } else {
+        likes(postId);
+        like.nextElementSibling.innerText =
+          Number(like.nextElementSibling.innerText) + 1;
+        like.childNodes[1].setAttribute("src", "../../img/icon-heart-fill.svg");
+      }
+    });
+  });
+}
+
+async function likes(postId) {
+  const url = "https://api.mandarin.cf";
+  try {
+    const res = await fetch(url + "/post/" + postId + "/heart", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+    const result = res.json();
+    // love();
+  } catch (error) {}
+}
+
+//좋아요취소함수
+async function dislike(postId) {
+  const url = "https://api.mandarin.cf";
+
+  try {
+    const res = await fetch(url + "/post/" + postId + "/unheart", {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    });
+    const result = res.json();
+    // love();
+  } catch (error) {
+    if (res.status == 400) {
+    }
+  }
 }

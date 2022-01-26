@@ -17,7 +17,7 @@ input.forEach((value) => {
 });
 
 async function login() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(url + "/user/login", {
       method: "POST",
@@ -32,10 +32,17 @@ async function login() {
       }),
     });
     const resJson = await res.json();
-    console.log("받은데이터", resJson);
     printError(resJson);
     setLocalUserinfo(resJson);
-  } catch (err) {}
+  } catch (err) {
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
+  }
 }
 
 loginBtn.addEventListener("click", login);
@@ -48,7 +55,7 @@ function printError(error) {
     pwInput.classList.add("error");
   } else {
     pwInput.classList.remove("error");
-    window.location.href = "/src/pages/home.html";
+    window.location.href = "../pages/home.html";
   }
 }
 

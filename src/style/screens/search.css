@@ -1,11 +1,3 @@
-/* 스크롤 바 없애기 */
-body {
-  -ms-overflow-style: none;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-
 #search-wrap {
   display: flex;
   flex-direction: column;
@@ -42,8 +34,22 @@ body {
   height: 100%;
   overflow: scroll;
 }
+.search-main .user-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.search-main .user-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
 .search-main .user-list .user-search {
   margin-bottom: 16px;
+  display: block;
+}
+.search-main .user-list .user-search a {
+  display: flex;
+}
+.search-main .user-list .user-search a img {
+  border-radius: 50%;
 }
 
 .search-footer .tab-menu {
@@ -54,4 +60,9 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+.search-main .highlight {
+  font-weight: bold;
+  color: #f26e22;
 }

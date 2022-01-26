@@ -2,18 +2,17 @@ const token = localStorage.getItem("accessToken");
 const postId = localStorage.getItem("postId");
 const userId = localStorage.getItem("userId");
 
-console.log("id", userId);
 //토큰 확인
 function checkToken() {
   if (!token) {
-    window.location.href = "/src/pages/login.html";
+    window.location.href = "../pages/login.html";
   }
 }
 checkToken();
 
 //포스트 작성
 async function getPost() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}`, {
       headers: {
@@ -38,11 +37,11 @@ async function getPost() {
     const hearted = likeHeart(post.hearted);
     const myProfileImage = localStorage.getItem("profileImage");
 
-    if (authorImage != "1641803765586.png") {
+    if (authorImage.includes("http")) {
       authorImage = post.author.image;
     } else {
       //기본이미지
-      authorImage = "http://146.56.183.55:5050/1641803765586.png";
+      authorImage = "../../img/basic-profile.png";
     }
 
     document.querySelector(".post-main .home").innerHTML += `
@@ -60,7 +59,7 @@ async function getPost() {
             >${authorName}</a
           >
         </h3>
-        <a href="javascript:vold(0)" class="post-more-vertical">
+        <a href="#none" class="post-more-vertical">
           <img
             src="../../img/s-icon-more-vertical.svg"
             alt=""
@@ -99,17 +98,22 @@ async function getPost() {
     </article>
   `;
     document.querySelector(".comment .basic-profile").src = myProfileImage;
+    postModal();
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
 }
 
 function likeHeart(value) {
   if (value) {
-    console.log("하트있음");
     return "../../img/icon-heart-fill.svg";
   } else {
-    console.log("하트없음");
     return "../../img/icon-heart.svg";
   }
 }
@@ -118,7 +122,7 @@ getPost();
 
 //댓글 리스트 작성
 async function getComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       headers: {
@@ -127,8 +131,8 @@ async function getComment() {
       },
     });
     const resJson = await res.json();
-    console.log("댓글리스트", resJson);
     const comments = resJson.comments;
+    console.log(resJson);
     comments.forEach((comment) => {
       const authorName = comment.author.username;
       let authorProfileImg = comment.author.image;
@@ -137,11 +141,11 @@ async function getComment() {
       const writeDay = timeForToday(day);
       let commentId = comment.id;
       let authorId = comment.author._id;
-      console.log("코멘트id", commentId);
-      if (authorProfileImg != "1641803765586.png") {
+      console.log();
+      if (authorProfileImg.includes("http")) {
         authorProfileImg = comment.author.image;
       } else {
-        authorImage = "http://146.56.183.55:5050/1641803765586.png";
+        authorProfileImg = "../../img/basic-profile.png";
       }
       document.querySelector(".comment-box").innerHTML += `
       <ul>
@@ -172,63 +176,115 @@ async function getComment() {
     `;
     });
 
-    ///내 댓글이 아닌 경우 신고 모달
-    // 댓글 삭제 모달창
-    const modalBtn = document.querySelectorAll(".modal-btn");
-    let deleteModal = document.querySelector(".comment-delete-modal");
-    let declarationModal = document.querySelector(".comment-Declaration-modal");
-    let screenOverlay = document.querySelector(".screen-overlay");
-    let deleteAlert = document.querySelector(".delete-alert");
+    commetModal();
+  } catch (err) {
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
+  }
+}
 
-    modalBtn.forEach((modal) => {
-      const id = modal.getAttribute("data-id");
-      const author = modal.getAttribute("data-user");
-      modal.addEventListener("click", () => {
-        // let overlayCheck = deleteAlert.classList.contains("on");
-        if (author == userId) {
-          commentId = id;
-          deleteModal.classList.add("modal-popup");
-          screenOverlay.classList.add("overlay-on");
-        } else {
-          screenOverlay.classList.add("overlay-on");
-          declarationModal.classList.add("modal-popup");
-          console.log("당신것이 아닙니다.");
-        }
-      });
-    });
+function commetModal() {
+  ///내 댓글이 아닌 경우 신고 모달
+  // 댓글 삭제 모달창
+  const modalBtn = document.querySelectorAll(".modal-btn");
+  let deleteModal = document.querySelector(".comment-delete-modal");
+  let declarationModal = document.querySelector(".comment-Declaration-modal");
+  let screenOverlay = document.querySelector(".screen-overlay");
+  let deleteAlert = document.querySelector(".delete-alert");
 
-    screenOverlay.addEventListener("click", () => {
-      deleteModal.classList.remove("modal-popup");
-      declarationModal.classList.remove("modal-popup");
-      screenOverlay.classList.remove("overlay-on");
-    });
-
-    // 댓글 삭제 모달 토글
-    let deleteCommentModal = document.querySelector(
-      ".comment-delete-modal ul li"
-    );
-    deleteCommentModal.addEventListener("click", () => {
-      deleteAlert.classList.toggle("on");
-      const screenCheck = screenOverlay.classList.contains("overlay-on");
-      if (screenCheck) {
-        screenOverlay.style.pointerEvents = "none";
+  //댓글 모달
+  modalBtn.forEach((modal) => {
+    const id = modal.getAttribute("data-id");
+    const author = modal.getAttribute("data-user");
+    modal.addEventListener("click", () => {
+      if (author == userId) {
+        commentId = id;
+        deleteModal.classList.add("modal-popup");
+        screenOverlay.classList.add("overlay-on");
+      } else {
+        screenOverlay.classList.add("overlay-on");
+        declarationModal.classList.add("modal-popup");
       }
     });
+  });
+  screenOverlay.addEventListener("click", () => {
+    deleteModal.classList.remove("modal-popup");
+    declarationModal.classList.remove("modal-popup");
+    screenOverlay.classList.remove("overlay-on");
+  });
 
-    let btnCancle = document.querySelector(".btn-alert button");
-    let btnDelete = document.querySelector(".btn-delete");
+  // 댓글 삭제 모달 토글
+  let deleteCommentModal = document.querySelector(
+    ".comment-delete-modal ul li"
+  );
+  deleteCommentModal.addEventListener("click", () => {
+    deleteAlert.classList.toggle("on");
+    const screenCheck = screenOverlay.classList.contains("overlay-on");
+    if (screenCheck) {
+      screenOverlay.style.pointerEvents = "none";
+    }
+  });
 
-    btnCancle.addEventListener("click", () => {
-      deleteAlert.classList.remove("on");
-      screenOverlay.style.pointerEvents = "auto";
-    });
+  let btnCancle = document.querySelector(".btn-alert button");
+  let btnDelete = document.querySelector(".btn-delete");
 
-    btnDelete.addEventListener("click", () => {
-      deleteComment(commentId);
-    });
-  } catch (err) {
-    console.log("요청실패");
-  }
+  btnCancle.addEventListener("click", () => {
+    deleteAlert.classList.remove("on");
+    screenOverlay.style.pointerEvents = "auto";
+  });
+
+  btnDelete.addEventListener("click", () => {
+    deleteComment(commentId);
+  });
+}
+function postModal() {
+  const postModalBtn = document.querySelector(".post-more-vertical");
+  let screenOverlay = document.querySelector(".screen-overlay");
+  let declarationModal = document.querySelector(".comment-Declaration-modal");
+  postModalBtn.addEventListener("click", () => {
+    screenOverlay.classList.add("overlay-on");
+    declarationModal.classList.add("modal-popup");
+  });
+}
+function logoutModal() {
+  let screenOverlay = document.querySelector(".screen-overlay");
+  const logoutBtn = document.querySelector(".setting-logout");
+  const logoutModal = document.querySelector(".setting-logout-modal");
+  const logoutAlert = document.querySelector(".logout-alert");
+
+  let btnCancle = document.querySelector(".logout-alert button");
+  let btnlogout = document.querySelector(".btn-logout");
+  logoutBtn.addEventListener("click", () => {
+    screenOverlay.classList.add("overlay-on");
+    logoutModal.classList.add("modal-popup");
+  });
+
+  screenOverlay.addEventListener("click", () => {
+    logoutModal.classList.remove("modal-popup");
+    screenOverlay.classList.remove("overlay-on");
+  });
+  let modalListlogout = document.querySelector(".setting-logout-modal .logout");
+  modalListlogout.addEventListener("click", () => {
+    logoutAlert.classList.toggle("on");
+    const screenCheck = screenOverlay.classList.contains("overlay-on");
+    if (screenCheck) {
+      screenOverlay.style.pointerEvents = "none";
+    }
+  });
+  btnCancle.addEventListener("click", () => {
+    logoutAlert.classList.remove("on");
+    screenOverlay.style.pointerEvents = "auto";
+  });
+
+  btnlogout.addEventListener("click", () => {
+    window.localStorage.clear();
+    window.location.href = "../pages/login.html";
+  });
 }
 getComment();
 
@@ -275,7 +331,7 @@ publishBtn.addEventListener("click", writeComment);
 
 //댓글 게시
 async function writeComment() {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments`, {
       method: "post",
@@ -290,14 +346,20 @@ async function writeComment() {
       }),
     });
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
   location.reload();
 }
 
 //댓글 삭제
 async function deleteComment(data) {
-  const url = "http://146.56.183.55:5050";
+  const url = "https://api.mandarin.cf";
   try {
     const res = await fetch(`${url}/post/${postId}/comments/${data}`, {
       method: "delete",
@@ -307,7 +369,14 @@ async function deleteComment(data) {
       },
     });
   } catch (err) {
-    console.log("요청실패");
+    if (res.status == 401) {
+      alert("인증이 만료 되었습니다, 다시 로그인해주세요.");
+      location.href = "./login.html";
+    } else {
+      alert("죄송합니다, 서버관리자에게 문의하거나 잠시 후 다시 시도해주세요");
+      location.href = "./home.html";
+    }
   }
   location.reload();
 }
+logoutModal();

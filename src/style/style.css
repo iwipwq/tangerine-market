@@ -17,14 +17,12 @@
 @import "./screens/home.css";
 @import "./screens/search.css";
 @import "./screens/your-profile.css";
-@import "./screens/my-profile.css";
-@import "./screens/my-followers.css";
 @import "./screens/profile-modification.css";
 @import "./screens/add-product.css";
-@import "./screens/product-modification.css";
 @import "./screens/post.css";
 @import "./screens/post-modification.css";
 @import "./screens/upload.css";
 @import "./screens/chat-list.css";
 @import "./screens/chat-room.css";
 @import "./screens/page-404.css";
+@import "./screens/followers.css";
