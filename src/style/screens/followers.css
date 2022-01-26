@@ -33,3 +33,14 @@
     border-top-right-radius: 20px;
     padding: 14px 12px 14px 16px;
 }
+
+.f-button {
+    width: 56px;
+    height: 28px;
+    background: none;
+    border: 1px solid #dbdbdb;
+    border-radius: 26px;
+    font-size: 12px;
+    line-height: 15.02px;
+    color: #767676;
+}
