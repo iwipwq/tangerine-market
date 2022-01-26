@@ -21,7 +21,7 @@ async function getProfile(){
     const userIsfollow = myProfile.isfollow
 
     if (userImage.includes("127.0.0.1")) {
-        userImage = "../../img/basic-profile.png";
+        userImage = "../../img/basic-profile-img-.png";
     }
 
     document.querySelector(".profile").innerHTML += `
@@ -31,14 +31,14 @@ async function getProfile(){
         <p class="profile-desc">${userIntro}</p>
     `;
     document.querySelector(".follow").innerHTML += `
-        <div class="followers">
+        <a href="./followers.html" class="followers">
             <p class="followers-num">${userFollowerCount}</p>
             <p class="followers-text">followers</p>
-        </div>
-        <div class="followings">
+        </a>
+        <a href="./followings.html" class="followings">
             <p class="followings-num">${userFollowingCount}</p>
             <p class="followings-text">followings</p>
-        </div>
+        </a>
     `;
     if(userIsfollow) {
         document.querySelector('#your-profile-wrap .M-button').classList.add('followed')
@@ -130,7 +130,7 @@ async function getMyPost(){
         }
 
         if (authorImage.includes("127.0.0.1")) {
-            authorImage = "../../img/basic-profile.png";
+            authorImage = "../../img/basic-profile-img-.png";
         }
 
         if (postImageRaw) {
@@ -347,6 +347,12 @@ async function loadPage() {
 
     console.log(takeOutPost);
   
+
+}
+loadPage();
+
+//모달 관련
+function loadModal() {
     let navMoreBtn = document.querySelector(".call-bottom-modal");
     let bottomModal = document.querySelector(".icon-post-modal");
     let screenOverlay = document.querySelector(".screen-overlay");
@@ -446,11 +452,11 @@ async function loadPage() {
         }
 
     },200)
+}
+loadModal();
 
-    //--------------------------모달관련 끝------------------------------
-
-    // 뒤로가기 버튼
-
+// 뒤로가기 버튼
+function goBackward() {
     let btnBack = document.querySelector('#profile-nav a')
     btnBack.addEventListener('click', () => {
         // 나중에 홈페이지주소넣기
@@ -463,7 +469,7 @@ async function loadPage() {
         }
     })
 }
-loadPage();
+goBackward();
 
 //신고함수
 async function reportPost() {
