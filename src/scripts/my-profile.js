@@ -18,6 +18,10 @@ async function getProfile(){
     const userIntro = myProfile.intro;
     const userName = myProfile.username;
 
+    if (userImage.includes("127.0.0.1")) {
+        userImage = "../../img/basic-profile.png";
+    }
+
     document.querySelector(".profile").innerHTML += `
         <img src="${userImage}" alt="${userName} 프로필사진" class="basic-profile-img" />
         <strong class="profile-title">${userName}</strong>
@@ -127,6 +131,10 @@ async function getMyPost(){
         const postCreateAtDay = postCreateAt.slice(6,8);
         const postId = element.author._id
         
+        if (authorImage.includes("127.0.0.1")) {
+            authorImage = "../../img/basic-profile.png";
+        }
+
         if (postImageRaw) {
             if (postImage.length > 1){
                 console.log("if if")
