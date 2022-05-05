@@ -1,6 +1,6 @@
 // 프로필 정보 받아와서 출력하기
 async function getProfile(){
-    const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('yourAccountId')}`, {
+    const res = await fetch(`https://mandarin.api.weniv.co.kr/profile/${localStorage.getItem('yourAccountId')}`, {
         method: "GET", 
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -50,7 +50,7 @@ getProfile();
 
 //상품정보 받아와서 출력하기
 async function getMyProduct(){
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myName = localStorage.getItem('yourAccountId');
     const myToken = localStorage.getItem('accessToken')
     try {
@@ -100,7 +100,7 @@ async function getMyProduct(){
     
 // 포스트 정보 받아와서 출력하기
 async function getMyPost(){
-    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('yourAccountId')}/userpost`, {
+    const res = await fetch(`https://mandarin.api.weniv.co.kr/post/${localStorage.getItem('yourAccountId')}/userpost`, {
         method: "GET",
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -596,7 +596,7 @@ goBackward();
 //신고함수
 async function reportPost() {
     console.log('신고함수실행됨')
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+'/post/'+idBox[0]+'/report', {
@@ -629,7 +629,7 @@ async function getComment(e) {
 
 async function love(e) {
     //좋아요 값 다시 받아서 뿌려주기
-    const res = await fetch(`https://api.mandarin.cf/post/${localStorage.getItem('yourAccountId')}/userpost`, {
+    const res = await fetch(`https://mandarin.api.weniv.co.kr/post/${localStorage.getItem('yourAccountId')}/userpost`, {
         method: "GET",
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,
@@ -653,7 +653,7 @@ async function love(e) {
 //좋아요함수
 async function like(e) {
     console.log('좋아요함수실행됨')
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myToken = localStorage.getItem('accessToken')
     const postId = e.currentTarget.parentElement.parentElement.parentElement.getAttribute('postId');
     try {
@@ -675,7 +675,7 @@ async function like(e) {
 
 //좋아요취소함수
 async function dislike(e) {
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myToken = localStorage.getItem('accessToken')
     const postId = e.currentTarget.parentElement.parentElement.parentElement.getAttribute('postid');
     try {
@@ -701,7 +701,7 @@ async function dislike(e) {
 //팔로우함수
 async function follow(e) {
     console.log('팔로우함수실행됨')
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/follow`, {
@@ -726,7 +726,7 @@ async function follow(e) {
 //언팔로우함수
 async function unfollow(e) {
     console.log('언팔로우함수실행됨')
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const myToken = localStorage.getItem('accessToken')
     try {
         const res = await fetch(url+`/profile/`+localStorage.getItem('yourAccountId')+`/unfollow`, {
@@ -749,7 +749,7 @@ async function unfollow(e) {
 }
 
 document.querySelector('.M-button').addEventListener('click', async(e) => {
-    const res = await fetch(`https://api.mandarin.cf/profile/${localStorage.getItem('yourAccountId')}`, {
+    const res = await fetch(`https://mandarin.api.weniv.co.kr/profile/${localStorage.getItem('yourAccountId')}`, {
         method: "GET", 
         headers:{
                 "Authorization" : `Bearer ${localStorage.getItem('accessToken')}`,

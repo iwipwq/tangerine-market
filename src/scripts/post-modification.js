@@ -23,7 +23,7 @@ scrollContainer.addEventListener("wheel", (evt) => {
 });
 // 포스트 정보 받아 오기
 async function getPost() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const res = await fetch(url + "/post/" + postId, {
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +76,7 @@ uploadBtn.addEventListener("click", () => {
 getPost();
 
 async function imageUpload(formData) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const res = await fetch(url + "/image/uploadfiles", {
     method: "POST",
     body: formData,
@@ -113,7 +113,7 @@ imageInput.addEventListener("change", function (e) {
 });
 
 async function updatePost(_e) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   const token = localStorage.getItem("accessToken");
   let textValue = text.value;
 

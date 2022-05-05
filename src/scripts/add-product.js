@@ -86,7 +86,7 @@ document.querySelector('#image-input').addEventListener('change',()=>{
 })
 
 async function fileUpload(files,index){
-    const url = "https://api.mandarin.cf";
+    const url = "https://mandarin.api.weniv.co.kr";
     let formData = new FormData();
     console.log('files[index]로그',files[index])
     formData.append("image",files[index])
@@ -101,7 +101,7 @@ async function fileUpload(files,index){
     return productImgName
 }
 async function createProduct() {
-    const url = "https://api.mandarin.cf"
+    const url = "https://mandarin.api.weniv.co.kr"
     const token = localStorage.getItem("accessToken")
     const files = imageInput.files
     console.log(imageInput.files)
