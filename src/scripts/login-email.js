@@ -17,7 +17,7 @@ input.forEach((value) => {
 });
 
 async function login() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   try {
     const res = await fetch(url + "/user/login", {
       method: "POST",

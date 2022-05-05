@@ -19,7 +19,7 @@ searchInput.addEventListener("keyup", () => {
 });
 
 async function getUserList(word) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   try {
     const res = await fetch(url + `/user/searchuser/?keyword=${word}`, {
       headers: {

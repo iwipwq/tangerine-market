@@ -10,7 +10,7 @@ checkToken();
 //좋아요함수
 
 async function getFollowingFeed() {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   try {
     const res = await fetch(url + "/post/feed", {
       headers: {
@@ -199,7 +199,7 @@ function likeChange() {
 }
 
 async function likes(postId) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
   try {
     const res = await fetch(url + "/post/" + postId + "/heart", {
       method: "POST",
@@ -215,7 +215,7 @@ async function likes(postId) {
 
 //좋아요취소함수
 async function dislike(postId) {
-  const url = "https://api.mandarin.cf";
+  const url = "https://mandarin.api.weniv.co.kr";
 
   try {
     const res = await fetch(url + "/post/" + postId + "/unheart", {
